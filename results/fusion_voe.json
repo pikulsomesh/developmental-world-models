@@ -1,0 +1,332 @@
+{
+ "0": {
+  "0": {
+   "vision": {
+    "surprise_possible": 0.0031393743120133877,
+    "surprise_impossible": 0.002338364953175187,
+    "voe_index": -0.1462299171354636
+   },
+   "audio": {
+    "surprise_possible": 0.04684964194893837,
+    "surprise_impossible": 0.12789888679981232,
+    "voe_index": 0.4638050198831982
+   },
+   "touch": {
+    "surprise_possible": 0.014815271832048893,
+    "surprise_impossible": 0.01345760840922594,
+    "voe_index": -0.048019989871457634
+   },
+   "proprio": {
+    "surprise_possible": 0.076880544424057,
+    "surprise_impossible": 0.07681765407323837,
+    "voe_index": -0.0004091807934869237
+   },
+   "all": {
+    "surprise_possible": 0.03542120382189751,
+    "surprise_impossible": 0.055128131061792374,
+    "voe_index": 0.21763745990192315
+   }
+  },
+  "3": {
+   "vision": {
+    "surprise_possible": 0.013998809270560741,
+    "surprise_impossible": 0.013299104757606983,
+    "voe_index": -0.025632160473205337
+   },
+   "audio": {
+    "surprise_possible": 0.037456054240465164,
+    "surprise_impossible": 0.16766488552093506,
+    "voe_index": 0.6347905359244687
+   },
+   "touch": {
+    "surprise_possible": 0.009220988489687443,
+    "surprise_impossible": 0.008281768299639225,
+    "voe_index": -0.05366127184152855
+   },
+   "proprio": {
+    "surprise_possible": 0.07193909585475922,
+    "surprise_impossible": 0.07171604037284851,
+    "voe_index": -0.001552714979555591
+   },
+   "all": {
+    "surprise_possible": 0.03315373510122299,
+    "surprise_impossible": 0.06524045765399933,
+    "voe_index": 0.3261038243649122
+   }
+  },
+  "6": {
+   "vision": {
+    "surprise_possible": 0.013787963427603245,
+    "surprise_impossible": 0.012868719175457954,
+    "voe_index": -0.03448457056091917
+   },
+   "audio": {
+    "surprise_possible": 0.03810535743832588,
+    "surprise_impossible": 0.18527568876743317,
+    "voe_index": 0.6588308803672934
+   },
+   "touch": {
+    "surprise_possible": 0.007783125154674053,
+    "surprise_impossible": 0.005909458268433809,
+    "voe_index": -0.13683808440985712
+   },
+   "proprio": {
+    "surprise_possible": 0.08700315654277802,
+    "surprise_impossible": 0.08803883194923401,
+    "voe_index": 0.005916725554698873
+   },
+   "all": {
+    "surprise_possible": 0.03666990250349045,
+    "surprise_impossible": 0.07302317768335342,
+    "voe_index": 0.3314090106499082
+   }
+  },
+  "12": {
+   "vision": {
+    "surprise_possible": 0.023631250485777855,
+    "surprise_impossible": 0.01997547596693039,
+    "voe_index": -0.08383510564160726
+   },
+   "audio": {
+    "surprise_possible": 0.02761559747159481,
+    "surprise_impossible": 0.25235801935195923,
+    "voe_index": 0.8027271441865981
+   },
+   "touch": {
+    "surprise_possible": 0.0059632002376019955,
+    "surprise_impossible": 0.003995229955762625,
+    "voe_index": -0.19761852456932869
+   },
+   "proprio": {
+    "surprise_possible": 0.09679382294416428,
+    "surprise_impossible": 0.09805013984441757,
+    "voe_index": 0.006447810249150393
+   },
+   "all": {
+    "surprise_possible": 0.03850096836686134,
+    "surprise_impossible": 0.09359471499919891,
+    "voe_index": 0.41707454194141347
+   }
+  }
+ },
+ "1": {
+  "0": {
+   "vision": {
+    "surprise_possible": 0.0034548959229141474,
+    "surprise_impossible": 0.001184447668492794,
+    "voe_index": -0.48938997719994487
+   },
+   "audio": {
+    "surprise_possible": 0.06991508603096008,
+    "surprise_impossible": 0.1542426347732544,
+    "voe_index": 0.37619738655332025
+   },
+   "touch": {
+    "surprise_possible": 0.019469527527689934,
+    "surprise_impossible": 0.01677359640598297,
+    "voe_index": -0.07438462331891364
+   },
+   "proprio": {
+    "surprise_possible": 0.09544043242931366,
+    "surprise_impossible": 0.09530118852853775,
+    "voe_index": -0.0007300131983605112
+   },
+   "all": {
+    "surprise_possible": 0.0470699816942215,
+    "surprise_impossible": 0.06687546521425247,
+    "voe_index": 0.17381548852881867
+   }
+  },
+  "3": {
+   "vision": {
+    "surprise_possible": 0.00939812883734703,
+    "surprise_impossible": 0.00817562174052,
+    "voe_index": -0.06956438191211707
+   },
+   "audio": {
+    "surprise_possible": 0.05056755617260933,
+    "surprise_impossible": 0.12741748988628387,
+    "voe_index": 0.43177747465506616
+   },
+   "touch": {
+    "surprise_possible": 0.008935914374887943,
+    "surprise_impossible": 0.007691755425184965,
+    "voe_index": -0.07482461250809315
+   },
+   "proprio": {
+    "surprise_possible": 0.120089091360569,
+    "surprise_impossible": 0.11993482708930969,
+    "voe_index": -0.0006427037449249918
+   },
+   "all": {
+    "surprise_possible": 0.04724767059087753,
+    "surprise_impossible": 0.06580492854118347,
+    "voe_index": 0.16414711464199513
+   }
+  },
+  "6": {
+   "vision": {
+    "surprise_possible": 0.021756906062364578,
+    "surprise_impossible": 0.01999601535499096,
+    "voe_index": -0.04217407183971719
+   },
+   "audio": {
+    "surprise_possible": 0.049463000148534775,
+    "surprise_impossible": 0.16157713532447815,
+    "voe_index": 0.5312455610619153
+   },
+   "touch": {
+    "surprise_possible": 0.011014030314981937,
+    "surprise_impossible": 0.00738011859357357,
+    "voe_index": -0.1975580245367133
+   },
+   "proprio": {
+    "surprise_possible": 0.16890834271907806,
+    "surprise_impossible": 0.16785390675067902,
+    "voe_index": -0.0031310990767501137
+   },
+   "all": {
+    "surprise_possible": 0.0627855733036995,
+    "surprise_impossible": 0.08920179307460785,
+    "voe_index": 0.17380536554042597
+   }
+  },
+  "12": {
+   "vision": {
+    "surprise_possible": 0.030020110309123993,
+    "surprise_impossible": 0.02619982324540615,
+    "voe_index": -0.06795253608779847
+   },
+   "audio": {
+    "surprise_possible": 0.03770097345113754,
+    "surprise_impossible": 0.20205047726631165,
+    "voe_index": 0.685499517618613
+   },
+   "touch": {
+    "surprise_possible": 0.013549075461924076,
+    "surprise_impossible": 0.007564141880720854,
+    "voe_index": -0.28346857250954005
+   },
+   "proprio": {
+    "surprise_possible": 0.2084367424249649,
+    "surprise_impossible": 0.2111797332763672,
+    "voe_index": 0.006536899788831564
+   },
+   "all": {
+    "surprise_possible": 0.07242672145366669,
+    "surprise_impossible": 0.11174854636192322,
+    "voe_index": 0.21350220023911404
+   }
+  }
+ },
+ "2": {
+  "0": {
+   "vision": {
+    "surprise_possible": 0.005546497646719217,
+    "surprise_impossible": 0.004693256691098213,
+    "voe_index": -0.08332631110785706
+   },
+   "audio": {
+    "surprise_possible": 0.06987901031970978,
+    "surprise_impossible": 0.17899951338768005,
+    "voe_index": 0.43844885224514135
+   },
+   "touch": {
+    "surprise_possible": 0.014367039315402508,
+    "surprise_impossible": 0.011793932877480984,
+    "voe_index": -0.09835668257854271
+   },
+   "proprio": {
+    "surprise_possible": 0.09179435670375824,
+    "surprise_impossible": 0.09117801487445831,
+    "voe_index": -0.003368496696980585
+   },
+   "all": {
+    "surprise_possible": 0.04539673030376434,
+    "surprise_impossible": 0.0716661810874939,
+    "voe_index": 0.22440455710117632
+   }
+  },
+  "3": {
+   "vision": {
+    "surprise_possible": 0.009413558058440685,
+    "surprise_impossible": 0.00847035925835371,
+    "voe_index": -0.05274005596085136
+   },
+   "audio": {
+    "surprise_possible": 0.043516673147678375,
+    "surprise_impossible": 0.20209018886089325,
+    "voe_index": 0.6456395982441268
+   },
+   "touch": {
+    "surprise_possible": 0.009357125498354435,
+    "surprise_impossible": 0.007525693625211716,
+    "voe_index": -0.10847903183339126
+   },
+   "proprio": {
+    "surprise_possible": 0.09607025980949402,
+    "surprise_impossible": 0.09544244408607483,
+    "voe_index": -0.0032781936166570705
+   },
+   "all": {
+    "surprise_possible": 0.03958940505981445,
+    "surprise_impossible": 0.07838217914104462,
+    "voe_index": 0.3288315092487134
+   }
+  },
+  "6": {
+   "vision": {
+    "surprise_possible": 0.031183963641524315,
+    "surprise_impossible": 0.02116682566702366,
+    "voe_index": -0.19134645545573525
+   },
+   "audio": {
+    "surprise_possible": 0.040948428213596344,
+    "surprise_impossible": 0.22955003380775452,
+    "voe_index": 0.6972372566734651
+   },
+   "touch": {
+    "surprise_possible": 0.009697590954601765,
+    "surprise_impossible": 0.007334333844482899,
+    "voe_index": -0.1387545528762476
+   },
+   "proprio": {
+    "surprise_possible": 0.13381215929985046,
+    "surprise_impossible": 0.13418839871883392,
+    "voe_index": 0.0014038755059503603
+   },
+   "all": {
+    "surprise_possible": 0.05391053855419159,
+    "surprise_impossible": 0.09805990010499954,
+    "voe_index": 0.29051282565431885
+   }
+  },
+  "12": {
+   "vision": {
+    "surprise_possible": 0.04339824616909027,
+    "surprise_impossible": 0.035163216292858124,
+    "voe_index": -0.10482276701787244
+   },
+   "audio": {
+    "surprise_possible": 0.03056257776916027,
+    "surprise_impossible": 0.23660556972026825,
+    "voe_index": 0.771210916747704
+   },
+   "touch": {
+    "surprise_possible": 0.010852516628801823,
+    "surprise_impossible": 0.008684617467224598,
+    "voe_index": -0.11096300772272147
+   },
+   "proprio": {
+    "surprise_possible": 0.1713109016418457,
+    "surprise_impossible": 0.17254918813705444,
+    "voe_index": 0.003601134682437123
+   },
+   "all": {
+    "surprise_possible": 0.06403106451034546,
+    "surprise_impossible": 0.11325065791606903,
+    "voe_index": 0.2776349007222303
+   }
+  }
+ }
+}

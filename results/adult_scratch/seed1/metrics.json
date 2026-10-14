@@ -1,0 +1,341 @@
+{
+ "stages": [
+  0,
+  3,
+  6,
+  12
+ ],
+ "steps_per_stage": {
+  "vision": 2000,
+  "audio": 1500,
+  "touch": 1500,
+  "proprio": 1500
+ },
+ "senses": {
+  "vision": {
+   "adult_scratch": [
+    {
+     "pred_err_own": 0.007546613924205303,
+     "pred_err_adult": 0.007546613924205303,
+     "probe_adult": {
+      "pos_r2": 0.6954464337817865,
+      "pos_mae_px": 3.077929246032212,
+      "type_acc": 0.492
+     },
+     "probe_newborn": {
+      "pos_r2": -0.11719528866996387,
+      "pos_mae_px": 6.835446394372312,
+      "type_acc": 0.2875
+     },
+     "voe": {
+      "surprise_possible": 0.009797831538598985,
+      "surprise_impossible": 0.008184151750756428,
+      "voe_index": -0.08973869911211561
+     },
+     "age": 0,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.005955715663731098,
+     "pred_err_adult": 0.005955715663731098,
+     "probe_adult": {
+      "pos_r2": 0.8470520231554467,
+      "pos_mae_px": 1.9917858071308527,
+      "type_acc": 0.591
+     },
+     "probe_newborn": {
+      "pos_r2": -0.06962282531122743,
+      "pos_mae_px": 6.726012988391128,
+      "type_acc": 0.2875
+     },
+     "voe": {
+      "surprise_possible": 0.01073688867734745,
+      "surprise_impossible": 0.009375002352753655,
+      "voe_index": -0.06771547849754582
+     },
+     "age": 3,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.005624204408377409,
+     "pred_err_adult": 0.005624204408377409,
+     "probe_adult": {
+      "pos_r2": 0.8785326406272147,
+      "pos_mae_px": 1.682297256043945,
+      "type_acc": 0.629875
+     },
+     "probe_newborn": {
+      "pos_r2": -0.04856393739681053,
+      "pos_mae_px": 6.681078693670025,
+      "type_acc": 0.26
+     },
+     "voe": {
+      "surprise_possible": 0.011876490882132202,
+      "surprise_impossible": 0.010733163607073947,
+      "voe_index": -0.05056810026018221
+     },
+     "age": 6,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.005457032471895218,
+     "pred_err_adult": 0.005457032471895218,
+     "probe_adult": {
+      "pos_r2": 0.877437446435813,
+      "pos_mae_px": 1.6660908311934968,
+      "type_acc": 0.6955
+     },
+     "probe_newborn": {
+      "pos_r2": -0.050470213100415995,
+      "pos_mae_px": 6.666722384191602,
+      "type_acc": 0.26
+     },
+     "voe": {
+      "surprise_possible": 0.012463823594152927,
+      "surprise_impossible": 0.01108940040343441,
+      "voe_index": -0.058353930267011654
+     },
+     "age": 12,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    }
+   ]
+  },
+  "audio": {
+   "adult_scratch": [
+    {
+     "pred_err_own": 0.0005005598650313914,
+     "pred_err_adult": 0.0005005598650313914,
+     "probe_adult": {
+      "pos_r2": 0.4049593039207082,
+      "pos_mae_px": 4.517406144523147,
+      "type_acc": 1.0
+     },
+     "probe_newborn": {
+      "pos_r2": -0.054919714053547786,
+      "pos_mae_px": 6.6003941176909935,
+      "type_acc": 0.79475
+     },
+     "age": 0,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.0005057250964455307,
+     "pred_err_adult": 0.0005057250964455307,
+     "probe_adult": {
+      "pos_r2": 0.413172695807975,
+      "pos_mae_px": 4.513069146573486,
+      "type_acc": 1.0
+     },
+     "probe_newborn": {
+      "pos_r2": -0.07602755603686862,
+      "pos_mae_px": 6.648106776757117,
+      "type_acc": 0.737375
+     },
+     "age": 3,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.000500537920743227,
+     "pred_err_adult": 0.000500537920743227,
+     "probe_adult": {
+      "pos_r2": 0.39693658614915406,
+      "pos_mae_px": 4.629170976806583,
+      "type_acc": 1.0
+     },
+     "probe_newborn": {
+      "pos_r2": -0.14623439548983708,
+      "pos_mae_px": 6.805751075196842,
+      "type_acc": 0.720125
+     },
+     "age": 6,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.0004991766763851047,
+     "pred_err_adult": 0.0004991766763851047,
+     "probe_adult": {
+      "pos_r2": 0.39465452307608695,
+      "pos_mae_px": 4.647899198832394,
+      "type_acc": 1.0
+     },
+     "probe_newborn": {
+      "pos_r2": -0.1818685020635653,
+      "pos_mae_px": 6.889303704019209,
+      "type_acc": 0.708375
+     },
+     "age": 12,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    }
+   ]
+  },
+  "touch": {
+   "adult_scratch": [
+    {
+     "pred_err_own": 0.009238742291927338,
+     "pred_err_adult": 0.009238742291927338,
+     "probe_adult": {
+      "pos_r2": 0.12277739274770749,
+      "pos_mae_px": 3.9734269700108826,
+      "type_acc": 0.41486988847583645
+     },
+     "probe_newborn": {
+      "pos_r2": 0.11135726248341749,
+      "pos_mae_px": 3.993779477913219,
+      "type_acc": 0.387360594795539
+     },
+     "age": 0,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.009278341196477413,
+     "pred_err_adult": 0.009278341196477413,
+     "probe_adult": {
+      "pos_r2": 0.12555737462917171,
+      "pos_mae_px": 3.9708412816567193,
+      "type_acc": 0.45055762081784384
+     },
+     "probe_newborn": {
+      "pos_r2": 0.11155248402765106,
+      "pos_mae_px": 4.0014996895384805,
+      "type_acc": 0.36951672862453533
+     },
+     "age": 3,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.009594457224011421,
+     "pred_err_adult": 0.009594457224011421,
+     "probe_adult": {
+      "pos_r2": 0.12974959237077488,
+      "pos_mae_px": 3.9651244586488272,
+      "type_acc": 0.5033457249070632
+     },
+     "probe_newborn": {
+      "pos_r2": 0.11172202667921638,
+      "pos_mae_px": 3.999107885732822,
+      "type_acc": 0.387360594795539
+     },
+     "age": 6,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.009540560655295849,
+     "pred_err_adult": 0.009540560655295849,
+     "probe_adult": {
+      "pos_r2": 0.12818058845968017,
+      "pos_mae_px": 3.968373174144642,
+      "type_acc": 0.5197026022304833
+     },
+     "probe_newborn": {
+      "pos_r2": 0.10710336542155274,
+      "pos_mae_px": 4.009479299219293,
+      "type_acc": 0.38438661710037175
+     },
+     "age": 12,
+     "params": 149088,
+     "width": 4,
+     "window": 6
+    }
+   ]
+  },
+  "proprio": {
+   "adult_scratch": [
+    {
+     "pred_err_own": 0.015636369585990906,
+     "pred_err_adult": 0.015636369585990906,
+     "probe_adult": {
+      "pos_r2": 0.9686693982321519,
+      "pos_mae_px": 0.6640120031307413,
+      "type_acc": 0.2215
+     },
+     "probe_newborn": {
+      "pos_r2": 0.5339780770240594,
+      "pos_mae_px": 2.552806300254978,
+      "type_acc": 0.2305
+     },
+     "age": 0,
+     "params": 117268,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.01523132249712944,
+     "pred_err_adult": 0.01523132249712944,
+     "probe_adult": {
+      "pos_r2": 0.9718266164219036,
+      "pos_mae_px": 0.6287247439386738,
+      "type_acc": 0.220625
+     },
+     "probe_newborn": {
+      "pos_r2": 0.5329901427674659,
+      "pos_mae_px": 2.558969460182896,
+      "type_acc": 0.227875
+     },
+     "age": 3,
+     "params": 117268,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.015069718472659588,
+     "pred_err_adult": 0.015069718472659588,
+     "probe_adult": {
+      "pos_r2": 0.9721923017264518,
+      "pos_mae_px": 0.6250209795453592,
+      "type_acc": 0.221625
+     },
+     "probe_newborn": {
+      "pos_r2": 0.5313499789177853,
+      "pos_mae_px": 2.563869567536597,
+      "type_acc": 0.227
+     },
+     "age": 6,
+     "params": 117268,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.015309534035623074,
+     "pred_err_adult": 0.015309534035623074,
+     "probe_adult": {
+      "pos_r2": 0.9721938696105069,
+      "pos_mae_px": 0.627263982599266,
+      "type_acc": 0.221375
+     },
+     "probe_newborn": {
+      "pos_r2": 0.5216187722871162,
+      "pos_mae_px": 2.593500976561365,
+      "type_acc": 0.225875
+     },
+     "age": 12,
+     "params": 117268,
+     "width": 4,
+     "window": 6
+    }
+   ]
+  }
+ },
+ "fusion": {}
+}

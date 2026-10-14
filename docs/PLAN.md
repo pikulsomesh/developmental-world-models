@@ -1,7 +1,7 @@
 # Research plan: Sensory-specific Developmental World Models
 
 *Status: living document. Phase 0 (a minimal, CPU-scale prototype) is implemented in this
-repository; see [RESULTS.md](RESULTS.md) for what it actually shows.*
+repository; see the [Phase-0 report](../report/REPORT.md) for what it actually shows.*
 
 ## 0. In one paragraph
 

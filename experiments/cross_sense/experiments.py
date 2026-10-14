@@ -101,6 +101,15 @@ def _narrow(job):
     return nrun(sense, sched, seed, steps=int(os.environ.get("XSENSE_NSTEPS", 3000)), family=fam)
 
 
+if __name__ == "__main__" and sys.argv[1] == "narrowing2":
+    OUT_N = "narrowing2"
+    run(OUT_N, _narrow, [(s, sc, f, sd) for s in ("vision", "audio") for sc in ("developmental", "mature", "exposed")
+                         for f in ("pc", "tf") for sd in SEEDS])
+
+if __name__ == "__main__" and sys.argv[1] == "fused5":
+    from xsense.fused import SCHEDULES
+    run("fused5", _fused, [(sc, sd) for sc in SCHEDULES for sd in range(5)])
+
 if __name__ == "__main__" and sys.argv[1] == "narrowing":
     run("narrowing", _narrow, [(s, sc, f, sd) for s in world.SENSES for sc in ("developmental", "mature", "exposed")
                                for f in ("gru", "jepa") for sd in SEEDS])

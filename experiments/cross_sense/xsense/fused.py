@@ -92,6 +92,8 @@ def eval_fused(m, seed=999, N=512, age=12):
         p = _probe(h.numpy(), lat_in, mask, np.random.default_rng(seed + 1))
         out[f"{name}_pos_r2"] = p["pos_r2"]
         out[f"{name}_id_acc"] = p["id_acc"]
+        if name.startswith("only_") and name != "only_audio":
+            out[f"{name}_pos_r2_hid"] = p["pos_r2_hid"]
         if name.startswith("only_"):
             s = name[5:]
             c = clean[s]

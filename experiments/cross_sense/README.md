@@ -7,7 +7,7 @@ predictive coding, JEPA). The write-up with figures is [`REPORT.md`](REPORT.md).
 ```bash
 pip install torch numpy scipy scikit-learn pandas tabulate matplotlib
 cd experiments/cross_sense
-XSENSE_STEPS=1000 python experiments.py arch        # also: scale, curriculum, fused, narrowing
+XSENSE_STEPS=1000 python experiments.py arch        # also: scale, curriculum, fused, narrowing, narrowing2, fused5
 python analyze.py                                   # tables -> results/summary.md, figures -> results/figs/ (copied to figures/ for the report)
 ```
 

@@ -67,6 +67,7 @@ def main():
     test = to_torch(generate(n_test, seed=s + 2))
     voe_pos = to_torch(generate(n_voe, seed=s + 3, voe="possible"))
     voe_imp = to_torch(generate(n_voe, seed=s + 3, voe="impossible"))
+    track = to_torch(generate(2 * n_voe, seed=s + 4, voe="track"))
 
     metrics = {"stages": cap.STAGES, "steps_per_stage": steps, "senses": {}, "fusion": {}}
     snapshots = {age: {} for age in cap.STAGES}
@@ -94,6 +95,8 @@ def main():
                 traj.append(ev)
                 if cond == "grown":
                     snapshots[age][sense] = clone(m).eval()
+                torch.save({"width": m.width, "window": m.window, "state": m.state_dict()},
+                           os.path.join(out, f"{sense}_{cond}_stage{i}.pt"))
                 log(sense, cond, f"age {age}", f"{time.time() - t0:.0f}s", json.dumps(_short(ev)))
             metrics["senses"][sense][cond] = traj
             torch.save(m.state_dict(), os.path.join(out, f"{sense}_{cond}.pt"))
@@ -101,7 +104,7 @@ def main():
 
     if all(set(v) == set(SENSES) for v in snapshots.values()):
         log("fusion")
-        metrics["fusion"] = run_fusion(snapshots, train, test, voe_pos, seed=args.seed,
+        metrics["fusion"] = run_fusion(snapshots, train, test, track, seed=args.seed,
                                        steps=200 if args.quick else 3000, log=log)
     _dump(metrics, out)
     log("done")

@@ -6,7 +6,7 @@ import torch
 
 from . import capability as cap
 from .models import FusionWorldModel, LATENT
-from .train import frame_features, latents, probe
+from .train import frame_features, latents, probe, ridge
 
 SENSES = ["vision", "audio", "touch", "proprio"]
 
@@ -56,16 +56,46 @@ def _hidden_split(data):
     return (vis == 0) & (present > 0)
 
 
-def run_fusion(snapshots, train, test, voe_pos, seed=0, steps=3000, log=None):
+def _ridge_x(Xtr, ytr, Xte, yte):
+    pred = ridge(Xtr, ytr[:, None], Xte, lam=1.0)[:, 0]
+    base = np.abs(yte - ytr.mean()).mean()
+    r2 = 1 - ((pred - yte) ** 2).sum() / ((yte - yte.mean()) ** 2).sum()
+    return {"x_r2": float(r2), "x_mae_px": float(np.abs(pred - yte).mean()), "baseline_mae_px": float(base)}
+
+
+@torch.no_grad()
+def occluded_tracking(models, fus, track, age, k):
+    zv = sense_latents(models, track, age)
+    hidden = _hidden_split(track)
+    n = hidden.shape[0]
+    x = track["obj_pos"][..., 0].numpy().reshape(-1)
+    f_now, state = fused_features(fus, zv, track["action"])
+    # belief about time t: what is sensed now plus what was predicted for now at t-1
+    belief = torch.cat([f_now, torch.cat([f_now[:, :1], state[:, :-1]], 1)], -1)
+    cand = {
+        "vision_memory": frame_features(zv["vision"], k),
+        "audio_only": frame_features(zv["audio"]),
+        "fused": frame_features(belief),
+    }
+    first = np.zeros(hidden.shape, bool)
+    first[: n // 2] = True
+    h = hidden.reshape(-1)
+    trm, tem = h & first.reshape(-1), h & ~first.reshape(-1)
+    out = {name: _ridge_x(X[trm], x[trm], X[tem], x[tem]) for name, X in cand.items()}
+    return out, int(h.sum())
+
+
+def run_fusion(snapshots, train, test, track, seed=0, steps=3000, log=None):
     """For each stage, fuse that stage's sense models and measure what fusion adds.
 
     snapshots: {age: {sense: SenseWorldModel}}  (grown models frozen at each stage)
 
     1. Cross-modal fill-in: probe toy position/identity from the fused state when
        vision is switched off entirely, vs from vision alone and from all senses.
-    2. Occluded tracking: on side-view occlusion episodes, probe the toy's position on
-       frames where it is fully hidden, from (a) the vision model's memory window,
-       (b) audio alone, (c) the fused world model.
+    2. Occluded tracking: on side-view episodes with a long occlusion, probe the toy's
+       horizontal position on frames where it is fully hidden, from (a) the vision
+       model's memory window, (b) audio alone, (c) the fused world model. Probes are
+       fitted on half the episodes and tested on the other half.
     """
     results = {}
     for age, models in snapshots.items():
@@ -95,31 +125,10 @@ def run_fusion(snapshots, train, test, voe_pos, seed=0, steps=3000, log=None):
             fill[name] = probe(a, pos_tr, typ_tr, b, pos_te, typ_te, m_tr, m_te)
 
         # --- 2. occluded tracking ------------------------------------------------------
-        zv = sense_latents(models, voe_pos, age)
-        n = voe_pos["present"].shape[0]
-        half = n // 2
-        hidden = _hidden_split(voe_pos)
-        pos = voe_pos["obj_pos"].numpy()
-        typ = voe_pos["obj_type"].view(-1, 1).expand(-1, hidden.shape[1]).numpy()
-        _, state = fused_features(fus, zv, voe_pos["action"])
-        # the fused state at t-1 is the model's belief about t; also give it f_t
-        f_now, _ = fused_features(fus, zv, voe_pos["action"])
-        belief = torch.cat([f_now, torch.cat([f_now[:, :1], state[:, :-1]], 1)], -1)
-        cand = {
-            "vision_memory": frame_features(zv["vision"], k),
-            "audio_only": frame_features(zv["audio"]),
-            "fused": frame_features(belief),
-        }
-        occl = {}
-        tr_rows = np.zeros(hidden.shape, bool)
-        tr_rows[:half] = True
-        for name, X in cand.items():
-            h = hidden.reshape(-1)
-            trm, tem = h & tr_rows.reshape(-1), h & ~tr_rows.reshape(-1)
-            occl[name] = probe(X, pos.reshape(-1, 2), typ.reshape(-1), X, pos.reshape(-1, 2), typ.reshape(-1), trm, tem)
+        occl, n_hidden = occluded_tracking(models, fus, track, age, k)
         results[str(age)] = {"window": k, "fill_in": fill, "occluded_tracking": occl,
-                             "n_hidden_frames": int(hidden.sum())}
+                             "n_hidden_frames": n_hidden}
         if log:
-            log("fusion age", age, {n: round(v["pos_mae_px"], 2) for n, v in occl.items()},
+            log("fusion age", age, {n: round(v["x_r2"], 3) for n, v in occl.items()},
                 {n: round(v["type_acc"], 2) for n, v in fill.items()})
     return results

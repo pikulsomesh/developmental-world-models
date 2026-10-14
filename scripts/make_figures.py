@@ -167,10 +167,10 @@ def fig_fusion(fusion, out):
     names = [("vision_memory", "vision (memory window)", "#2a78d6"), ("audio_only", "audio only", "#eb6834"),
              ("fused", "fused world model", "#1baf7a")]
     for name, lab, col in names:
-        v = [np.mean([f[a]["occluded_tracking"][name]["pos_r2"] for f in fusion]) for a in ages]
+        v = [np.mean([f[a]["occluded_tracking"][name]["x_r2"] for f in fusion]) for a in ages]
         axes[0].plot([int(a) for a in ages], v, "-o", color=col, label=lab)
     axes[0].set_title("Tracking a toy while it is fully hidden", color=INK, fontsize=9)
-    axes[0].set_ylabel("hidden-toy position R²")
+    axes[0].set_ylabel("hidden toy: horizontal position R²")
     axes[0].set_xlabel("age stage (months)")
     axes[0].set_xticks([int(a) for a in ages])
     axes[0].axhline(0, color=MUTED, linewidth=0.8)

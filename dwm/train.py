@@ -79,12 +79,13 @@ def prediction_error(model, data, age, seed=123, bs=100, per_step=False):
 
 # ---------------------------------------------------------------- linear probes
 def ridge(Xtr, Ytr, Xte, lam=1e-1):
-    mu, sd = Xtr.mean(0, keepdims=True), Xtr.std(0, keepdims=True) + 1e-6
+    """Ridge regression on standardised features; the intercept is not penalised."""
+    mu, sd = Xtr.mean(0, keepdims=True), Xtr.std(0, keepdims=True)
+    sd = sd + 1e-3 + 1e-2 * sd.mean()  # near-constant features must not explode on test data
     Xtr, Xte = (Xtr - mu) / sd, (Xte - mu) / sd
-    Xtr = np.hstack([Xtr, np.ones((len(Xtr), 1))])
-    Xte = np.hstack([Xte, np.ones((len(Xte), 1))])
-    Wt = np.linalg.solve(Xtr.T @ Xtr + lam * len(Xtr) * np.eye(Xtr.shape[1]), Xtr.T @ Ytr)
-    return Xte @ Wt
+    ymu = Ytr.mean(0, keepdims=True)
+    W = np.linalg.solve(Xtr.T @ Xtr + lam * len(Xtr) * np.eye(Xtr.shape[1]), Xtr.T @ (Ytr - ymu))
+    return Xte @ W + ymu
 
 
 def probe(Ztr, ytr_pos, ytr_type, Zte, yte_pos, yte_type, mask_tr=None, mask_te=None):

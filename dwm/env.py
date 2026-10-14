@@ -79,6 +79,8 @@ def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None):
     voe: None for ordinary episodes, or "possible" / "impossible" for the
     violation-of-expectation probe: the toy crosses a central occluder
     horizontally; in "impossible" it vanishes while hidden (from every sense).
+    "track" is like "possible" with a wider occluder and varied speed, used to ask
+    where a model thinks the hidden toy is.
     """
     rng = np.random.default_rng(seed)
     vis = np.full((n, T, H, W, 3), _BG, np.float32)
@@ -102,6 +104,11 @@ def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None):
             vx, vy = speed * np.cos(ang), speed * np.sin(ang)
             occ_x = rng.uniform(8, 24) if rng.random() < occluder_prob else None
             occ_w = 8
+        elif voe == "track":
+            # long occlusion, varied speed and height: where is the toy while hidden?
+            ox, oy = 3.0, rng.uniform(5, 14)
+            vx, vy = rng.uniform(1.0, 1.8), 0.0
+            occ_x, occ_w = 16.0, 14
         else:
             ox, oy = 3.0, rng.uniform(7, 12)
             vx, vy = rng.uniform(1.4, 1.8), 0.0

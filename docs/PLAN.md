@@ -121,17 +121,29 @@ developmental trajectory figure.
 2. Width of every hidden layer (×1, ×2, ×3, ×4).
 3. Working-memory window (1, 2, 4, 6 steps; Phase 1 maps steps to seconds using the
    matrix in proposal §3.2).
-4. *(Phase 1)* New heads that the proposal ties to ages: object tracking at 4 mo,
-   agent model at 6 mo, goal inference at 9 mo — added as new modules on the grown
-   trunk rather than separate networks.
+4. **Nothing else.** The proposal adds object-tracking, agent and goal modules at 4, 6
+   and 9 months; we do not. Anything gated by age would "emerge" on schedule by
+   construction, which is circular. The capability matrix is the *evaluation target*:
+   every capability has to be measured to emerge from the same objective (see the
+   project's paper-framing note, `research/paper-framing.md`).
 
-**Controls that make "growth" a testable claim** (all implemented for each sense):
+**Age = experience.** Each sense model is trained once, in age order, and an "age" is a
+checkpoint after the matching amount of experience; the stages are checkpoints of one
+continuous run, never separate models. Following the paper-framing note, the primary
+maturation levers are *sensory immaturity* (implemented) and a *bottom-up plasticity
+schedule* (Phase 1). Capacity growth is a factor we test, not an assumption: the brain
+does not mature mainly by adding neurons (synapses overshoot then prune), so growing
+networks are one level of the capacity factor alongside fixed-large, fixed-small and
+over-provision-then-prune.
+
+**Controls that make each lever a testable claim** (the four below are implemented for
+each sense; Phase 1 adds shuffled-order and reversed-immaturity controls, ≥3 seeds per cell):
 
 | Condition | Model size | Input fidelity | Purpose |
 |---|---|---|---|
-| **Grown** (developmental) | grows 0→12 | follows age | the proposal's hypothesis |
+| **Grown** (developmental) | grows 0→12 | follows age | both levers together |
 | **Adult-from-scratch** | 12-mo size throughout | adult throughout | standard ML baseline, same number of updates |
-| **Curriculum-only** | 12-mo size throughout | follows age | isolates the effect of degraded early input |
+| **Curriculum-only** | 12-mo size throughout | follows age | sensory immaturity alone (the primary lever) |
 | **Growth-only** | grows 0→12 | adult throughout | isolates the effect of capacity growth |
 
 **Readouts.** Next-step prediction error on adult-quality input; linear probes for toy
@@ -150,8 +162,13 @@ violation-of-expectation index for permanence.
   more robust to degraded input than adult-from-scratch models, at little or no cost on
   clean input.
 * **H3 (memory gates permanence).** A positive VoE index for occlusion appears only once
-  the memory window spans the occlusion, i.e. it is an emergent consequence of the
-  capacity schedule, not a hand-added module.
+  the memory window spans the occlusion. Caveat: a window schedule is itself a capacity
+  constraint we chose, so this tests "is memory span sufficient", not "does permanence
+  emerge from experience alone"; the fixed-capacity conditions are the stricter test.
+* **H7 (perceptual narrowing, flagship cross-sense test, Phase 1).** Trained on "native"
+  input only, models first discriminate then lose non-native contrasts (speech
+  phonemes, other-species faces) across checkpoints. Non-monotonic, cross-modal, and
+  impossible to explain by "more data is better".
 * **H4 (multisensory scaffolding).** A fused model tracks a toy through visual occlusion
   better than vision alone, because sound passes through occluders — so "object
   permanence" can appear earlier in a multisensory infant than in a vision-only one.

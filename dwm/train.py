@@ -32,7 +32,8 @@ def train_sense(model: SenseWorldModel, data, age, steps, lr=2e-3, bs=32, seed=0
     while step < steps:
         for idx in batches(n, bs, gen):
             t0 = int(torch.randint(0, obs.shape[1] - sub_T + 1, (1,), generator=gen))
-            o = senses.apply(model.sense, obs[idx, t0 : t0 + sub_T], age, gen)
+            a = age if not isinstance(age, (list, tuple)) else age[int(torch.randint(0, len(age), (1,), generator=gen))]
+            o = senses.apply(model.sense, obs[idx, t0 : t0 + sub_T], a, gen)
             loss, parts = model.loss(o, act[idx, t0 : t0 + sub_T])
             opt.zero_grad()
             loss.backward()

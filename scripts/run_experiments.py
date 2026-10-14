@@ -24,11 +24,17 @@ from dwm.models import SenseWorldModel, clone  # noqa: E402
 from dwm.train import SENSES, evaluate_sense, to_torch, train_sense, voe_index  # noqa: E402
 
 CONDITIONS = {
-    # name: (grows?, input follows age?)
-    "grown": (True, True),
-    "adult_scratch": (False, False),
-    "curriculum_only": (False, True),
-    "growth_only": (True, False),
+    # name: (grows?, input schedule over the four checkpoints)
+    #   "age"      sensory immaturity follows age 0 -> 3 -> 6 -> 12
+    #   "adult"    adult-quality input throughout
+    #   "shuffled" every batch draws its input quality from a random stage (same data, no order)
+    #   "reversed" sharp first, immature last: 12 -> 6 -> 3 -> 0
+    "grown": (True, "age"),
+    "adult_scratch": (False, "adult"),
+    "curriculum_only": (False, "age"),
+    "growth_only": (True, "adult"),
+    "shuffled_order": (False, "shuffled"),
+    "reversed_immaturity": (False, "reversed"),
 }
 
 
@@ -67,7 +73,7 @@ def main():
     for sense in args.senses.split(","):
         metrics["senses"][sense] = {}
         for cond in args.conditions.split(","):
-            grows, follows_age = CONDITIONS[cond]
+            grows, schedule = CONDITIONS[cond]
             torch.manual_seed(args.seed)
             final = cap.capacity(12)
             m = SenseWorldModel(sense, 1, 1) if grows else SenseWorldModel(sense, final["width"], final["window"])
@@ -77,11 +83,13 @@ def main():
                 if grows and i > 0:
                     c = cap.capacity(age)
                     m.grow(c["width"], c["window"])
-                train_age = age if follows_age else 12
+                train_age = {"age": age, "adult": 12, "shuffled": list(cap.STAGES),
+                             "reversed": cap.STAGES[::-1][i]}[schedule]
+                own_age = age if schedule == "shuffled" else train_age
                 train_sense(m, train, train_age, steps[sense], seed=args.seed * 100 + i)
-                ev = evaluate_sense(m, train, test, own_age=train_age)
+                ev = evaluate_sense(m, train, test, own_age=own_age)
                 if sense == "vision":
-                    ev["voe"] = voe_index(m, voe_pos, voe_imp, train_age)
+                    ev["voe"] = voe_index(m, voe_pos, voe_imp, own_age)
                 ev.update(age=age, params=m.n_params(), width=m.width, window=m.window)
                 traj.append(ev)
                 if cond == "grown":

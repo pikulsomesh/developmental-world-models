@@ -73,7 +73,7 @@ def _audio(t_type, ox, oy, rng):
     return out
 
 
-def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None):
+def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None, silent=False):
     """Generate n episodes.
 
     voe: None for ordinary episodes, or "possible" / "impossible" for the
@@ -81,6 +81,10 @@ def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None):
     horizontally; in "impossible" it vanishes while hidden (from every sense).
     "track" is like "possible" with a wider occluder and varied speed, used to ask
     where a model thinks the hidden toy is.
+    "impossible_visual" removes the toy from vision and touch only: it keeps
+    sounding as if it were still moving behind the occluder.
+    silent=True makes the toy emit no sound at all (hearing gets only noise), so
+    hearing cannot signal that anything vanished.
     """
     rng = np.random.default_rng(seed)
     vis = np.full((n, T, H, W, 3), _BG, np.float32)
@@ -125,8 +129,9 @@ def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None):
             act[i, t] = a
 
             hidden = occ_x is not None and abs(ox - occ_x) <= (occ_w / 2 - 2.5)
-            if voe == "impossible" and hidden:
+            if voe in ("impossible", "impossible_visual") and hidden:
                 alive = False
+            audible = (alive or voe == "impossible_visual") and not silent
 
             frame = vis[i, t]
             if alive:
@@ -136,13 +141,14 @@ def generate(n, T=T_DEFAULT, seed=0, occluder_prob=0.5, voe=None):
                 frame[:, max(0, x0) : min(W, x1)] = _OCC_RGB
             _stamp(frame, _hand_mask(), hx, hy, _HAND_RGB)
 
-            if alive:
+            if audible:
                 aud[i, t] = _audio(k, ox, oy, rng)
+            else:  # same number of random draws, so trajectories match across variants
+                aud[i, t] = 0.01 * rng.standard_normal((2, AUDIO_BINS))
+            if alive:
                 occ = _occupancy(k, ox, oy)
                 cx, cy = int(round(hx)) + 4, int(round(hy)) + 4
                 tch[i, t] = occ[cy - 4 : cy + 4, cx - 4 : cx + 4]
-            else:
-                aud[i, t] = 0.01 * rng.standard_normal((2, AUDIO_BINS))
             pro[i, t] = [hx / 31.0, hy / 31.0, hvx / 1.5, hvy / 1.5]
             obj[i, t] = [ox, oy]
             visible[i, t] = float(alive and not hidden)

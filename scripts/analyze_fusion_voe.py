@@ -1,5 +1,8 @@
 """Violation of expectation for the *fused* world model, from saved grown checkpoints.
 
+Three impossible events dissociate the senses: the toy vanishes from every sense,
+from vision and touch only (it keeps sounding), or a silent toy vanishes.
+
 For each seed and stage: rebuild the grown sense models, retrain the fusion model
 (same recipe as run_experiments), then compare surprise on possible vs impossible
 occlusion events. Surprise = error of the fused model's one-step prediction of each
@@ -54,12 +57,18 @@ def main():
     args = ap.parse_args()
     torch.set_num_threads(int(os.environ.get("THREADS", "4")))
     out = {}
+    # each event type: (possible-episode kwargs, impossible-episode kwargs)
+    events = {
+        "vanish_all": ({"voe": "possible"}, {"voe": "impossible"}),            # gone from every sense
+        "vanish_visual": ({"voe": "possible"}, {"voe": "impossible_visual"}),  # still heard behind the occluder
+        "silent_toy": ({"voe": "possible", "silent": True}, {"voe": "impossible", "silent": True}),
+    }
     for seed in [int(s) for s in args.seeds.split(",")]:
         s = 1000 * seed
         train = to_torch(generate(3000, seed=s + 1))
-        pos = to_torch(generate(400, seed=s + 3, voe="possible"))
-        imp = to_torch(generate(400, seed=s + 3, voe="impossible"))
-        vis = pos["visible"].numpy()
+        ev_data = {name: (to_torch(generate(400, seed=s + 3, **p)), to_torch(generate(400, seed=s + 3, **q)))
+                   for name, (p, q) in events.items()}
+        vis = ev_data["vanish_all"][0]["visible"].numpy()
         out[seed] = {}
         for i, age in enumerate(cap.STAGES):
             models = {sn: load_stage(args.results, seed, sn, i) for sn in SENSES}
@@ -67,21 +76,26 @@ def main():
             ztr = sense_latents(models, train, age)
             fus = train_fusion(ztr, train["action"], window=k, steps=args.steps, seed=seed).eval()
             stats = {sn: float(ztr[sn].var()) for sn in SENSES}
-            ep = fused_surprise(fus, sense_latents(models, pos, age), pos["action"], stats)
-            ei = fused_surprise(fus, sense_latents(models, imp, age), imp["action"], stats)
-            res = {}
-            for key in ep:
-                sp, si = [], []
-                for e in range(vis.shape[0]):
-                    hidden = np.where(vis[e] == 0)[0]
-                    if len(hidden) == 0 or hidden[-1] + 3 >= vis.shape[1]:
-                        continue
-                    sl = slice(hidden[0] - 1, hidden[-1] + 3)  # whole hidden stretch + re-emergence
-                    sp.append(ep[key][e, sl].mean()); si.append(ei[key][e, sl].mean())
-                sp, si = float(np.mean(sp)), float(np.mean(si))
-                res[key] = {"surprise_possible": sp, "surprise_impossible": si, "voe_index": (si - sp) / (si + sp)}
-            out[seed][age] = res
-            print(seed, age, {k: round(v['voe_index'], 3) for k, v in out[seed][age].items()}, flush=True)
+            out[seed][age] = {}
+            for name, (pos, imp) in ev_data.items():
+                ep = fused_surprise(fus, sense_latents(models, pos, age), pos["action"], stats)
+                ei = fused_surprise(fus, sense_latents(models, imp, age), imp["action"], stats)
+                res = {}
+                for key in ep:
+                    sp, si = [], []
+                    for e in range(vis.shape[0]):
+                        hidden = np.where(vis[e] == 0)[0]
+                        if len(hidden) == 0 or hidden[-1] + 3 >= vis.shape[1]:
+                            continue
+                        sl = slice(hidden[0] - 1, hidden[-1] + 3)  # whole hidden stretch + re-emergence
+                        sp.append(ep[key][e, sl].mean()); si.append(ei[key][e, sl].mean())
+                    sp, si = np.array(sp), np.array(si)
+                    d = si - sp
+                    res[key] = {"surprise_possible": float(sp.mean()), "surprise_impossible": float(si.mean()),
+                                "voe_index": float((si.mean() - sp.mean()) / (si.mean() + sp.mean())),
+                                "d_z": float(d.mean() / (d.std(ddof=1) + 1e-12))}
+                out[seed][age][name] = res
+                print(seed, age, name, {kk: round(v["voe_index"], 3) for kk, v in res.items()}, flush=True)
     with open(os.path.join(args.results, "fusion_voe.json"), "w") as f:
         json.dump(out, f, indent=1)
 

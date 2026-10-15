@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 results/*/seed*/*.pt
 .pytest_cache/
+results/logs/

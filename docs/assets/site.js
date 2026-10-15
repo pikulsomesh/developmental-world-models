@@ -15,8 +15,12 @@ const EXPLORE = [
   ["explore/index.html", "Simulations and tools"], ["explore/senses.html", "Infant senses"], ["explore/models.html", "Model viewer"],
   ["explore/development.html", "Development curves"], ["explore/expectation.html", "Hide-and-seek"], ["explore/fusion.html", "Fusion"],
 ];
+const APP = [
+  ["index.html", "Start", ""], ["app/age.html", "Age profile", "1"], ["app/see.html", "See like a baby", "1"], ["app/hear.html", "Hear like a baby", "1"],
+  ["app/play.html", "Activities and words", "1"], ["app/models.html", "What the models learned", "2"], ["app/session.html", "Try with a baby", "3"], ["app/guide.html", "How to use", ""],
+];
 const SITE = "Do AI Models Learn Like Humans?";
-window.DWM = { GH, WIKI, EXPLORE };
+window.DWM = { GH, WIKI, EXPLORE, APP };
 
 function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 function renderMath() {
@@ -36,7 +40,7 @@ window.DWM.renderMath = renderMath;
 
 function build() {
   const body = document.body, R = body.dataset.root || "", path = body.dataset.path || "index.html";
-  const section = path.startsWith("wiki/") ? "wiki" : path.startsWith("explore/") ? "explore" : "home";
+  const section = path.startsWith("wiki/") ? "wiki" : path.startsWith("explore/") ? "explore" : path.startsWith("app/") ? "app" : "home";
   const list = section === "wiki" ? WIKI : section === "explore" ? EXPLORE : null;
   const main = document.getElementById("main");
   const link = (href, text, cur) => `<a href="${R}${href}"${cur ? ' aria-current="page"' : ""}>${text}</a>`;
@@ -46,10 +50,16 @@ function build() {
   body.prepend(skip);
   const hdr = document.createElement("header"); hdr.className = "site-header";
   hdr.innerHTML = `<div class="wrap"><a class="brand" href="${R}index.html">Developmental World Models</a>
-    <nav aria-label="Primary">${link("index.html", "Home", section === "home")}${link("wiki/overview.html", "Wiki", section === "wiki")}${link("explore/index.html", "Explore", section === "explore")}
+    <nav aria-label="Primary">${link("index.html", "Baby Senses Lab", section === "home" || section === "app")}${link("explore/index.html", "Research tools", section === "explore")}${link("wiki/overview.html", "Wiki", section === "wiki")}
     <a href="${R}paper/report.pdf">Paper</a><a href="${GH}">GitHub</a></nav>
     <button class="icon-btn" id="theme" aria-label="Toggle light or dark theme">Theme</button></div>`;
   skip.after(hdr);
+  if (section === "app" || section === "home") { // app tab strip, grouped by phase
+    const an = document.createElement("nav"); an.className = "appnav"; an.setAttribute("aria-label", "Baby Senses Lab");
+    let ph = null;
+    an.innerHTML = `<div class="wrap">${APP.map((p) => { const head = p[2] && p[2] !== ph ? `<span class="ph">Phase ${p[2]}</span>` : ""; ph = p[2] || ph; return head + link(p[0], p[1], p[0] === path); }).join("")}</div>`;
+    hdr.after(an);
+  }
   document.getElementById("theme").onclick = () => {
     const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
     root.dataset.theme = dark ? "light" : "dark";
@@ -79,11 +89,11 @@ function build() {
     tg.onclick = () => { const o = aside.classList.toggle("open"); tg.setAttribute("aria-expanded", o); };
   }
   layout.appendChild(main);
-  main.classList.add(section === "explore" ? "wide" : "doc");
+  main.classList.add(section === "explore" || section === "app" ? "wide" : "doc");
   if (section === "home") main.classList.remove("doc");
 
   // breadcrumbs
-  if (section !== "home") {
+  if (section !== "home" && section !== "app") {
     const c = document.createElement("nav"); c.className = "crumbs"; c.setAttribute("aria-label", "Breadcrumb");
     c.innerHTML = `<a href="${R}index.html">Home</a><span class="sep">/</span><a href="${R}${section === "wiki" ? "wiki/overview.html" : "explore/index.html"}">${section === "wiki" ? "Wiki" : "Explore"}</a>` +
       (path === "explore/index.html" ? "" : `<span class="sep">/</span>${esc(title)}`);
@@ -101,7 +111,7 @@ function build() {
   // footer
   const f = document.createElement("footer"); f.className = "site-footer";
   f.innerHTML = `<div class="wrap"><div class="cols">
-    <div><h2>Do AI models learn like humans?</h2><p>Somesh Mohapatra, Independent.</p><p>Code released under the MIT licence. Data and figures are generated from the repository.</p></div>
+    <div><h2>Baby Senses Lab</h2><p>A simulation and research tool from the Developmental World Models project, by Somesh Mohapatra. It is not a medical or diagnostic tool.</p><p>Code released under the MIT licence. Data and figures are generated from the repository.</p></div>
     <div><h2>Wiki</h2><ul>${WIKI.slice(0, 5).map((p) => `<li>${link(p[0], p[1])}</li>`).join("")}</ul></div>
     <div><h2>More</h2><ul>${WIKI.slice(5).map((p) => `<li>${link(p[0], p[1])}</li>`).join("")}<li>${link("explore/index.html", "Simulations and tools")}</li></ul></div>
     <div><h2>Cite and contribute</h2><ul><li>${link("index.html#cite", "How to cite")}</li><li><a href="${R}paper/report.pdf">Paper (PDF)</a></li><li><a href="${GH}">Source code</a></li><li><a href="${GH}/issues">Report an issue</a></li></ul></div>

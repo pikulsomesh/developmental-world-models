@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try with a baby · Baby Senses Lab</title>
+<meta name="description" content="Run short looking and listening activities with a baby on a laptop or tablet, record what you observe, and download the notes. An observation aid, not a test.">
+<meta property="og:title" content="Try with a baby · Baby Senses Lab">
+<meta property="og:description" content="Run short looking and listening activities with a baby on a laptop or tablet, record what you observe, and download the notes. An observation aid, not a test.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/session.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/session.html" data-page="session">
+<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<main id="main">
+
+<div class="kicker">Phase 3 · Observation sessions</div>
+<h1>Try with a baby</h1>
+<p class="lede">Five short activities you can run on a laptop or tablet with a baby on someone's lap. The screen shows the activity; you watch the baby and tap what you saw. At the end you get a summary and a file to keep.</p>
+<p class="notice warn"><b>This is an observation aid, not a screening or diagnostic test.</b> Screens are not calibrated equipment, a single session is noisy, and tired or hungry babies simply look away. Results here cannot tell you whether a baby's vision or hearing is normal. If you have any concern, see a paediatrician, health visitor, optometrist or audiologist.</p>
+<div id="setup">
+<h2>1. Set up</h2>
+<ul>
+<li>A quiet room, a calm and alert baby, sitting on a carer's lap facing the screen. The carer looks away from the screen or closes their eyes so they don't guide the baby.</li>
+<li>Screen brightness comfortable, volume moderate. Nothing flashes; stop at any sign of upset.</li>
+<li>The observer sits where they can see the baby's eyes, ideally not the screen. Use the buttons or the keyboard keys shown.</li>
+<li>For the sound activity, place speakers to the baby's left and right; laptop speakers are too close together.</li>
+<li>For babies born early, use their corrected age (age from the due date).</li>
+</ul>
+<div class="form">
+<label>Baby's nickname (stays on this device) <input id="bName" placeholder="Baby"></label>
+<label>Age in months <input id="bAge" type="number" min="0" max="24" step="0.5"></label>
+<label>Age is <select id="bPrem"><option value="no">from birth date</option><option value="yes">corrected (born early)</option></select></label>
+<label>Observer (optional) <input id="obsName"></label>
+<label>Screen width, visible area (cm) <input id="scrW" type="number" value="30" min="5" max="300"></label>
+<label>Baby's eyes to screen (cm) <input id="dist" type="number" value="50" min="20" max="300"></label>
+</div>
+<p class="note">Measure the visible width of the screen with a ruler. These two numbers are used to size the stripes and the moving toy correctly.</p>
+<h2>2. Choose activities</h2>
+<div class="testpick" id="tests"></div>
+<p style="margin-top:16px"><button type="button" class="btn primary" id="start">Start the session (full screen)</button></p>
+</div>
+<div id="summary" hidden>
+<h2>Session summary</h2>
+<div id="sumBody"></div>
+<p><button type="button" class="btn" id="dlCsv">Download notes (CSV)</button> <button type="button" class="btn" id="dlJson">Download notes (JSON)</button> <button type="button" class="btn" onclick="window.print()">Print</button></p>
+<p class="note">The "for context" column gives typical findings from research groups using similar methods with calibrated equipment. Differences from it are expected in a home session and do not by themselves mean anything.</p>
+</div>
+<h2>Saved sessions in this browser</h2>
+<ul id="history" style="list-style:none;padding:0"></ul>
+<p><button type="button" class="icon-btn" id="clearHist">Delete saved sessions</button></p>
+<p class="note">Sessions are stored only in this browser. Nothing is sent anywhere. Download the file if you want to keep or share your notes.</p>
+<div class="stage" id="stage" aria-label="Activity screen"><canvas id="scv"></canvas><div class="obsbar" id="obs"></div></div>
+
+</main>
+<script src="lab-data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

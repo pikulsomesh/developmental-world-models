@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activities and words · Baby Senses Lab</title>
+<meta name="description" content="Check whether a baby of a given age is likely ready for an activity, and whether they are likely to understand a word.">
+<meta property="og:title" content="Activities and words · Baby Senses Lab">
+<meta property="og:description" content="Check whether a baby of a given age is likely ready for an activity, and whether they are likely to understand a word.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/play.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/play.html" data-page="play">
+<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<main id="main">
+
+<div class="kicker">Phase 1 · Activities and words</div>
+<h1>Activities and words</h1>
+<p class="lede">Is a baby of this age likely ready for an activity, and which words do babies usually understand by now? Open any activity to see the abilities it needs.</p>
+<div id="picker"></div>
+<h2>Activities</h2>
+<div class="controls"><span class="samples" id="cats"></span></div>
+<div class="actlist" id="acts"></div>
+<p class="note">"Likely ready" means every ability the activity needs is typical by this age; "Emerging" means they are on their way. These are rule-based estimates from typical ages, not a measurement of any baby. Trying an activity early does no harm: babies show you what they enjoy.</p>
+<h2>Words</h2>
+<div class="controls"><label>Type a word <input type="text" id="word" placeholder="for example: ball" autocomplete="off" style="font:inherit;padding:6px 9px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text)"></label></div>
+<div id="wordOut" aria-live="polite"></div>
+<p id="wordCtx"></p>
+<p class="note">Word ages are rough tiers in the spirit of large parent-report studies (Wordbank; Frank et al. 2021) and lab tests of early word knowledge (Bergelson &amp; Swingley 2012). They are guides to when many babies understand a word, and they differ between languages and families.</p>
+<p class="notice warn"><b>Not a medical test.</b> This is a simulation and research tool built from published averages. Babies vary widely and develop at their own pace. If you are worried about a baby's seeing, hearing or development, talk to a paediatrician or health visitor.</p>
+
+</main>
+<script src="lab-data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

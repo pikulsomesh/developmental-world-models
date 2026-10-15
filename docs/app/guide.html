@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use · Baby Senses Lab</title>
+<meta name="description" content="How to use the Baby Senses Lab, what each part does, what it is based on, and its limits.">
+<meta property="og:title" content="How to use · Baby Senses Lab">
+<meta property="og:description" content="How to use the Baby Senses Lab, what each part does, what it is based on, and its limits.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/guide.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/guide.html" data-page="guide">
+<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<main id="main">
+
+<div class="kicker">Guide</div>
+<h1>How to use the Baby Senses Lab</h1>
+<p class="lede">The lab turns decades of infant research into something you can try: pick an age and see, hear and check what babies typically manage at that point. It was built for curious parents, educators, students and researchers.</p>
+<p class="notice warn"><b>Not a medical test.</b> This is a simulation and research tool built from published averages. Babies vary widely and develop at their own pace. If you are worried about a baby's seeing, hearing or development, talk to a paediatrician or health visitor.</p>
+<h2>Quick tour</h2>
+<ol>
+<li><b>Pick an age</b> on the <a href="../index.html">start page</a>. The age you choose follows you around the lab.</li>
+<li><b>Age profile</b>: what babies typically see, hear, understand and do at that age, in six areas, with a comparison age and a printable page.</li>
+<li><b>See like a baby</b>: a sample drawing, your own photo or your own video, shown as a baby of that age might see it.</li>
+<li><b>Hear like a baby</b>: a sample sound, a recording of your voice or your own file, played as a baby might hear it.</li>
+<li><b>Activities and words</b>: 27 everyday activities with the abilities they need, and a check for about 100 early words.</li>
+<li><b>What the models learned</b>: the research results in plain words.</li>
+<li><b>Try with a baby</b>: five short looking and listening activities with a real baby, with notes you can download.</li>
+</ol>
+<h2>The three phases</h2>
+<p>The project plan has three phases. All three are represented in the lab, at different levels of completeness.</p>
+<div class="tablewrap"><table class="t"><thead><tr><th>Phase</th><th>Plan</th><th>In the lab now</th><th>Not done yet</th></tr></thead><tbody>
+<tr><th scope="row">1. Foundation</th><td>A table of what babies can sense at each age, image and sound simulation, an activity library, testing with parents and educators.</td><td>Age profile (birth to 24 months, six areas), See and Hear like a baby, 27 activities, word check.</td><td>A formal study with parents and educators. Please send feedback (below).</td></tr>
+<tr><th scope="row">2. Neural models</th><td>World models trained at several ages and placed inside the tool.</td><td>Models trained in a simulated nursery at four stages; their outputs appear in the age profile and on the models page.</td><td>Training on head-camera recordings of real children; testing on an infant-reasoning benchmark.</td></tr>
+<tr><th scope="row">3. Application</th><td>Video analysis, a movement module, a validation study, documentation, public release.</td><td>Video in See like a baby, a movement area in the profile and activities, observation sessions with downloadable notes, this guide, public website.</td><td>A validation study comparing session notes with clinical measures.</td></tr>
+</tbody></table></div>
+<h2>Running a session with a baby</h2>
+<p>Read the set-up steps on the <a href="session.html">Try with a baby</a> page. Keep sessions short (five to ten minutes), stop when the baby is tired or upset, and run each activity more than once on different days before reading anything into it. If you are collecting notes for research, get the family's informed consent and follow your institution's ethics rules.</p>
+<h2>Where the numbers come from</h2>
+<ul>
+<li><b>Vision</b>: sharpness and contrast tables from the project plan (Norcia &amp; Tyler 1985; Banks &amp; Bennett 1988), plus acuity-card norms (Teller 1997; Mayer et al. 1995).</li>
+<li><b>Hearing and language</b>: hearing development (Werner 2007), speech-sound tuning (Werker &amp; Tees 1984), name recognition (Mandel et al. 1995), early words (Bergelson &amp; Swingley 2012; Wordbank, Frank et al. 2021).</li>
+<li><b>Thinking and social</b>: object permanence (Baillargeon 1987), gaze following and helping studies as summarised in the project plan.</li>
+<li><b>Movement and 15-24 months</b>: CDC/AAP milestone checklists (Zubler et al. 2022).</li>
+</ul>
+<p>Every table is in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/app/lab-data.js"><code>docs/app/lab-data.js</code></a> and can be checked or corrected.</p>
+<h2>Privacy</h2>
+<p>Everything runs in your browser. Photos, videos, recordings and session notes are never uploaded. Saved sessions live in this browser's storage until you delete them.</p>
+<h2>Feedback</h2>
+<p>Found something wrong, or tried it with a family? <a href="https://github.com/pikulsomesh/developmental-world-models/issues">Open an issue on GitHub</a>. Feedback from parents, educators and clinicians is exactly what phase 1 still needs.</p>
+
+</main>
+<script src="lab-data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Age profile · Baby Senses Lab</title>
+<meta name="description" content="What a baby of a given age typically sees, hears, understands and does, from birth to 24 months, in plain language.">
+<meta property="og:title" content="Age profile · Baby Senses Lab">
+<meta property="og:description" content="What a baby of a given age typically sees, hears, understands and does, from birth to 24 months, in plain language.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/age.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/age.html" data-page="age">
+<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<main id="main">
+
+<div class="kicker">Phase 1 · Explore by age</div>
+<h1>What can a <span id="ageTitle">baby</span> do?</h1>
+<p class="lede">Pick an age to see what babies typically sense, understand and do at that point, across six areas. Add a comparison age to see what changes.</p>
+<div id="picker"></div>
+<div class="controls"><label>Compare with <select id="compare" aria-label="Comparison age"></select></label>
+<button type="button" class="btn" id="print">Print or save this profile</button>
+<a class="btn" href="see.html" data-age-link>See like this baby</a><a class="btn" href="hear.html" data-age-link>Hear like this baby</a></div>
+<div class="grid g3" id="domains"></div>
+<h2>In numbers</h2>
+<div class="tablewrap"><table class="t"><tbody id="numbers"></tbody></table></div>
+<p class="note">Two kinds of sharpness numbers exist. Brain-response measures (used in the paper's models) give higher values than looking tests such as acuity cards. Both are shown so you can see the spread.</p>
+<h2>Activities that suit this age</h2>
+<ul id="acts"></ul>
+<p><a href="play.html" data-age-link>Check any activity or word →</a></p>
+<h2>What our models do around this age <span class="tag">Phase 2</span></h2>
+<div class="card"><p>Closest trained stage: <b id="modelAge"></b>. Each strip shows twenty moments of a toy moving in a simulated nursery. Top: what the vision model was shown. Middle: what it rebuilds from memory. Bottom: what it predicts will happen next.</p>
+<img id="modelImg" alt="Vision model input, reconstruction and prediction at the closest trained stage" style="width:100%;image-rendering:pixelated;border-radius:4px">
+<p id="modelText"></p><p class="note"><a href="models.html">What the models learned, in plain words →</a></p></div>
+<p class="notice warn"><b>Not a medical test.</b> This is a simulation and research tool built from published averages. Babies vary widely and develop at their own pace. If you are worried about a baby's seeing, hearing or development, talk to a paediatrician or health visitor.</p>
+<p class="note">Sources: ages 0-12 months follow the project's capability table (vision: Norcia &amp; Tyler 1985, Banks &amp; Bennett 1988; cognition and social: Spelke, Baillargeon, Hamlin and colleagues; language: Werker &amp; Tees 1984, Mandel et al. 1995, Bergelson &amp; Swingley 2012). Ages 15-24 months follow the CDC/AAP milestone checklists (Zubler et al. 2022). Generated <span id="printDate"></span> at pikulsomesh.github.io/developmental-world-models.</p>
+
+</main>
+<script src="lab-data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

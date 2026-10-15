@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What the models learned · Baby Senses Lab</title>
+<meta name="description" content="Plain-language results of the trained developmental world models: what simulated baby-like networks learn at each stage, and what they miss.">
+<meta property="og:title" content="What the models learned · Baby Senses Lab">
+<meta property="og:description" content="Plain-language results of the trained developmental world models: what simulated baby-like networks learn at each stage, and what they miss.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/models.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/models.html" data-page="models">
+<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<main id="main">
+
+<div class="kicker">Phase 2 · Neural models</div>
+<h1>What the models learned</h1>
+<p class="lede">Alongside the lab, the project trains small computer models that learn the way the paper describes: by guessing what will happen next, while their senses start blurry and sharpen with age. This page explains what they learned, without the jargon.</p>
+<h2>The idea in four sentences</h2>
+<p>We built a simple simulated nursery: a toy that moves, a baby's hand that waves, a screen that hides things, and sounds. One small network per sense (sight, hearing, touch, body position) watches this nursery and learns to predict the next moment. Its input starts as blurry, muffled and noisy as a newborn's and is sharpened in steps to match a 3-, 6- and 12-month-old. A further network combines all the senses.</p>
+<h2>Look inside at each stage</h2>
+<div class="controls"><span class="samples" id="ckpts"></span></div>
+<div class="card"><img id="ckImg" alt="" style="width:100%;image-rendering:pixelated;border-radius:4px">
+<p class="note">Twenty moments of one scene. Top: what the vision model was shown at this stage. Middle: what it rebuilds from memory. Bottom: what it predicts next.</p>
+<p id="ckText"></p></div>
+<h2>Four findings</h2>
+<div class="grid g2">
+<div class="card finding"><div class="n">1</div><h3>Do the senses mature in the baby order?</h3><span class="verdict v-yes">Yes, but we built that in</span><p>Touch and body sense work first, hearing improves next, vision comes last. That order comes from the input settings, so it is a check, not a discovery. The models also learn more slowly than the blurry input would allow.</p></div>
+<div class="card finding"><div class="n">2</div><h3>Does a blurry start help?</h3><span class="verdict v-partly">Partly</span><p>It helps hearing a little and costs vision a little. Letting the network itself grow over time halves the training effort but slows learning.</p></div>
+<div class="card finding"><div class="n">3</div><h3>Do the models know a hidden toy is still there?</h3><span class="verdict v-no">No</span><p>Babies look longer when a hidden toy magically vanishes. No vision model was "surprised". The combined model seemed surprised, but only because the toy's sound gave it away.</p></div>
+<div class="card finding"><div class="n">4</div><h3>Are senses better together?</h3><span class="verdict v-yes">Yes</span><p>Combining senses finds a fully hidden toy better than any single sense.</p></div>
+</div>
+<h2>What this does and does not tell you about a real baby</h2>
+<p>The models are tiny and live in a simple, made-up world. They show which baby-like patterns follow from baby-like input alone (the order of the senses) and which need something more (expecting hidden things to persist). They do not measure or predict any real baby. The planned next step, training on head-camera recordings of real children and testing against an infant-reasoning benchmark, has not been done yet.</p>
+<h2>Explore the details</h2>
+<div class="grid g3 paths">
+<a class="card" href="../explore/senses.html"><h3>Infant senses</h3><p>The exact input each model gets at each age.</p></a>
+<a class="card" href="../explore/models.html"><h3>Model viewer</h3><p>Every training method and stage side by side.</p></a>
+<a class="card" href="../explore/development.html"><h3>Development curves</h3><p>How each sense model improves across stages.</p></a>
+<a class="card" href="../explore/expectation.html"><h3>Hide-and-seek</h3><p>The surprise test, frame by frame.</p></a>
+<a class="card" href="../explore/fusion.html"><h3>Senses together</h3><p>How combining senses finds hidden toys.</p></a>
+<a class="card" href="../paper/report.pdf"><h3>The paper</h3><p>The full study, written for a general reader.</p></a>
+</div>
+
+</main>
+<script src="lab-data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

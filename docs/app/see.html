@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>See like a baby · Baby Senses Lab</title>
+<meta name="description" content="Upload a photo or video, or use a sample, and see it blurred, faded and desaturated the way a baby of a chosen age might see it.">
+<meta property="og:title" content="See like a baby · Baby Senses Lab">
+<meta property="og:description" content="Upload a photo or video, or use a sample, and see it blurred, faded and desaturated the way a baby of a chosen age might see it.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/see.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/see.html" data-page="see">
+<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<main id="main">
+
+<div class="kicker">Phase 1 image · Phase 3 video</div>
+<h1>See like a baby</h1>
+<p class="lede">Choose a picture or video and an age. The right-hand view blurs fine detail, fades low contrast and mutes colour by the amounts measured in babies of that age.</p>
+<div id="picker"></div>
+<div class="card noprint">
+  <div class="controls" style="margin-top:0"><span><b>Picture:</b></span><span class="samples" id="samples"></span>
+  <span class="btn filebtn">Use your own photo or video<input type="file" id="file" accept="image/*,video/*" aria-label="Choose your own photo or video"></span></div>
+  <div class="controls"><span><b>How far away?</b></span><span class="samples" id="presets"></span>
+  <label>Distance (cm) <input type="number" id="dist" value="30" min="5" max="1000" style="width:80px"></label>
+  <label>Real width of the scene (cm) <input type="number" id="size" value="25" min="1" max="2000" style="width:80px"></label>
+  <label>Sharpness numbers <select id="acuitySrc"><option value="brain">Brain-response (paper)</option><option value="look">Looking tests (acuity cards)</option></select></label></div>
+  <p class="note" style="margin:0">Your photo or video stays on your device: it is processed in this browser tab and never uploaded.</p>
+</div>
+<div class="viewer" style="margin-top:16px">
+  <figure><div class="frame" id="origFrame"></div><figcaption>What an adult sees</figcaption></figure>
+  <figure><div class="frame" id="babyFrame"></div><figcaption id="babyCap"></figcaption></figure>
+</div>
+<p><button type="button" class="btn" id="dl">Download the baby view</button></p>
+<div id="explain"></div>
+<div><h2>The same picture across the first year</h2><p class="sub">Click an age to switch to it.</p><div class="agestrip" id="strip"></div></div>
+<h2>How the view is made</h2>
+<p>Three changes are applied, each set by age. <b>Blur</b> removes detail finer than the baby's sharpness limit, worked out from how big the scene is and how far away it is. <b>Contrast</b> is reduced so faint edges fade. <b>Colour</b> is faded toward grey. These follow the same tables the paper's models use (<a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/capability.py">code</a>).</p>
+<p>What it leaves out: babies also move their eyes differently, focus less well up close in the first weeks, and their brains fill in a great deal. The picture shows the limits of the eye, not the baby's experience.</p>
+<p class="note">The sample pictures are simple drawings made by this page, not photographs.</p>
+<p class="notice warn"><b>Not a medical test.</b> This is a simulation and research tool built from published averages. Babies vary widely and develop at their own pace. If you are worried about a baby's seeing, hearing or development, talk to a paediatrician or health visitor.</p>
+
+</main>
+<script src="lab-data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

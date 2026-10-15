@@ -4,7 +4,7 @@ The full write-up, with figures, methods and the companion studies, is the
 paper-style report: [`report/REPORT.md`](../report/REPORT.md)
 (LaTeX for Overleaf: [`report/report.tex`](../report/report.tex), with `report/refs.bib`).
 
-Headline numbers (Phase 0, synthetic nursery, 3 seeds for the main regimes):
+Headline numbers (synthetic nursery, 3 seeds for the main regimes; see the paper for the current table):
 
 | Finding | Number |
 |---|---|

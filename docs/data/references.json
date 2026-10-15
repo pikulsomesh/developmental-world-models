@@ -1,0 +1,182 @@
+[
+ {
+  "key": "achille2019critical",
+  "text": "Alessandro Achille, Matteo Rovere, Stefano Soatto (2019). Critical Learning Periods in Deep Neural Networks. arXiv preprint arXiv:1711.08856 (v3, February 2019; first posted 2017). A conference version was reported at ICLR 2019 but could not be confirmed against a primary record",
+  "doi": "",
+  "url": ""
+ },
+ {
+  "key": "bahrick2000intersensory",
+  "text": "Lorraine Bahrick, Robert Lickliter (2000). Intersensory redundancy guides attentional selectivity and perceptual learning in infancy. Developmental Psychology",
+  "doi": "10.1037/0012-1649.36.2.190",
+  "url": ""
+ },
+ {
+  "key": "baillargeon1985object",
+  "text": "Ren{\\'e}e Baillargeon, Elizabeth Spelke, Stanley Wasserman (1985). Object permanence in five-month-old infants. Cognition",
+  "doi": "10.1016/0010-0277(85)90008-3",
+  "url": ""
+ },
+ {
+  "key": "banks1988optical",
+  "text": "Martin Banks, Patrick Bennett (1988). Optical and photoreceptor immaturities limit the spatial and chromatic vision of human neonates. Journal of the Optical Society of America A",
+  "doi": "10.1364/josaa.5.002059",
+  "url": ""
+ },
+ {
+  "key": "elman1993learning",
+  "text": "Jeffrey Elman (1993). Learning and development in neural networks: The importance of starting small. Cognition",
+  "doi": "10.1016/0010-0277(93)90058-4",
+  "url": ""
+ },
+ {
+  "key": "garrido2025intuitive",
+  "text": "Quentin Garrido, Nicolas Ballas, Mahmoud Assran, Adrien Bardes, Laurent Najman, Michael Rabbat, Emmanuel Dupoux, Yann LeCun (2025). Intuitive physics understanding emerges from self-supervised pretraining on natural videos. arXiv preprint arXiv:2502.11831",
+  "doi": "",
+  "url": ""
+ },
+ {
+  "key": "hensch2005critical",
+  "text": "Takao Hensch (2005). Critical period plasticity in local cortical circuits. Nature Reviews Neuroscience",
+  "doi": "10.1038/nrn1787",
+  "url": ""
+ },
+ {
+  "key": "huttenlocher1997regional",
+  "text": "Peter Huttenlocher, Arun Dabholkar (1997). Regional differences in synaptogenesis in human cerebral cortex. Journal of Comparative Neurology",
+  "doi": "10.1002/(SICI)1096-9861(19971020)387:2<167::AID-CNE1>3.0.CO;2-Z",
+  "url": ""
+ },
+ {
+  "key": "kleinman2023critical",
+  "text": "Michael Kleinman, Alessandro Achille, Stefano Soatto (2023). Critical Learning Periods for Multisensory Integration in Deep Networks. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+  "doi": "10.1109/CVPR52729.2023.02327",
+  "url": ""
+ },
+ {
+  "key": "long2024babyview",
+  "text": "Bria Long, Violet Xiang, Stefan Stojanov, Robert Sparks, Zi Yin, Grace Keene, Alvin Tan, Steven Feng, Chengxu Zhuang, Virginia Marchman, Daniel Yamins, Michael Frank (2024). The BabyView dataset: High-resolution egocentric videos of infants' and young children's everyday experiences. arXiv preprint arXiv:2406.10447",
+  "doi": "",
+  "url": ""
+ },
+ {
+  "key": "mattern2024mimo",
+  "text": "Dominik Mattern, Pierre Schumacher, Francisco L{\\'o}pez, Marcel Raabe, Markus Ernst, Arthur Aubret, Jochen Triesch (2024). MIMo: A Multimodal Infant Model for Studying Cognitive Development. IEEE Transactions on Cognitive and Developmental Systems",
+  "doi": "10.1109/TCDS.2024.3350448",
+  "url": ""
+ },
+ {
+  "key": "norcia1985spatial",
+  "text": "Anthony Norcia, Christopher Tyler (1985). Spatial frequency sweep VEP: Visual acuity during the first year of life. Vision Research",
+  "doi": "10.1016/0042-6989(85)90217-2",
+  "url": ""
+ },
+ {
+  "key": "orhan2020self",
+  "text": "A. Orhan, Vaibhav Gupta, Brenden Lake (2020). Self-supervised learning through the eyes of a child. Advances in Neural Information Processing Systems",
+  "doi": "",
+  "url": ""
+ },
+ {
+  "key": "orhan2024learning",
+  "text": "A. Orhan, Brenden Lake (2024). Learning high-level visual representations from a child's perspective without strong inductive biases. Nature Machine Intelligence",
+  "doi": "10.1038/s42256-024-00802-0",
+  "url": ""
+ },
+ {
+  "key": "pascalis2002species",
+  "text": "Olivier Pascalis, Michelle Haan, Charles Nelson (2002). Is Face Processing Species-Specific During the First Year of Life?. Science",
+  "doi": "10.1126/science.1070223",
+  "url": ""
+ },
+ {
+  "key": "rohde1999language",
+  "text": "Douglas Rohde, David Plaut (1999). Language acquisition in the absence of explicit negative evidence: How important is starting small?. Cognition",
+  "doi": "10.1016/S0010-0277(99)00031-1",
+  "url": ""
+ },
+ {
+  "key": "saxe2019mathematical",
+  "text": "Andrew Saxe, James McClelland, Surya Ganguli (2019). A mathematical theory of semantic development in deep neural networks. Proceedings of the National Academy of Sciences",
+  "doi": "10.1073/pnas.1820226116",
+  "url": ""
+ },
+ {
+  "key": "sheybani2023curriculum",
+  "text": "Saber Sheybani, Himanshu Hansaria, Justin Wood, Linda Smith, Zoran Tiganj (2023). Curriculum Learning With Infant Egocentric Videos. Advances in Neural Information Processing Systems",
+  "doi": "",
+  "url": ""
+ },
+ {
+  "key": "smith2018curriculum",
+  "text": "Linda Smith, Swapnaa Jayaraman, Elizabeth Clerkin, Chen Yu (2018). The Developing Infant Creates a Curriculum for Statistical Learning. Trends in Cognitive Sciences",
+  "doi": "10.1016/j.tics.2018.02.004",
+  "url": ""
+ },
+ {
+  "key": "spelke2007core",
+  "text": "Elizabeth Spelke, Katherine Kinzler (2007). Core knowledge. Developmental Science",
+  "doi": "10.1111/j.1467-7687.2007.00569.x",
+  "url": ""
+ },
+ {
+  "key": "sullivan2021saycam",
+  "text": "Jessica Sullivan, Michelle Mei, Andrew Perfors, Erica Wojcik, Michael Frank (2021). SAYCam: A Large, Longitudinal Audiovisual Dataset Recorded From the Infant's Perspective. Open Mind",
+  "doi": "10.1162/opmi_a_00039",
+  "url": ""
+ },
+ {
+  "key": "sydnor2021neurodevelopment",
+  "text": "Valerie Sydnor, Bart Larsen, Danielle Bassett, Aaron Alexander-Bloch, Damien Fair, Conor Liston, Allyson Mackey, Michael Milham, Adam Pines, David Roalf, Jakob Seidlitz, Ting Xu, Armin Raznahan, Theodore Satterthwaite (2021). Neurodevelopment of the association cortices: Patterns, mechanisms, and implications for psychopathology. Neuron",
+  "doi": "10.1016/j.neuron.2021.06.016",
+  "url": ""
+ },
+ {
+  "key": "turkewitz1982limitations",
+  "text": "Gerald Turkewitz, Patricia Kenny (1982). Limitations on input as a basis for neural organization and perceptual development: A preliminary theoretical statement. Developmental Psychobiology",
+  "doi": "10.1002/dev.420150408",
+  "url": ""
+ },
+ {
+  "key": "vogelsang2018potential",
+  "text": "Lukas Vogelsang, Sharon Gilad-Gutnick, Evan Ehrenberg, Albert Yonas, Sidney Diamond, Richard Held, Pawan Sinha (2018). Potential downside of high initial visual acuity. Proceedings of the National Academy of Sciences",
+  "doi": "10.1073/pnas.1800901115",
+  "url": ""
+ },
+ {
+  "key": "vogelsang2024impact",
+  "text": "Marin Vogelsang, Lukas Vogelsang, Priti Gupta, Tapan Gandhi, Pragya Shah, Piyush Swami, Sharon Gilad-Gutnick, Shlomit Ben-Ami, Sidney Diamond, Suma Ganesh, Pawan Sinha (2024). Impact of early visual experience on later usage of color cues. Science",
+  "doi": "10.1126/science.adk9587",
+  "url": ""
+ },
+ {
+  "key": "vong2024grounded",
+  "text": "Wai Vong, Wentao Wang, A. Orhan, Brenden Lake (2024). Grounded language acquisition through the eyes and ears of a single child. Science",
+  "doi": "10.1126/science.adi1374",
+  "url": ""
+ },
+ {
+  "key": "watters2019spatial",
+  "text": "Nicholas Watters, Loic Matthey, Christopher Burgess, Alexander Lerchner (2019). Spatial Broadcast Decoder: A Simple Architecture for Learning Disentangled Representations in VAEs. arXiv preprint arXiv:1901.07017",
+  "doi": "",
+  "url": ""
+ },
+ {
+  "key": "werker1984cross",
+  "text": "Janet Werker, Richard Tees (1984). Cross-language speech perception: Evidence for perceptual reorganization during the first year of life. Infant Behavior and Development",
+  "doi": "10.1016/S0163-6383(84)80022-3",
+  "url": ""
+ },
+ {
+  "key": "werker2015critical",
+  "text": "Janet Werker, Takao Hensch (2015). Critical Periods in Speech Perception: New Directions. Annual Review of Psychology",
+  "doi": "10.1146/annurev-psych-010814-015104",
+  "url": ""
+ },
+ {
+  "key": "wu2021curricula",
+  "text": "Xiaoxia Wu, Ethan Dyer, Behnam Neyshabur (2021). When Do Curricula Work?. International Conference on Learning Representations",
+  "doi": "",
+  "url": ""
+ }
+]

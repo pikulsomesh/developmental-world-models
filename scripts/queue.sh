@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Runs the Phase-0 grid, 4 single-threaded jobs at a time (one per core).
+# Runs the main experiment grid, 4 single-threaded jobs at a time (one per core).
 cd "$(dirname "$0")/.."
 mkdir -p results/logs
 {

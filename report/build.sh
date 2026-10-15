@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 # Rebuild the paper from results/:
 #   1. fill every number in REPORT.template.md -> REPORT.md
-#   2. LaTeX for Overleaf (natbib citations, refs.bib) -> report.tex
+#   2. arXiv-format LaTeX source (Research Future template layout) -> ../arxiv/
 #   3. HTML with resolved references and MathML -> report.html, printed to report.pdf by headless Chromium
 # Figures come from scripts/make_paper_figures.py (run it first).
 set -e
 cd "$(dirname "$0")"
-cp ../paper/refs.bib refs.bib
 python3 ../scripts/fill_report.py
-pandoc REPORT.md -s --natbib -o report.tex
-pandoc REPORT.md -s --citeproc --mathml --embed-resources --css paper.css --metadata link-citations=true \
-  --metadata pagetitle="Do AI models learn like humans?" -o report.html
+python3 ../scripts/build_arxiv.py
+pandoc REPORT.md -s --citeproc --bibliography=refs.bib --mathml --embed-resources --css paper.css --metadata link-citations=true \
+  --metadata pagetitle="Do AI Models Learn Like Humans?" -o report.html
 CHROME=${CHROME:-/opt/pw-browsers/chromium-1194/chrome-linux/chrome}
 if [ -x "$CHROME" ]; then
   "$CHROME" --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=10000 \

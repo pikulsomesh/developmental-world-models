@@ -5,10 +5,16 @@ model** (vision, audition, touch, proprioception), each sense **matures on its o
 timetable**, each model **grows in place** from a newborn-sized network to a 12-month
 one, and a **fusion world model** combines them.
 
-This repository is the Phase-0 prototype of the research plan in
-[`docs/PLAN.md`](docs/PLAN.md). The plan builds on the proposal *Developmental World Models:
-Neural Network Architectures for Simulating Infant Cognition* (Dec 2025). The aim is an arXiv
-preprint; the current draft is the Phase-0 report in [`report/`](report/) (`paper/refs.bib` holds the shared bibliography).
+Code, data pipeline, trained checkpoints, paper source and project site for
+**"Do AI Models Learn Like Humans?"** (Somesh Mohapatra, Independent).
+
+- Site and wiki: <https://pikulsomesh.github.io/developmental-world-models/>
+- Paper: [`report/report.pdf`](report/report.pdf) (source: [`report/REPORT.md`](report/REPORT.md)); arXiv-format LaTeX in [`arxiv/`](arxiv/)
+- Research plan: [`docs/PLAN.md`](docs/PLAN.md)
+- Citation audit: [`report/REFERENCES_VERIFIED.md`](report/REFERENCES_VERIFIED.md)
+- Checkpoints: [`models/`](models/)
+
+All models are small, controlled synthetic-scene models (32x32 frames, a few hundred thousand parameters, 3-5 seeds per regime); see the Limitations in the paper for what that does and does not support.
 
 ![What each sense delivers at each age](results/figures/fig_senses_by_age.png)
 
@@ -17,7 +23,7 @@ preprint; the current draft is the Phase-0 report in [`report/`](report/) (`pape
 | Path | What it is |
 |---|---|
 | [`docs/PLAN.md`](docs/PLAN.md) | The research plan: what changes from the source proposal and why, per-sense specs, growth and fusion design, hypotheses, roadmap, paper plan |
-| [`report/REPORT.md`](report/REPORT.md) | **Paper-style report** of Phase 0 with figures (LaTeX version `report/report.tex` for Overleaf) |
+| [`report/REPORT.md`](report/REPORT.md) | **Paper** with figures (PDF: `report/report.pdf`; arXiv-format LaTeX: `arxiv/main.tex`) |
 | [`docs/RESULTS.md`](docs/RESULTS.md) | Headline numbers |
 | `dwm/capability.py` | Per-sense developmental tables (acuity, contrast, colour, auditory resolution, tactile acuity, proprioceptive noise) and the capacity schedule |
 | `dwm/env.py` | A synthetic multisensory "nursery": a toy that is seen, heard and felt, the infant's babbling hand, occluders, violation-of-expectation episodes |
@@ -26,6 +32,9 @@ preprint; the current draft is the Phase-0 report in [`report/`](report/) (`pape
 | `dwm/train.py`, `dwm/fusion.py`, `scripts/analyze_fusion_voe.py` | Training, linear probes, VoE surprise, fusion experiments |
 | `scripts/run_experiments.py` | Runs every sense × condition × age stage, then fusion |
 | `scripts/make_figures.py` | Merges results and draws the figures |
+| `models/` | Trained checkpoints (curriculum_only, adult_scratch, grown; seed 0) |
+| `arxiv/` | arXiv-format source (Research Future template), figures, verified bibliography |
+| `docs/` | Project site and wiki (GitHub Pages) |
 | `tests/` | Unit test that growth leaves the model's function unchanged |
 
 ## Quick start (CPU only)
@@ -34,7 +43,7 @@ preprint; the current draft is the Phase-0 report in [`report/`](report/) (`pape
 pip install -r requirements.txt
 python -m pytest -q                                   # growth is function-preserving
 python scripts/run_experiments.py --quick --out /tmp/q # ~2 min smoke test
-# full Phase-0 grid (14 runs, ~5 h on 4 cores):
+# full grid of regimes and seeds:
 scripts/queue.sh
 python scripts/analyze_fusion_voe.py --seeds 0,1,2
 python scripts/make_figures.py && report/build.sh
@@ -52,9 +61,7 @@ per-sense latents z^vision, z^audio, z^touch, z^proprio ─► fusion world mode
 
 ## Status
 
-Phase 0 (this repo): synthetic data, four senses, six training regimes, fusion — done,
-three seeds for the main regimes. Next: more seeds, staged-onset fusion, real optics, MIMo embodiment,
-SAYCam/BabyView. See the roadmap in the plan.
+Synthetic scene, four senses, six training regimes, fusion world model, own-age and adult-input probes, information ceilings, violation-of-expectation events and statistics are all included. Planned next: staged-onset fusion, realistic optics, MIMo embodiment, SAYCam/BabyView. See the roadmap in the plan.
 
 ## License
 

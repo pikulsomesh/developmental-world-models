@@ -1,7 +1,7 @@
 # Research plan: Sensory-specific Developmental World Models
 
-*Status: living document. Phase 0 (a minimal, CPU-scale prototype) is implemented in this
-repository; see the [Phase-0 report](../report/REPORT.md) for what it actually shows.*
+*Status: living document. Stage 0 (the controlled synthetic nursery with four sense models and a
+fusion model) is implemented in this repository; see the [paper](../report/REPORT.md) for what it shows.*
 
 ## 0. In one paragraph
 
@@ -30,15 +30,15 @@ scaffold capacities such as object permanence before any single sense supports t
 | 6–24 month encoders | ImageNet-pretrained ResNet-18/50 | No adult-pretrained weights anywhere | ImageNet features encode adult-scale, labelled experience; they break the developmental constraint the project is about. |
 | Contrast model | Multiply all contrast by CS/100 (newborn keeps 2% of contrast) | Log-compressed contrast gain (newborn ≈ 15%), CSF-shaped filter as a later upgrade | Contrast *sensitivity* is a detection threshold, not a global gain; the proposal's version renders almost every newborn image blank. |
 | Colour at birth | Saturation 0.0 (fully achromatic) | 0.1, rising to 1.0 by 5 months | Newborns show some red/green discrimination (Adams et al.); "fully achromatic" overstates it. |
-| Acuity → blur | `sigma = 0.5 * 30 / cpd` pixels, independent of viewing distance (the function's distance/size arguments are unused) | Same law, rescaled to image size; Phase 1 replaces it with a proper degrees-of-visual-angle conversion using distance and stimulus size | Makes the parameters it already takes meaningful. |
+| Acuity → blur | `sigma = 0.5 * 30 / cpd` pixels, independent of viewing distance (the function's distance/size arguments are unused) | Same law, rescaled to image size; Stage 1 replaces it with a proper degrees-of-visual-angle conversion using distance and stimulus size | Makes the parameters it already takes meaningful. |
 | Acuity values | Table mixes VEP (≈15–20 cpd at 6 mo) and behavioural (Teller cards, ≈6–9 cpd at 6 mo) values | Keep both columns explicitly; default to behavioural for "what the infant can use", VEP as an upper bound | They differ 2–3×, which changes every downstream "can see it?" answer. |
-| Memory | LSTM with a Python list buffer inside `forward` | Explicit **window** of past latents that grows with age (1 → 2 → 4 → 6 steps in the prototype) | Stateless, batchable, and its growth is exactly function-preserving. |
+| Memory | LSTM with a Python list buffer inside `forward` | Explicit **window** of past latents that grows with age (1 → 2 → 4 → 6 steps in the current study) | Stateless, batchable, and its growth is exactly function-preserving. |
 | Training objective | Next-latent MSE only | Reconstruction + next-observation prediction + next-latent consistency | Pure latent prediction collapses to a constant; the decoder keeps latents honest. |
 | Validation | BIB, VoE, infant fMRI | Same, plus per-sense benchmarks and *cross-modal* tests (fill-in, occluded tracking, McGurk-style conflict) | The sensory-specific framing needs tests that only a combined model can pass. |
 | Data | SAYCam for everything | Synthetic multisensory nursery → MIMo (touch, proprioception, vestibular) → SAYCam / BabyView (vision + audio) → HomeBank / CHILDES (speech) | No natural dataset contains infant touch or proprioception; MIMo does. |
 
 Everything else in the proposal (the capability matrix in §3, the activity library, the
-Streamlit app, the fMRI encoding-model method) is kept and becomes Phase 4–5 work.
+Streamlit app, the fMRI encoding-model method) is kept and becomes Stage 4–5 work.
 
 ---
 
@@ -87,21 +87,21 @@ Three ways to combine:
    (touch/proprio → audio → vision), with fusion capacity growing too. This is the
    direct test of Turkewitz & Kenny's "limited input reduces inter-sensory competition".
 
-The prototype implements (2). Phase 1 adds (1) as the baseline and (3) as the main
+The current study implements (2). Stage 1 adds (1) as the baseline and (3) as the main
 manipulation.
 
 ---
 
 ## 3. Per-sense specification
 
-Values at the four prototype stages (full tables and interpolation in `dwm/capability.py`).
+Values at the four checkpoints (full tables and interpolation in `dwm/capability.py`).
 
-| Sense | Front-end parameters (0 → 3 → 6 → 12 mo) | Capacity | Core objective | Phase-1 data | Benchmarks |
+| Sense | Front-end parameters (0 → 3 → 6 → 12 mo) | Capacity | Core objective | Stage 1 data | Benchmarks |
 |---|---|---|---|---|---|
 | **Vision** | acuity 1 → 4 → 15 → 30 cpd; contrast sensitivity 2 → 10 → 50 → 100; colour saturation 0.1 → 0.7 → 1 → 1 | width ×1→×4, memory 1→6 steps | reconstruct + predict next frame, motion-weighted loss | SAYCam, BabyView (head-cam video) | object/face probes, VoE (permanence, solidity), BIB |
 | **Audition** | frequency blur 2.5 → 0.5 bins; high-frequency pass 60% → 100%; binaural difference 0.3 → 1.0; noise floor 0.08 → 0.02 | same | predict next spectrogram frame | SAYCam audio, HomeBank day-long recordings | source localisation, phoneme discrimination and perceptual narrowing (Werker & Tees), word segmentation |
 | **Touch** | receptive-field blur 1.2 → 0.3 taxels; noise 0.06 → 0.02 | same | predict next tactile frame given own action | MIMo full-body touch | shape-by-touch, contact prediction, self vs other touch |
-| **Proprioception** (+ vestibular in Phase 2) | joint/hand noise 0.12 → 0.02 | same | forward model: next body state from motor command | MIMo | reaching accuracy, sensorimotor contingency detection |
+| **Proprioception** (+ vestibular in Stage 2) | joint/hand noise 0.12 → 0.02 | same | forward model: next body state from motor command | MIMo | reaching accuracy, sensorimotor contingency detection |
 | *Chemical senses* | — | — | — | — | Out of scope (no usable data or simulators); noted as a limitation. |
 
 Each row is one independent model and one independently-reportable result, which is
@@ -112,14 +112,14 @@ developmental trajectory figure.
 
 ## 4. Growth across ages
 
-**Stages.** 0, 3, 6, 12 months in the prototype; 18 and 24 months once language
+**Stages.** 0, 3, 6, 12 months in the current study; 18 and 24 months once language
 (word–referent grounding, à la Vong et al. 2024) is added.
 
 **What grows at each stage.**
 
 1. Sensory fidelity (the front-end filter relaxes along the capability tables).
 2. Width of every hidden layer (×1, ×2, ×3, ×4).
-3. Working-memory window (1, 2, 4, 6 steps; Phase 1 maps steps to seconds using the
+3. Working-memory window (1, 2, 4, 6 steps; Stage 1 maps steps to seconds using the
    matrix in proposal §3.2).
 4. **Nothing else.** The proposal adds object-tracking, agent and goal modules at 4, 6
    and 9 months; we do not. Anything gated by age would "emerge" on schedule by
@@ -131,13 +131,13 @@ developmental trajectory figure.
 checkpoint after the matching amount of experience; the stages are checkpoints of one
 continuous run, never separate models. Following the paper-framing note, the primary
 maturation levers are *sensory immaturity* (implemented) and a *bottom-up plasticity
-schedule* (Phase 1). Capacity growth is a factor we test, not an assumption: the brain
+schedule* (Stage 1). Capacity growth is a factor we test, not an assumption: the brain
 does not mature mainly by adding neurons (synapses overshoot then prune), so growing
 networks are one level of the capacity factor alongside fixed-large, fixed-small and
 over-provision-then-prune.
 
 **Controls that make each lever a testable claim** (the four below are implemented for
-each sense; Phase 1 adds shuffled-order and reversed-immaturity controls, ≥3 seeds per cell):
+each sense; Stage 1 adds shuffled-order and reversed-immaturity controls, ≥3 seeds per cell):
 
 | Condition | Model size | Input fidelity | Purpose |
 |---|---|---|---|
@@ -165,7 +165,7 @@ violation-of-expectation index for permanence.
   the memory window spans the occlusion. Caveat: a window schedule is itself a capacity
   constraint we chose, so this tests "is memory span sufficient", not "does permanence
   emerge from experience alone"; the fixed-capacity conditions are the stricter test.
-* **H7 (perceptual narrowing, flagship cross-sense test, Phase 1).** Trained on "native"
+* **H7 (perceptual narrowing, flagship cross-sense test, Stage 1).** Trained on "native"
   input only, models first discriminate then lose non-native contrasts (speech
   phonemes, other-species faces) across checkpoints. Non-monotonic, cross-modal, and
   impossible to explain by "more data is better".
@@ -173,17 +173,17 @@ violation-of-expectation index for permanence.
   better than vision alone, because sound passes through occluders — so "object
   permanence" can appear earlier in a multisensory infant than in a vision-only one.
 * **H5 (heterochrony).** Staged-onset fusion yields more balanced use of senses (less
-  dominance by the easiest modality) than early fusion. *(Phase 1)*
+  dominance by the easiest modality) than early fusion. *(Stage 1)*
 * **H6 (brain alignment).** Age-matched models predict infant fMRI of that age better
-  than mismatched ages (proposal Paper 2). *(Phase 4)*
+  than mismatched ages (proposal Paper 2). *(Stage 4)*
 
 ---
 
 ## 6. Roadmap
 
-| Phase | Scope | Concrete milestones | Compute |
+| Stage | Scope | Concrete milestones | Compute |
 |---|---|---|---|
-| **0. Prototype** (done) | Synthetic multisensory nursery; 4 sense models; growth; fusion; VoE | `dwm/` package, unit tests, `scripts/run_experiments.py`, [RESULTS.md](RESULTS.md) | Laptop CPU, ~1 h |
+| **0. Controlled synthetic nursery** (completed) | Synthetic multisensory nursery; 4 sense models; growth; fusion; VoE | `dwm/` package, unit tests, `scripts/run_experiments.py`, [RESULTS.md](RESULTS.md) | Laptop CPU, ~1 h |
 | **1. Make it real** | Proper visual-angle optics and CSF; staged-onset fusion; early-fusion baseline; 3–5 seeds; IntPhys / ADEPT-style physics VoE; MNIST-like shape-by-touch | Paper-ready synthetic results for H1–H5 | 1 GPU-week |
 | **2. Embodiment** | Port touch, proprioception and vestibular to MIMo (MuJoCo infant); babbling and reaching policies | Self-generated multisensory data at ages 0–12 mo; sensorimotor-contingency results | 1–2 GPU-weeks |
 | **3. Naturalistic data** | Vision + audio from SAYCam/BabyView, age-binned by recording age; speech from HomeBank | Grown vs scratch on real infant-view data; phoneme narrowing curve | Several GPU-weeks; Databrary access |
@@ -192,14 +192,14 @@ violation-of-expectation index for permanence.
 
 **Immediate next steps after this repo:** (1) 3+ seeds for every condition, (2) staged-onset
 fusion and early-fusion baseline, (3) visual-angle optics, (4) write the arXiv preprint
-around H1–H4 on synthetic data (Phase 0–1 results are enough for a workshop-style
-preprint; Phase 2–3 for a main-conference paper).
+around H1–H4 on synthetic data (Stage 0–1 results are enough for a workshop-style
+preprint; Stage 2–3 for a main-conference paper).
 
 ---
 
 ## 7. arXiv paper plan
 
-**Working title.** *Growing Senses: Sensory-Specific Developmental World Models of Infant Perception*
+**Working title.** *Do AI Models Learn Like Humans? Sense-Specific Developmental World Models*
 
 **Primary category** cs.LG; cross-list q-bio.NC and cs.AI. First-time submitters to a
 category may need an endorsement from an existing arXiv author in that category.
@@ -221,7 +221,7 @@ category may need an endorsement from an existing arXiv author in that category.
    application.
 6. Appendix — all age tables with sources, hyper-parameters, extra seeds.
 
-A LaTeX skeleton with the prototype numbers filled in lives in [`paper/main.tex`](../paper/main.tex).
+The arXiv-format LaTeX source, with every number generated from the results files, lives in [`arxiv/`](../arxiv/).
 
 **Figures.** (1) system diagram; (2) what each sense delivers at 0/3/6/12 months
 (rendered by `scripts/make_figures.py`); (3) trajectories of probe accuracy per sense
@@ -234,10 +234,10 @@ vs vision-only occluded tracking.
 
 | Risk | Mitigation |
 |---|---|
-| Synthetic worlds make results look cleaner than reality | Phase 3 repeats every comparison on SAYCam/BabyView; synthetic claims are framed as mechanism demonstrations |
-| Capability tables are approximate and partly placeholder (audio, touch) | Every number lives in one file with a source note; sensitivity analysis over ±50% perturbations in Phase 1 |
+| Synthetic worlds make results look cleaner than reality | Stage 3 repeats every comparison on SAYCam/BabyView; synthetic claims are framed as mechanism demonstrations |
+| Capability tables are approximate and partly placeholder (audio, touch) | Every number lives in one file with a source note; sensitivity analysis over ±50% perturbations in Stage 1 |
 | "Growth helps" may not hold at scale | All four control conditions are reported regardless of outcome |
-| Data access (SAYCam via Databrary, infant fMRI) is slow | Start applications in Phase 0; synthetic + MIMo work proceeds in parallel |
+| Data access (SAYCam via Databrary, infant fMRI) is slow | Start applications in Stage 0; synthetic + MIMo work proceeds in parallel |
 | Over-claiming clinical use for the app | Keep the proposal's "educational, not diagnostic" framing |
 
 ---

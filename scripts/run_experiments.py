@@ -1,4 +1,4 @@
-"""Phase-0 experiments: per-sense developmental world models, growth controls, fusion.
+"""Experiments: per-sense developmental world models, growth controls, fusion.
 
 Usage:  python scripts/run_experiments.py [--quick] [--seed 0] [--out results]
 

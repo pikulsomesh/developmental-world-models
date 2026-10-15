@@ -65,11 +65,11 @@
 <h3 id="findings">Four findings</h3>
 <p class="sub">Each card answers one question about infants and machine learning. Values are means over independent training seeds at the 12-month checkpoint unless stated, read from the repository's result files. Every card links to its evidence.</p>
 <div class="grid g4" id="verdicts">
-  <div class="card finding"><div class="n">Q1</div><h3>Do senses mature in the infant order?</h3><span class="verdict v-yes">Yes, by construction</span>
-    <p data-card="1">Body senses and touch are usable from the first checkpoint, hearing improves, vision comes last. The order is set by the input filters, not discovered.</p>
+  <div class="card finding"><div class="n">Q1</div><h3>Do senses mature in the infant order?</h3><span class="verdict v-partly">Only by construction</span>
+    <p data-card="1">Vision develops last in the learned curves, but only because the input filters are set that way. A ceiling-based measure does not recover the infant order.</p>
     <p><a href="wiki/results.html#order">Evidence: input schedule and learning</a></p></div>
   <div class="card finding"><div class="n">Q2</div><h3>Does starting with immature input help?</h3><span class="verdict v-partly">Partly</span>
-    <p data-card="2">It costs a little on clean input in vision and helps in hearing. Network growth only slowed learning and halved training compute.</p>
+    <p data-card="2">A borderline gain in hearing and no clear cost in vision. Network growth slowed learning and halved training compute.</p>
     <p><a href="wiki/results.html#immaturity">Evidence: costs and benefits</a> · <a href="wiki/results.html#growth">growth</a></p></div>
   <div class="card finding"><div class="n">Q3</div><h3>Do models expect hidden objects to persist?</h3><span class="verdict v-no">No</span>
     <p data-card="3">No vision model was surprised when a hidden toy vanished. The fused model was, but only through the hearing channel.</p>

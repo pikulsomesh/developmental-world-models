@@ -157,7 +157,7 @@ function initAge() {
   $("#print").onclick = () => window.print();
 }
 const MODEL_TEXT = {
-  0: "At the newborn stage our vision model gets very blurry input and has learned almost nothing yet: it can barely tell where the toy is. Touch and body-position models already work, because their input is nearly mature.",
+  0: "At the newborn stage our vision model gets very blurry input and has learned almost nothing yet: it can barely tell where the toy is. Touch and body-position models already work, because their input is nearly mature. Vision coming last is built into the input settings, not something the models discovered.",
   3: "By the 3-month stage the vision model's input is sharper and it starts to locate the toy, unevenly across training runs. The hearing model begins to use left-right differences.",
   6: "By the 6-month stage the vision model locates a visible toy well. Combining senses now helps find a toy that is fully hidden.",
   12: "At the 12-month stage every sense model is near its best. Combining senses finds a hidden toy better than any single sense. But no vision model is surprised when a hidden toy vanishes, unlike babies in lab studies.",

@@ -416,10 +416,10 @@ function drawVerdicts() { // numeric sentences on the home page cards
   const ft = RES && RES.fusion && RES.fusion["12"] && RES.fusion["12"].occluded_tracking;
   const f = (k) => (ft && ft[k] ? ft[k].x_r2.mean.toFixed(2) : "–");
   const t = {
-    1: `Vision position R² ${V("vision", "curriculum_only", "pos_r2", 0)} at the newborn checkpoint and ${V("vision", "curriculum_only", "pos_r2")} at 12 months; touch and proprioception are close to their final level from the first checkpoint. The order is set by the input filters, not discovered.`,
-    2: `Vision at 12 months: ${V("vision", "curriculum_only", "pos_r2")} with immature input versus ${V("vision", "adult_scratch", "pos_r2")} with adult input. Hearing: ${V("audio", "curriculum_only", "pos_r2")} versus ${V("audio", "adult_scratch", "pos_r2")}. Growing the network on top of immature input slowed learning.`,
+    1: `Vision position R² ${V("vision", "curriculum_only", "pos_r2", 0)} at the newborn checkpoint and ${V("vision", "curriculum_only", "pos_r2")} at 12 months; touch and proprioception are close to their final level from the first checkpoint. Vision comes last only because the input filters are set that way; a ceiling-based measure does not recover the infant order (Kendall τ = 0.00).`,
+    2: `Vision at 12 months: ${V("vision", "curriculum_only", "pos_r2")} with immature input versus ${V("vision", "adult_scratch", "pos_r2")} with adult input. The vision difference is not significant (p = 0.06). Hearing: ${V("audio", "curriculum_only", "pos_r2")} versus ${V("audio", "adult_scratch", "pos_r2")} (borderline, p = 0.05). Growing the network on top of immature input slowed learning (p = 0.005).`,
     3: "No vision model had a positive violation-of-expectation index. The fused model did, but the effect was carried by the hearing channel and was absent for a silent object.",
-    4: `Hidden-object position R² at 12 months: fused ${f("fused")}, vision memory ${f("vision_memory")}, hearing alone ${f("audio_only")} (position decoded from the model state).`,
+    4: `Hidden-object position R² at 12 months: fused ${f("fused")}, vision memory ${f("vision_memory")}, hearing alone ${f("audio_only")}; fused beats vision memory in 5 of 5 seeds.`,
   };
   document.querySelectorAll("[data-card]").forEach((e) => { e.textContent = t[e.dataset.card] || ""; });
 }

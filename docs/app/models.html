@@ -32,10 +32,10 @@
 <p id="ckText"></p></div>
 <h2>Four findings</h2>
 <div class="grid g2">
-<div class="card finding"><div class="n">1</div><h3>Do the senses mature in the baby order?</h3><span class="verdict v-yes">Yes, but we built that in</span><p>Touch and body sense work first, hearing improves next, vision comes last. That order comes from the input settings, so it is a check, not a discovery. The models also learn more slowly than the blurry input would allow.</p></div>
-<div class="card finding"><div class="n">2</div><h3>Does a blurry start help?</h3><span class="verdict v-partly">Partly</span><p>It helps hearing a little and costs vision a little. Letting the network itself grow over time halves the training effort but slows learning.</p></div>
+<div class="card finding"><div class="n">1</div><h3>Do the senses mature in the baby order?</h3><span class="verdict v-partly">Only because we built it in</span><p>Vision is the last sense to develop in the models, as in babies, but only because their input is set up that way. A stricter measure of the order does not match babies at all. The models also learn more slowly than the blurry input would allow.</p></div>
+<div class="card finding"><div class="n">2</div><h3>Does a blurry start help?</h3><span class="verdict v-partly">Partly</span><p>It may help hearing a little (a borderline result) and makes no clear difference to vision. Letting the network itself grow over time halves the training effort but clearly slows learning.</p></div>
 <div class="card finding"><div class="n">3</div><h3>Do the models know a hidden toy is still there?</h3><span class="verdict v-no">No</span><p>Babies look longer when a hidden toy magically vanishes. No vision model was "surprised". The combined model seemed surprised, but only because the toy's sound gave it away.</p></div>
-<div class="card finding"><div class="n">4</div><h3>Are senses better together?</h3><span class="verdict v-yes">Yes</span><p>Combining senses finds a fully hidden toy better than any single sense.</p></div>
+<div class="card finding"><div class="n">4</div><h3>Are senses better together?</h3><span class="verdict v-yes">Yes</span><p>Combining senses finds a fully hidden toy better than any single sense, in every one of five training runs.</p></div>
 </div>
 <h2>What this does and does not tell you about a real baby</h2>
 <p>The models are tiny and live in a simple, made-up world. They show which baby-like patterns follow from baby-like input alone (the order of the senses) and which need something more (expecting hidden things to persist). They do not measure or predict any real baby. The planned next step, training on head-camera recordings of real children and testing against an infant-reasoning benchmark, has not been done yet.</p>

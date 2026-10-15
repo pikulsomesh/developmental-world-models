@@ -102,7 +102,7 @@
 <p>Training compute is approximated by the number of parameter-updates, <span class="m">\sum_{\text{stages}}(\text{parameters})\times(\text{updates})</span>. Growing models are smaller early in training, so relative to a fixed 12-month-size network they use a fraction of this quantity; the measured ratios are in <a href="results.html#tables">Results</a>.</p>
 
 <h2 id="milestones">Milestones</h2>
-<p>For each sense, the half-ceiling age is the first age at which the information ceiling reaches half of its 12-month value (position R² for vision and hearing; identity accuracy above chance for touch). Kendall's <span class="m">\tau</span> compares the resulting order with the infant order touch &lt; hearing &lt; vision (Gottlieb, 1971). Because the front-end tables set this order, agreement is by construction and is not a finding about learning.</p>
+<p>For each sense, the half-ceiling age is the first age at which the information ceiling reaches half of its 12-month value (position R² for vision and hearing; identity accuracy above chance for touch). Kendall's <span class="m">\tau</span> compares the resulting order with the infant order touch &lt; hearing &lt; vision (Gottlieb, 1971). At five seeds this measure does not recover the infant order (τ = 0.00), because the vision ceiling is already high at birth. The later arrival of vision in the learned curves is set by the front-end tables and is not a finding about learning.</p>
 
 </main>
 <script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>

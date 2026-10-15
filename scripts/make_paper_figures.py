@@ -283,7 +283,7 @@ def fig2():
             ax.text(k, a + 0.15, f"{a}", ha="center", fontsize=6)
         ax.set_xticks(range(3)); ax.set_xticklabels([SNAME[s] for s in senses])
         ax.set_ylabel("age at half of 12-mo ceiling (months)")
-        ax.set_title(f"Order matches infants (Kendall τ = {ms['kendall_tau_b_approx']:.2f})")
+        ax.set_title(f"Half-ceiling age (Kendall τ = {ms['kendall_tau_b_approx']:.2f})")
         ax.text(0.02, 0.97, "infant order: touch < hearing < vision\n(set by the front-end tables)", transform=ax.transAxes, va="top", fontsize=5, color=MUTED)
     save(fig, "fig2_development")
 

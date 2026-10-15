@@ -31,3 +31,4 @@ code { font-size: 8pt; }
 section.level1 > h1#extended-data { break-before: page; }
 h1#references { break-before: page; }
 .katex{font-size:1.05em !important}.katex-display{margin:0.9em 0}.katex-display>.katex{font-size:1.12em !important}
+.terms{background:#f6f6f6;border-left:2.5pt solid #444;padding:6pt 10pt;margin:10pt 0;font-family:"Liberation Sans",Arial,sans-serif;font-size:8.6pt;line-height:1.4}.terms p{margin:0}

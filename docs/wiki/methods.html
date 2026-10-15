@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods · Do AI Models Learn Like Humans?</title>
+<meta name="description" content="Environment, front-end operators with equations, training protocol, read-outs (probes, information ceiling, VoE index), statistics and compute accounting.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Methods · Do AI Models Learn Like Humans?">
+<meta property="og:description" content="Environment, front-end operators with equations, training protocol, read-outs (probes, information ceiling, VoE index), statistics and compute accounting.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/wiki/methods.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/wiki/methods.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="wiki/methods.html">
+<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
+<a href="../index.html">Home</a> · <a href="../wiki/overview.html">Study design</a> · <a href="../wiki/models.html">Models</a> · <a href="../wiki/methods.html">Methods</a> · <a href="../wiki/theory.html">Theory</a> · <a href="../wiki/results.html">Results</a> · <a href="../wiki/limitations.html">Scope and limitations</a> · <a href="../wiki/reproduce.html">Code and data</a> · <a href="../wiki/references.html">References</a> · <a href="../explore/index.html">Simulations</a> · <a href="../paper/report.pdf">Paper (PDF)</a></div></noscript>
+<main id="main">
+
+<div class="kicker">Wiki</div>
+<h1>Methods</h1>
+<p class="lede">Environment, front-end operators, training protocol, read-outs, statistics and compute accounting, with the equations used in the code. Implementation files are linked in each section.</p>
+
+<h2 id="environment">Environment: a synthetic multisensory nursery</h2>
+<p>Episodes last <span class="m">T=20</span> frames. A toy of type <span class="m">c\in\{1,\dots,4\}</span> moves with constant velocity and bounces in a 32×32 scene; the hand's position follows a smoothed random motor command <span class="m">u_t\in\mathbb R^2</span> and stays in the lower half. Half the episodes contain a vertical screen. Training sets have 3,000 episodes per seed and test sets 400. Source: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/env.py"><code>dwm/env.py</code></a>.</p>
+<div class="tablewrap"><table class="t">
+<caption>Table E1 | Sensory streams</caption>
+<tr><th>Stream</th><th>Dimension</th><th>Content</th></tr>
+<tr><td>Vision</td><td>3 × 32 × 32</td><td>RGB image on a dark background; type-specific shape and colour for the toy, grey screen, skin-tone hand</td></tr>
+<tr><td>Hearing</td><td>2 × 32</td><td>Binaural spectrum: a Gaussian bump at a type-specific pitch; loudness falls with distance; left/right balance follows horizontal position; sound passes through the screen</td></tr>
+<tr><td>Touch</td><td>8 × 8</td><td>Image of the toy's shape when the hand overlaps the toy, otherwise zero</td></tr>
+<tr><td>Proprioception</td><td>4</td><td>Hand position (normalised) and velocity</td></tr>
+</table></div>
+<p>Ground truth includes toy position, type, visibility and contact. Each toy type is specified redundantly across senses by shape and colour, pitch and felt shape.</p>
+<h3>Probe events</h3>
+<div class="tablewrap"><table class="t">
+<caption>Table E2 | Event types used for read-outs</caption>
+<tr><th>Event</th><th>Definition</th></tr>
+<tr><td>Possible</td><td>The toy crosses a central screen horizontally and reappears.</td></tr>
+<tr><td>Impossible</td><td>The toy vanishes while hidden, from every sense.</td></tr>
+<tr><td>Vanish-visual</td><td>It vanishes from vision and touch but keeps sounding as if still moving.</td></tr>
+<tr><td>Silent</td><td>Possible and impossible events with no sound at all (hearing receives noise only).</td></tr>
+<tr><td>Track</td><td>Like possible, with a wider screen (14 px) and varied speed, so the toy is hidden for about seven frames.</td></tr>
+</table></div>
+<p>Paired events share random draws so that they differ only in the manipulation.</p>
+
+<h2 id="front-ends">Front-end operators</h2>
+<p>All front ends are fixed functions <span class="m">\tilde o=\Phi_s(o;a)</span> whose parameters are linearly interpolated in age <span class="m">a</span> (months) from Table 1. Source: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/senses.py"><code>dwm/senses.py</code></a>, tables in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/capability.py"><code>dwm/capability.py</code></a>. The <a href="../explore/senses.html">age slider</a> applies the same operators in the browser.</p>
+<h3>Vision</h3>
+<p>With acuity <span class="m">\mathrm{cpd}(a)</span> in cycles per degree, contrast sensitivity <span class="m">\mathrm{CS}(a)</span> and colour saturation <span class="m">\gamma(a)</span>:</p>
+<div class="eq">\sigma(a)=\tfrac12\cdot\frac{30}{\mathrm{cpd}(a)}\cdot\frac{32}{224},\qquad x=G_{\sigma(a)}*o,\qquad x\leftarrow \bar x+\kappa(a)\,(x-\bar x),\qquad \kappa(a)=\mathrm{clip}\!\left(\tfrac12\log_{10}\mathrm{CS}(a),\,0.15,\,1\right)</div>
+<div class="eq">\tilde o=\mathrm{clip}_{[0,1]}\big(\ell+\gamma(a)(x-\ell)\big),\qquad \ell=0.299x_R+0.587x_G+0.114x_B</div>
+<p><span class="m">G_\sigma</span> is a separable Gaussian with replicate padding and <span class="m">\bar x</span> the image mean. The log compression of contrast replaces a linear gain CS/100, which would leave a newborn 2% of contrast; contrast sensitivity is a threshold, not a gain.</p>
+<h3>Hearing</h3>
+<p>Per ear, <span class="m">x=g_{\beta(a)}*o</span> along frequency, then a high-frequency roll-off, then reduced interaural difference, then additive Gaussian noise <span class="m">\eta(a)</span>:</p>
+<div class="eq">x_f\leftarrow x_f\,\mathrm{sigmoid}\big((h(a)\cdot32-f)/1.5\big),\qquad x_{L,R}\leftarrow m+\rho(a)(x_{L,R}-m),\quad m=\tfrac12(x_L+x_R)</div>
+<h3>Touch and proprioception</h3>
+<p>Receptive-field blur <span class="m">G_{\tau(a)}</span> on the 8×8 patch plus noise for touch; additive noise for proprioception.</p>
+<div class="tablewrap"><table class="t">
+<caption>Table 1 | Developmental parameters at the four checkpoints (intermediate months are interpolated). Vision values follow published infant acuity and contrast sensitivity; the others are coarse placeholder tables that respect the known order of maturation.</caption>
+<tr><th>Sense (parameters)</th><th>0 months</th><th>3 months</th><th>6 months</th><th>12 months</th></tr>
+<tr><td>Vision: acuity (cpd) / contrast sensitivity / colour</td><td>1 / 2 / 0.1</td><td>4 / 10 / 0.7</td><td>15 / 50 / 1.0</td><td>30 / 100 / 1.0</td></tr>
+<tr><td>Hearing: frequency blur (bins) / high-frequency pass / interaural difference / noise</td><td>2.5 / 60% / 0.3 / 0.08</td><td>1.8 / 75% / 0.5 / 0.06</td><td>1.0 / 90% / 0.8 / 0.04</td><td>0.5 / 100% / 1.0 / 0.02</td></tr>
+<tr><td>Touch: receptive-field blur (taxels) / noise</td><td>1.2 / 0.06</td><td>0.9 / 0.04</td><td>0.6 / 0.03</td><td>0.3 / 0.02</td></tr>
+<tr><td>Proprioception: noise</td><td>0.12</td><td>0.08</td><td>0.05</td><td>0.02</td></tr>
+<tr><td>Capacity (growing regimes): width multiplier / memory window</td><td>×1 / 1</td><td>×2 / 2</td><td>×3 / 4</td><td>×4 / 6</td></tr>
+</table></div>
+
+<h2 id="training">Training protocol</h2>
+<p>Adam, learning rate <span class="m">2\times10^{-3}</span>, batch 32, 2,000 updates per stage for vision and 1,500 for the other senses, four stages in one continuous run. Weights carry over between stages and a fresh Adam optimiser is started at each stage, so all regimes see the same optimiser schedule. Hyperparameters were set once on the immature-input regime and shared by all regimes. Seeds: n = <span data-live="n|curriculum_only|vision">–</span> per regime for the sense models; fusion uses the grown regime's checkpoints. Source: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/run_experiments.py"><code>scripts/run_experiments.py</code></a>.</p>
+<h3 id="regimes-m">Regimes</h3>
+<p>The six regimes (immature input, immature input + growth, growth only, adult input, shuffled input quality, reversed immaturity) are defined in <a href="overview.html#regimes">Study design</a>. In code they are the identifiers <code>curriculum_only</code>, <code>grown</code>, <code>growth_only</code>, <code>adult_scratch</code>, <code>shuffled_order</code> and <code>reversed_immaturity</code>.</p>
+
+<h2 id="readouts">Read-outs</h2>
+<h3>Linear probes</h3>
+<p>For features <span class="m">X</span> (a latent, or a memory window of latents) and targets <span class="m">Y</span>, ridge regression with centred targets and an unpenalised intercept,</p>
+<div class="eq">\hat B=\arg\min_B\lVert (Y-\bar Y)-X_cB\rVert^2+\lambda\lVert B\rVert^2=(X_c^\top X_c+\lambda I)^{-1}X_c^\top(Y-\bar Y)</div>
+<p>with <span class="m">X_c</span> standardised features, is fitted on training episodes and evaluated on test episodes with <span class="m">R^2=1-\sum\lVert y-\hat y\rVert^2/\sum\lVert y-\bar y\rVert^2</span>. Identity uses one-hot targets and the arg-max (chance 0.25). Touch is probed on contact frames and proprioception on hand position. <i>Adult-input</i> probes use adult-quality input; <i>own-age</i> probes use the input quality of the checkpoint's age; <i>newborn-input</i> probes are fitted on adult-quality input and tested on newborn-quality input. Source: <code>ridge</code> and <code>probe</code> in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/train.py"><code>dwm/train.py</code></a>.</p>
+<h3>Information ceiling</h3>
+<p>For each sense and age <span class="m">a\in\{0,1,2,3,4,6,9,12\}</span>, a supervised network (the same encoder family) is trained for 1,500 updates to predict toy position and identity from a single filtered frame, and evaluated on held-out frames. This estimates what the filtered input contains.</p>
+<h3>Violation of expectation</h3>
+<p>Surprise is one-step prediction error, <span class="m">S_t=\lVert d(\hat z_t)-\tilde o_t\rVert^2</span> (unimodal) or <span class="m">\lVert r_s(\hat h_t)-z^s_t\rVert^2</span> per channel (fused, standardised latents), averaged over the hidden stretch and the two frames after expected re-emergence. With <span class="m">S_{\text{pos}}</span> and <span class="m">S_{\text{imp}}</span> the mean surprise on paired possible and impossible events,</p>
+<div class="eq">\mathrm{VoE}=\frac{S_{\text{imp}}-S_{\text{pos}}}{S_{\text{imp}}+S_{\text{pos}}},\qquad d_z=\frac{\overline{S_{\text{imp}}-S_{\text{pos}}}}{\mathrm{sd}(S_{\text{imp}}-S_{\text{pos}})}</div>
+<p>A positive index means the model is more surprised when the toy fails to reappear.</p>
+<h3>Occluded tracking and fill-in</h3>
+<p>The hidden toy's horizontal position is probed on fully hidden frames of the <i>track</i> events from the vision model's memory window (<span class="m">k=6</span> latents), from the hearing latent and from the fused state, fitting on half of the episodes and testing on the other half. Fill-in probes toy position from the fused state with all senses, without vision, and from single senses. Source: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/analyze_fusion_voe.py"><code>scripts/analyze_fusion_voe.py</code></a>.</p>
+
+<h2 id="statistics">Statistics</h2>
+<p>Bands and whiskers are ±1 s.d. over seeds. Planned comparisons at the 12-month checkpoint use Welch's t-test and Hedges' <span class="m">g</span> with an approximate 95% interval:</p>
+<div class="eq">g=\frac{\bar a-\bar b}{s_p}\Big(1-\frac{3}{4(n_a+n_b)-9}\Big),\qquad g\pm1.96\sqrt{\frac{n_a+n_b}{n_an_b}+\frac{g^2}{2(n_a+n_b)}}</div>
+<p>Per-cell 95% bootstrap intervals are in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/results/extra.json"><code>results/extra.json</code></a>. No correction for multiple comparisons is applied; all planned comparisons are listed in <a href="results.html#stats">Results</a>. With few seeds per regime, several comparisons have large effect sizes that are not significant; they are reported as estimates (see <a href="limitations.html">Scope and limitations</a>). Source: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/analyze_extra.py"><code>scripts/analyze_extra.py</code></a>.</p>
+
+<h2 id="compute">Compute accounting</h2>
+<p>Training compute is approximated by the number of parameter-updates, <span class="m">\sum_{\text{stages}}(\text{parameters})\times(\text{updates})</span>. Growing models are smaller early in training, so relative to a fixed 12-month-size network they use a fraction of this quantity; the measured ratios are in <a href="results.html#tables">Results</a>.</p>
+
+<h2 id="milestones">Milestones</h2>
+<p>For each sense, the half-ceiling age is the first age at which the information ceiling reaches half of its 12-month value (position R² for vision and hearing; identity accuracy above chance for touch). Kendall's <span class="m">\tau</span> compares the resulting order with the infant order touch &lt; hearing &lt; vision (Gottlieb, 1971). Because the front-end tables set this order, agreement is by construction and is not a finding about learning.</p>
+
+</main>
+<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

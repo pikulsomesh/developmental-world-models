@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hide-and-seek · Do AI Models Learn Like Humans?</title>
+<meta name="description" content="Violation-of-expectation demo: possible versus impossible occlusion events, per-model surprise and the fused model's channel breakdown.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Hide-and-seek · Do AI Models Learn Like Humans?">
+<meta property="og:description" content="Violation-of-expectation demo: possible versus impossible occlusion events, per-model surprise and the fused model's channel breakdown.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/explore/expectation.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/explore/expectation.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="explore/expectation.html">
+<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
+<a href="../index.html">Home</a> · <a href="../wiki/overview.html">Study design</a> · <a href="../wiki/models.html">Models</a> · <a href="../wiki/methods.html">Methods</a> · <a href="../wiki/theory.html">Theory</a> · <a href="../wiki/results.html">Results</a> · <a href="../wiki/limitations.html">Scope and limitations</a> · <a href="../wiki/reproduce.html">Code and data</a> · <a href="../wiki/references.html">References</a> · <a href="../explore/index.html">Simulations</a> · <a href="../paper/report.pdf">Paper (PDF)</a></div></noscript>
+<main id="main">
+
+<div class="kicker">Tool 4</div>
+<h1>Hide-and-seek</h1>
+<p class="lede">Infants look longer when a toy that went behind a screen fails to reappear. We show the models the same two movies and measure their surprise (one-step prediction error). A model that expects the toy to persist should be more surprised by the impossible movie.</p>
+<p class="note" id="dataStatus" role="status"></p>
+<div class="controls">
+  <button class="play" id="playVoe" aria-label="Play or pause the movies">▶</button>
+  <label>Frame <input type="range" id="voeFrame" min="0" max="19" step="1" value="0" style="width:200px" aria-label="Frame"></label>
+</div>
+<div class="grid g2">
+  <div class="card">
+    <h3>Vision model, frame by frame</h3>
+    <div class="frames-big">
+      <figure><canvas class="px" id="vPos" width="32" height="32" role="img" aria-label="Possible event frame"></canvas><figcaption>Possible: toy reappears</figcaption></figure>
+      <figure><canvas class="px" id="vImp" width="32" height="32" role="img" aria-label="Impossible event frame"></canvas><figcaption>Impossible: toy vanished</figcaption></figure>
+      <figure><canvas class="px" id="vDiff" width="32" height="32" role="img" aria-label="Difference between the two frames"></canvas><figcaption>Difference</figcaption></figure>
+    </div>
+    <div class="controls" style="margin-bottom:4px">
+      <label>Vision model <select id="voeRegime" aria-label="Training regime"></select></label>
+      <span class="seg" id="voeCkpt" role="group" aria-label="Checkpoint"></span>
+    </div>
+    <div id="voeTrace" role="img" aria-label="Surprise over frames for the possible and impossible events"></div>
+    <p class="note">Surprise (mean squared prediction error) of one vision model on the two movies. The shaded band marks when the toy is hidden. A positive violation-of-expectation index needs the red line to lie above the blue line around the hidden stretch.</p>
+  </div>
+  <div class="card">
+    <h3>Which sense notices? The fused model, by event</h3>
+    <div class="controls" style="margin:6px 0"><span class="seg" id="eventSeg" role="group" aria-label="Event"></span><span class="seg" id="fvAge" role="group" aria-label="Checkpoint"></span></div>
+    <div id="fusedVoe" role="img" aria-label="Violation-of-expectation index per sensory channel"></div>
+    <p class="note" id="eventNote"></p>
+    <p class="note">Bars: mean violation-of-expectation index over seeds, whiskers ±1 s.d. Positive means more surprise at the impossible event.</p>
+  </div>
+</div>
+<h2>The index</h2>
+<div class="eq">\mathrm{VoE} = \frac{S_{\text{imp}}-S_{\text{pos}}}{S_{\text{imp}}+S_{\text{pos}}}\in[-1,1]</div>
+<p>Why vision models are not surprised by the impossible event is derived on <a href="../wiki/theory.html#surprise">Theory</a>: a squared-error forecaster that is uncertain about when the toy reappears predicts a blend of screen and toy, and is therefore more surprised by reappearance.</p>
+<h2>About this tool</h2>
+<div class="tablewrap"><table class="t"><tbody>
+<tr><th scope="row">What it shows</th><td>Surprise on paired possible and impossible occlusion events for one vision model at a time, and the fused model's index decomposed by sensory channel for three event types.</td></tr>
+<tr><th scope="row">Data source</th><td><code>data/model_outputs.json</code> (per-frame surprise, seed 0), <code>data/episodes.json</code> (the two movies), and <code>results.fusion_voe</code> in <code>data/results.json</code> (all seeds).</td></tr>
+<tr><th scope="row">Code</th><td><a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/assets/app.js"><code>docs/assets/app.js</code></a> (<code>drawVoeTrace</code>, <code>drawFusedVoe</code>); the index is computed in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/train.py"><code>dwm/train.py</code></a> and <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/analyze_fusion_voe.py"><code>scripts/analyze_fusion_voe.py</code></a>.</td></tr>
+<tr><th scope="row">Background</th><td><a href="../wiki/methods.html#readouts">Methods: violation of expectation</a> and <a href="../wiki/results.html#expectation">Results: decodable is not expected</a>.</td></tr>
+</tbody></table></div>
+
+</main>
+<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

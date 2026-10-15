@@ -3,202 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Do AI models learn like humans?</title>
-<meta name="description" content="An interactive look at small world models that see, hear and feel the world the way infants do, from birth to 12 months.">
+<title>Do AI Models Learn Like Humans?</title>
+<meta name="description" content="Sense-specific developmental world models (vision, hearing, touch, proprioception) fed through age-indexed sensory immaturity: paper, wiki, interactive simulations and code. Short answer: sometimes.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Do AI Models Learn Like Humans?">
+<meta property="og:description" content="Sense-specific developmental world models (vision, hearing, touch, proprioception) fed through age-indexed sensory immaturity: paper, wiki, interactive simulations and code. Short answer: sometimes.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/index.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <link rel="stylesheet" href="assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%232a78d6'/><circle cx='16' cy='16' r='5' fill='white'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="assets/site.js"></script>
 </head>
-<body>
-<nav class="top"><div class="wrap">
-  <a class="brand" href="#">Developmental World Models</a>
-  <a class="l" href="#senses">Senses</a>
-  <a class="l" href="#models">Models</a>
-  <a class="l" href="#growth">Development</a>
-  <a class="l" href="#hide">Hide-and-seek</a>
-  <a class="l" href="#fusion">Fusion</a>
-  <a class="l" href="#how">How it works</a>
-  <a class="l" href="#review">Caveats</a>
-  <button id="theme" aria-label="Toggle theme">◐</button>
-</div></nav>
+<body data-root="" data-path="index.html">
+<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
+<a href="index.html">Home</a> · <a href="wiki/overview.html">Study design</a> · <a href="wiki/models.html">Models</a> · <a href="wiki/methods.html">Methods</a> · <a href="wiki/theory.html">Theory</a> · <a href="wiki/results.html">Results</a> · <a href="wiki/limitations.html">Scope and limitations</a> · <a href="wiki/reproduce.html">Code and data</a> · <a href="wiki/references.html">References</a> · <a href="explore/index.html">Simulations</a> · <a href="paper/report.pdf">Paper (PDF)</a></div></noscript>
+<main id="main">
 
-<header class="hero wrap">
-  <div class="kicker">A small, open experiment · Phase 0</div>
-  <h1>Do AI models learn like humans?</h1>
-  <p class="answer"><b>Sometimes.</b> When a model sees, hears and feels the world the way an infant does, some infant patterns appear on their own. Others do not.</p>
-  <p class="lede">Newborns see a blur, hear muffled sound and feel a lot. Their senses sharpen over the first year, each on its own clock. We gave each sense its own small "world model", fed it the world as an infant of a given age would receive it, and watched what it learned. This page lets you see what each model sees, how it changes with age, and where it does and does not behave like a baby.</p>
-  <div class="btns">
-    <a class="btn primary" href="paper/report.pdf">Read the paper (PDF)</a>
-    <a class="btn" href="#senses">See through infant senses</a>
-    <a class="btn" href="https://github.com/pikulsomesh/developmental-world-models">Code on GitHub</a>
-  </div>
-</header>
+<section class="hero">
+<div class="kicker">Sense-specific developmental world models</div>
+<h1>Do AI Models Learn Like Humans?</h1>
+<p class="answer"><b>Sometimes.</b> Given infant-like input, predictive world models reproduce some signatures of early development and miss others.</p>
+<p class="lede">Newborns see a blur, hear muffled sound and feel a great deal. Their senses sharpen over the first year, each on its own clock. We built one world model per sense (vision, hearing, touch and proprioception) plus a fusion model, fed each through an age-indexed model of sensory immaturity, trained them under six regimes, and read them out at checkpoints standing for 0, 3, 6 and 12 months.</p>
+<p class="byline">Somesh Mohapatra · Independent · Last updated 15 October 2026</p>
+<div class="btns">
+  <a class="btn primary" href="paper/report.pdf">Read the paper (PDF)</a>
+  <a class="btn" href="explore/index.html">Explore the simulations</a>
+  <a class="btn" href="wiki/overview.html">Read the wiki</a>
+  <a class="btn" href="https://github.com/pikulsomesh/developmental-world-models">Code on GitHub</a>
+</div>
+</section>
 
-<section id="answer"><div class="wrap">
-  <div class="kicker">The short answer</div>
-  <h2>Four questions, four answers</h2>
-  <p class="sub">Each card is a question people ask about infants and AI, and what our models did. Numbers are means over three training seeds at the 12-month checkpoint unless stated.</p>
-  <div class="grid g4" id="verdicts"></div>
-</div></section>
+<h2 id="findings" style="border-top:0;padding-top:0;margin-top:34px">Four findings</h2>
+<p class="sub">Each card answers one question about infants and machine learning. Values are means over independent training seeds at the 12-month checkpoint unless stated, read from the repository's result files. Every card links to its evidence.</p>
+<div class="grid g4" id="verdicts">
+  <div class="card finding"><div class="n">Q1</div><h3>Do senses mature in the infant order?</h3><span class="verdict v-yes">Yes, by construction</span>
+    <p data-card="1">Body senses and touch are usable from the first checkpoint, hearing improves, vision comes last. The order is set by the input filters, not discovered.</p>
+    <p><a href="wiki/results.html#order">Evidence: input schedule and learning</a></p></div>
+  <div class="card finding"><div class="n">Q2</div><h3>Does starting with immature input help?</h3><span class="verdict v-partly">Partly</span>
+    <p data-card="2">It costs a little on clean input in vision and helps in hearing. Network growth only slowed learning and halved training compute.</p>
+    <p><a href="wiki/results.html#immaturity">Evidence: costs and benefits</a> · <a href="wiki/results.html#growth">growth</a></p></div>
+  <div class="card finding"><div class="n">Q3</div><h3>Do models expect hidden objects to persist?</h3><span class="verdict v-no">No</span>
+    <p data-card="3">No vision model was surprised when a hidden toy vanished. The fused model was, but only through the hearing channel.</p>
+    <p><a href="wiki/results.html#expectation">Evidence: decodable is not expected</a> · <a href="explore/expectation.html">demo</a></p></div>
+  <div class="card finding"><div class="n">Q4</div><h3>Do combined senses beat any one sense?</h3><span class="verdict v-yes">Yes</span>
+    <p data-card="4">A fully hidden object's position is best decoded from the fused model.</p>
+    <p><a href="wiki/results.html#fusion">Evidence: fusion</a> · <a href="explore/fusion.html">charts</a></p></div>
+</div>
+<p class="note">These are results for controlled synthetic models and a synthetic nursery; see <a href="wiki/limitations.html">Scope and limitations</a> for what they do and do not support.</p>
 
-<section id="senses"><div class="wrap">
-  <div class="kicker">Interactive · 1</div>
-  <h2>See the world through an infant's senses</h2>
-  <p class="sub">Drag the age slider. The same moment of the same scene is passed through each sense's developmental filter. These filters are fixed, not learned: they are what the models receive. Vision changes most; touch and the sense of one's own body are nearly mature at birth.</p>
-  <div class="controls">
-    <span class="agebadge" id="ageLabel">0 months</span>
-    <label>Age <input type="range" id="age" min="0" max="12" step="0.25" value="0"></label>
-    <button class="play" id="playSenses" aria-label="Play">▶</button>
-    <label>Frame <input type="range" id="frame" min="0" max="19" step="1" value="8" style="width:160px"></label>
-  </div>
-  <div class="grid g4">
-    <div class="card sense"><h3><span class="dot" style="background:var(--c-vision)"></span>Vision</h3>
-      <canvas class="px" id="cVision" width="32" height="32"></canvas>
-      <div class="params" id="pVision"></div></div>
-    <div class="card sense"><h3><span class="dot" style="background:var(--c-audio)"></span>Hearing</h3>
-      <canvas class="px" id="cAudio" width="40" height="32" style="background:var(--surface-2)"></canvas>
-      <div class="params" id="pAudio"></div></div>
-    <div class="card sense"><h3><span class="dot" style="background:var(--c-touch)"></span>Touch</h3>
-      <canvas class="px" id="cTouch" width="8" height="8"></canvas>
-      <div class="params" id="pTouch"></div></div>
-    <div class="card sense"><h3><span class="dot" style="background:var(--c-proprio)"></span>Body sense</h3>
-      <canvas class="px" id="cProprio" width="64" height="64" style="background:var(--surface-2)"></canvas>
-      <div class="params" id="pProprio"></div></div>
-  </div>
-  <p class="note">Hearing: left and right ear spectra (32 frequency bins, low at the bottom). Touch: an 8×8 patch of skin on the hand, lit when the hand touches the toy. Body sense: where the hand thinks it is (dot) versus where it is (ring). Filter parameters come from published infant data for vision and are placeholders for the other senses (see Caveats).</p>
-</div></section>
+<h2 id="start">Start here</h2>
+<div class="grid g4 paths">
+  <a class="card" href="paper/report.pdf"><h3>Read the paper</h3><p>The full article with methods, figures and extended data.</p><span class="go">PDF →</span></a>
+  <a class="card" href="explore/index.html"><h3>Explore the simulations</h3><p>Age slider through infant senses, model viewer, development curves, hide-and-seek, fusion.</p><span class="go">Five tools →</span></a>
+  <a class="card" href="wiki/overview.html"><h3>Read the wiki</h3><p>Study design, models, methods, theory, results, scope and limitations.</p><span class="go">Eight pages →</span></a>
+  <a class="card" href="wiki/reproduce.html"><h3>Run the code</h3><p>Repository map, exact commands, data files and checkpoints.</p><span class="go">Reproduce →</span></a>
+</div>
+<p class="note">Also available: the <a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/arxiv">arXiv-format LaTeX source</a> of the paper.</p>
 
-<section id="models"><div class="wrap">
-  <div class="kicker">Interactive · 2</div>
-  <h2>Watch a vision model grow up</h2>
-  <p class="sub">Pick a training regime and a checkpoint. Each row shows twenty frames: what the model was given (the world at the age it was trained on), what it reconstructs from its own latent code, and what it predicts will happen one frame later.</p>
-  <div class="controls">
-    <label>Regime <select id="regime"></select></label>
-    <span class="seg" id="ckpt"></span>
-  </div>
-  <div class="card">
-    <div class="sprite-row"><div class="rl">Given</div><div class="strip"><canvas id="sp0"></canvas></div></div>
-    <div class="sprite-row"><div class="rl">Rebuilds</div><div class="strip"><canvas id="sp1"></canvas></div></div>
-    <div class="sprite-row"><div class="rl">Predicts next</div><div class="strip"><canvas id="sp2"></canvas></div></div>
-    <p class="params" id="modelInfo"></p>
-    <p class="note" id="regimeNote"></p>
-  </div>
-  <div class="tablewrap" style="margin-top:16px"><table class="t" id="regimeTable"></table></div>
-</div></section>
+<h2 id="glance">The study at a glance</h2>
+<div class="grid g4">
+  <div class="card"><div class="stat">4 + 1</div><p class="note">sense world models (vision, hearing, touch, proprioception) and a fusion world model</p></div>
+  <div class="card"><div class="stat">6</div><p class="note">training regimes crossing input schedule, network growth and two order controls</p></div>
+  <div class="card"><div class="stat">0 · 3 · 6 · 12</div><p class="note">read-out checkpoints (months), stages of one continuous training run</p></div>
+  <div class="card"><div class="stat"><span data-live="n|curriculum_only|vision">–</span> seeds</div><p class="note">independent training seeds per regime for the sense models</p></div>
+</div>
+<p>Models range from 8,340 to 586,499 parameters per sense and are trained on CPU in a synthetic multisensory nursery: 32×32 colour vision, binaural hearing, an 8×8 tactile patch and proprioception, with a moving object, a babbling hand and an occluding screen. The <a href="wiki/overview.html">Study design</a> page gives the full protocol.</p>
 
-<section id="growth"><div class="wrap">
-  <div class="kicker">Interactive · 3</div>
-  <h2>How each sense develops</h2>
-  <p class="sub">A linear read-out ("probe") asks how well the toy's position or identity can be decoded from each model's internal state at each checkpoint. The grey line is the information ceiling: the best a supervised network can do from that age's input. Click legend entries to hide regimes; hover for values. Bands are ±1 s.d. over seeds.</p>
-  <div class="controls">
-    <span class="seg" id="senseSeg"></span>
-    <span class="seg" id="metricSeg"></span>
-  </div>
-  <div class="card"><div id="trajChart"></div><div class="legend" id="trajLegend"></div></div>
-  <p class="note" id="trajNote"></p>
-</div></section>
+<h2 id="cite">Cite</h2>
+<p>If you use the code, data or results, please cite:</p>
+<pre id="bibtex"><code>@misc{mohapatra2026developmental,
+  author       = {Mohapatra, Somesh},
+  title        = {Do {AI} Models Learn Like Humans? Sense-Specific Developmental World Models},
+  year         = {2026},
+  howpublished = {GitHub repository and project site},
+  url          = {https://github.com/pikulsomesh/developmental-world-models}
+}</code></pre>
+<p><button class="icon-btn" data-copy="#bibtex" aria-label="Copy BibTeX">Copy</button> The repository is released under the MIT licence.</p>
 
-<section id="hide"><div class="wrap">
-  <div class="kicker">Interactive · 4</div>
-  <h2>Hide-and-seek: does the model expect the toy to come back?</h2>
-  <p class="sub">Infants look longer when a toy that went behind a screen fails to reappear. We show models the same two movies and measure their surprise (prediction error). A model that "knows" the toy still exists should be more surprised by the impossible movie.</p>
-  <div class="controls">
-    <button class="play" id="playVoe" aria-label="Play">▶</button>
-    <label>Frame <input type="range" id="voeFrame" min="0" max="19" step="1" value="0" style="width:200px"></label>
-  </div>
-  <div class="grid g2">
-    <div class="card">
-      <div class="frames-big">
-        <figure><canvas class="px" id="vPos" width="32" height="32"></canvas><figcaption>Possible: toy reappears</figcaption></figure>
-        <figure><canvas class="px" id="vImp" width="32" height="32"></canvas><figcaption>Impossible: toy vanished</figcaption></figure>
-        <figure><canvas class="px" id="vDiff" width="32" height="32"></canvas><figcaption>Difference</figcaption></figure>
-      </div>
-      <div class="controls" style="margin-bottom:4px">
-        <label>Vision model <select id="voeRegime"></select></label>
-        <span class="seg" id="voeCkpt"></span>
-      </div>
-      <div id="voeTrace"></div>
-      <p class="note">Surprise of one vision model on these two movies, frame by frame. The shaded band marks when the toy is hidden.</p>
-    </div>
-    <div class="card">
-      <h3>Which sense notices? The fused model, by event</h3>
-      <div class="controls" style="margin:6px 0"><span class="seg" id="eventSeg"></span><span class="seg" id="fvAge"></span></div>
-      <div id="fusedVoe"></div>
-      <p class="note" id="eventNote"></p>
-    </div>
-  </div>
-</div></section>
-
-<section id="fusion"><div class="wrap">
-  <div class="kicker">Interactive · 5</div>
-  <h2>Two senses keep track of what one loses</h2>
-  <p class="sub">When the toy is fully hidden, where is it? We decode its horizontal position from the vision model's memory, from hearing alone (sound passes through the screen), and from the fused world model that combines all four senses.</p>
-  <div class="grid g2">
-    <div class="card"><h3>Hidden toy: position decoded (R²)</h3><div id="trackChart"></div><div class="legend" id="trackLegend"></div></div>
-    <div class="card"><h3>Visible toy: position decoded (R²)</h3><div id="fillChart"></div><div class="legend" id="fillLegend"></div></div>
-  </div>
-</div></section>
-
-<section id="how"><div class="wrap">
-  <div class="kicker">Under the hood</div>
-  <h2>How it works</h2>
-  <p class="sub">Every model is small enough to train on a laptop CPU. The full derivations are in the Methods of the paper.</p>
-  <div class="grid g2 math">
-    <div class="card"><h3>1 · A developmental front end per sense</h3>
-      <p>Each sense <span class="m">s</span> sees the clean observation through a fixed, age-indexed operator. For vision, blur, then contrast, then colour:</p>
-      <div class="eq" data-tex="\tilde o_t = \Phi_{\text{vis}}(o_t;\,a) = \mathrm{clip}\big(\mathcal{C}_{\kappa(a)} \, G_{\sigma(a)} * o_t\big),\quad \sigma(a)=\tfrac12\,\tfrac{30}{\mathrm{cpd}(a)}\,\tfrac{32}{224}"></div>
-      <div class="eq" data-tex="\kappa(a) = \mathrm{clip}\!\left(\tfrac12\log_{10}\mathrm{CS}(a),\,0.15,\,1\right)"></div>
-      <p class="note">cpd = acuity in cycles per degree, CS = contrast sensitivity. Hearing uses frequency blur, a high-frequency roll-off and reduced left/right difference; touch uses receptive-field blur.</p></div>
-    <div class="card"><h3>2 · A world model per sense</h3>
-      <p>An encoder <span class="m">e</span> maps what the sense delivers to a latent state; a dynamics model <span class="m">f</span> predicts the next state from the last <span class="m">k</span> states and the infant's own movement <span class="m">u</span>; a decoder <span class="m">d</span> maps back.</p>
-      <div class="eq" data-tex="z_t = e_\theta(\tilde o_t),\qquad \hat z_{t+1} = z_t + f_\theta(z_t,\dots,z_{t-k+1},u_t)"></div>
-      <div class="eq" data-tex="\mathcal L = \underbrace{\lVert d(z_t)-\tilde o_t\rVert^2_w}_{\text{reconstruct}} + \underbrace{\lVert d(\hat z_{t+1})-\tilde o_{t+1}\rVert^2_w}_{\text{predict}} + 0.1\,\lVert \hat z_{t+1}-\mathrm{sg}(z_{t+1})\rVert^2"></div></div>
-    <div class="card"><h3>3 · Growing without forgetting</h3>
-      <p>A growing model widens each hidden layer from <span class="m">n</span> to <span class="m">n'</span> units. New units get random input weights and zero output weights, so the network computes exactly the same function right after growth:</p>
-      <div class="eq" data-tex="W_2' = [\,W_2\;\;0\,],\quad W_1'=\begin{bmatrix}W_1\\ R\end{bmatrix}\;\Rightarrow\; W_2'\,\phi(W_1'x) = W_2\,\phi(W_1x)"></div>
-      <p class="note">The catch: the gradient reaching the new input weights <span class="m">R</span> is multiplied by the zero output weights, so new capacity does nothing until those move. That is one reason growth slowed learning here.</p></div>
-    <div class="card"><h3>4 · Measuring surprise</h3>
-      <p>Surprise is the prediction error <span class="m">S</span> around the moment the toy should reappear. The violation-of-expectation index compares the impossible and possible movies:</p>
-      <div class="eq" data-tex="\mathrm{VoE} = \frac{S_{\text{imp}}-S_{\text{pos}}}{S_{\text{imp}}+S_{\text{pos}}}\in[-1,1]"></div>
-      <p class="note">Why vision fails: a model trained with squared error predicts the average future. When the reappearance time is uncertain, the average future behind a screen is mostly "screen", so the error-minimising forecast is that nothing reappears.</p></div>
-  </div>
-</div></section>
-
-<section id="perspectives"><div class="wrap">
-  <div class="kicker">Three lenses</div>
-  <h2>Mathematics, computer science, neuroscience</h2>
-  <div class="grid g3">
-    <div class="card"><h3>Mathematics</h3><p>A front end is a channel: by the data-processing inequality no model can recover more about the toy than <span class="m">I(\tilde o;\,y)</span>. Squared-error prediction converges to the conditional mean, which explains copy-like forecasts under occlusion. Function-preserving growth is an exact identity, but its zero-initialised gradients are a saddle the optimiser must leave.</p></div>
-    <div class="card"><h3>Computer science</h3><p>Immature input is a curriculum, like a continuation method that solves a smoothed problem first. Shuffling the same inputs keeps most of the benefit in hearing, which points to data augmentation more than order. Growth halves training compute (parameter × updates) but costs accuracy at matched updates.</p></div>
-    <div class="card"><h3>Neuroscience</h3><p>The front ends stand for the eye's optics and cone maturation, the cochlea and binaural brainstem circuits, and skin receptive fields. The brain adds synapses and then prunes them, rather than adding neurons; plasticity closes on per-sense clocks. Fusion stands for multisensory areas such as the superior colliculus and superior temporal sulcus.</p></div>
-  </div>
-</div></section>
-
-<section id="review"><div class="wrap">
-  <div class="kicker">Read this before quoting a number</div>
-  <h2>What this does not show</h2>
-  <div class="grid g2">
-    <div class="card"><ul>
-      <li>Everything is synthetic: a 32×32 world with one toy, a hand and a screen. It is a mechanism test, not a model of real infants.</li>
-      <li>Vision filters follow published infant data; the hearing, touch and body-sense tables are placeholders that respect the known order of maturation. So "the senses mature in the infant order" is put there by those tables.</li>
-      <li>"Months" are training stages, not hours of experience.</li>
-    </ul></div>
-    <div class="card"><ul>
-      <li>Probes show what is decodable, not what the model does. Infant tests measure behaviour, which is why hide-and-seek matters.</li>
-      <li>Three seeds per regime: differences smaller than the bands are not established.</li>
-      <li>We reviewed our own report as a referee would; the review and our responses are <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/report/PEER_REVIEW.md">on GitHub</a>.</li>
-    </ul></div>
-  </div>
-</div></section>
-
-<footer><div class="wrap">
-  <p><a href="paper/report.pdf">Paper (PDF)</a> · <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/report/REPORT.md">Paper (Markdown)</a> · <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/PLAN.md">Research plan</a> · <a href="https://github.com/pikulsomesh/developmental-world-models">Code (MIT)</a></p>
-  <p>Developmental World Models project, 2026. All numbers on this page are read from the repository's results files.</p>
-</div></footer>
-<div class="tip" id="tip"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+</main>
+<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

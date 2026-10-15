@@ -3,22 +3,13 @@
 (() => {
 "use strict";
 const $ = (s) => document.querySelector(s);
+const has = (s) => !!document.querySelector(s);
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
-// ------------------------------------------------------------------ theme + math
+// ------------------------------------------------------------------ theme + math (chrome lives in site.js)
 const root = document.documentElement;
-try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
-$("#theme").onclick = () => {
-  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  root.dataset.theme = dark ? "light" : "dark";
-  try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
-  redrawAll();
-};
-function renderMath() {
-  if (!window.katex) return;
-  document.querySelectorAll(".eq[data-tex]").forEach((el) => katex.render(el.dataset.tex, el, { displayMode: true, throwOnError: false }));
-  document.querySelectorAll(".m").forEach((el) => katex.render(el.textContent, el, { throwOnError: false }));
-}
+const renderMath = () => window.DWM && window.DWM.renderMath && window.DWM.renderMath();
+window.addEventListener("themechange", () => redrawAll());
 
 // ------------------------------------------------------------------ constants
 const REGIMES = ["curriculum_only", "grown", "growth_only", "adult_scratch", "shuffled_order", "reversed_immaturity"];
@@ -129,7 +120,7 @@ function hexRGB(h) { h = h.replace("#", ""); return [0, 2, 4].map((i) => parseIn
 // ------------------------------------------------------------------ 1. senses
 let senseAge = 0, senseT = 8, sensesTimer = null;
 function drawSenses() {
-  if (!EP) return;
+  if (!EP || !has("#cVision")) return;
   const ep = EP.ordinary, a = senseAge, t = senseT;
   $("#ageLabel").textContent = a === 0 ? "Newborn" : `${+a.toFixed(2)} month${a === 1 ? "" : "s"}`;
   const vp = visionParams(a);
@@ -163,6 +154,7 @@ function drawSenses() {
   $("#pProprio").innerHTML = `position noise ${n.toFixed(3)}<br>(fraction of the scene)`;
 }
 function initSenses() {
+  if (!has("#age")) return;
   const q = new URLSearchParams(location.search);
   if (q.has("age")) { senseAge = +q.get("age"); $("#age").value = senseAge; }
   $("#age").oninput = (e) => { senseAge = +e.target.value; drawSenses(); };
@@ -178,6 +170,7 @@ function initSenses() {
 let curRegime = "curriculum_only", curCk = 12;
 const spriteCache = {};
 function drawModel() {
+  if (!has("#sp0")) return;
   const name = `${curRegime}_${curCk}`, img = spriteCache[name] || Object.assign(new Image(), { src: `data/models/${name}.png` });
   spriteCache[name] = img;
   const paint = () => {
@@ -199,6 +192,7 @@ function seg(el, items, cur, on) {
     b.onclick = () => { el.querySelectorAll("button").forEach((x) => x.classList.remove("on")); b.classList.add("on"); on(v); }; el.appendChild(b); });
 }
 function initModels() {
+  if (!has("#regime")) return;
   const s = $("#regime");
   REGIMES.forEach((r) => s.add(new Option(RLABEL[r], r)));
   s.onchange = () => { curRegime = s.value; drawModel(); };
@@ -206,6 +200,7 @@ function initModels() {
   drawModel();
 }
 function regimeTable() {
+  if (!has("#regimeTable")) return;
   const v = (sense, r, k) => { const rows = RES && RES.senses[sense] && RES.senses[sense][r]; const x = rows && rows[3][k]; return x ? `${x.mean.toFixed(2)}${x.n > 1 ? ` ± ${x.sd.toFixed(2)}` : ""}` : "–"; };
   let h = "<tr><th>Regime</th><th>Network</th><th>Input quality over the four stages</th><th>Vision position R² at 12 mo</th><th>On newborn input</th><th>Hearing position R²</th></tr>";
   REGIMES.forEach((r) => { h += `<tr><td><span class="dot" style="background:var(${RCOLOR[r]})"></span> ${RLABEL[r]}</td><td>${RTABLE[r][0]}</td><td>${RTABLE[r][1]}</td><td>${v("vision", r, "pos_r2")}</td><td>${v("vision", r, "newborn_pos_r2")}</td><td>${v("audio", r, "pos_r2")}</td></tr>`; });
@@ -213,9 +208,8 @@ function regimeTable() {
 }
 
 // ------------------------------------------------------------------ charts
-const tip = $("#tip");
-function showTip(e, html) { tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = `${Math.min(innerWidth - 270, e.clientX + 12)}px`; tip.style.top = `${e.clientY + 12}px`; }
-function hideTip() { tip.style.opacity = 0; }
+function showTip(e, html) { const tip = $("#tip"); if (!tip) return; tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = `${Math.min(innerWidth - 270, e.clientX + 12)}px`; tip.style.top = `${e.clientY + 12}px`; }
+function hideTip() { const tip = $("#tip"); if (tip) tip.style.opacity = 0; }
 const NS = "http://www.w3.org/2000/svg";
 function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; }
 function lineChart(host, { series, xs, xLabel, yLabel, yDomain, height = 300, xFmt = (x) => x, band }) {
@@ -298,7 +292,7 @@ let tSense = "vision", tMetric = "pos_r2";
 const hiddenR = new Set();
 const METRICS = { pos_r2: "Position R²", type_acc: "Identity accuracy", newborn_pos_r2: "Position R² on newborn input", own_pos_r2: "Position R², own-age input" };
 function drawTraj() {
-  if (!RES) return;
+  if (!RES || !has("#trajChart")) return;
   const rows = RES.senses[tSense] || {}, series = [];
   const own = RES.extra && RES.extra.own_age;
   REGIMES.forEach((r) => {
@@ -326,6 +320,7 @@ function drawTraj() {
   $("#trajNote").textContent = notes[tSense] + (tMetric === "type_acc" ? " Chance is 0.25." : "") + (tMetric === "own_pos_r2" ? " Own-age: the probe is fitted and tested on input of the age that checkpoint stands for." : "");
 }
 function initTraj() {
+  if (!has("#senseSeg")) return;
   seg($("#senseSeg"), Object.entries(SENSES), tSense, (v) => { tSense = v; drawTraj(); });
   seg($("#metricSeg"), Object.entries(METRICS), tMetric, (v) => { tMetric = v; drawTraj(); });
 }
@@ -333,12 +328,13 @@ function initTraj() {
 // ------------------------------------------------------------------ 4. VoE
 let voeT = 0, voeTimer = null, voeRegime = "curriculum_only", voeCk = 12, ev = "vanish_all", fvAge = "12";
 function drawVoeFrames() {
-  if (!EP) return;
+  if (!EP || !has("#vPos")) return;
   const p = visFrame(EP.voe_possible, voeT), q = visFrame(EP.voe_impossible, voeT), d = new Float32Array(3072);
   for (let i = 0; i < 3072; i++) d[i] = Math.min(1, Math.abs(p[i] - q[i]) * 2);
   putRGB($("#vPos"), p); putRGB($("#vImp"), q); putRGB($("#vDiff"), d);
 }
 function drawVoeTrace() {
+  if (!has("#voeTrace") || !MO || !EP) return;
   const m = MO && MO[voeRegime] && MO[voeRegime][voeCk]; if (!m) return;
   const vis = EP.voe_possible.visible, hid = vis.map((v, i) => (v < 0.5 ? i : -1)).filter((i) => i >= 0);
   lineChart($("#voeTrace"), { height: 220, xs: [...Array(20).keys()].filter((i) => i % 2 === 0), xLabel: "frame", yLabel: "surprise (MSE)",
@@ -353,6 +349,7 @@ const ENOTE = {
   silent_toy: "A toy that never makes a sound, so hearing cannot give the game away. Only vision could notice.",
 };
 function drawFusedVoe() {
+  if (!has("#fusedVoe")) return;
   const fv = RES && RES.fusion_voe; const s0 = fv && Object.values(fv)[0];
   if (!fv || !s0 || !Object.values(s0)[0] || !Object.values(s0)[0].vanish_all) { $("#fusedVoe").innerHTML = "<p class='note'>Results pending.</p>"; return; }
   const seeds = Object.keys(fv), chans = ["vision", "audio", "touch", "proprio", "all"];
@@ -366,6 +363,7 @@ function drawFusedVoe() {
   $("#eventNote").textContent = ENOTE[ev];
 }
 function initVoe() {
+  if (!has("#voeFrame")) return;
   $("#voeFrame").oninput = (e) => { voeT = +e.target.value; drawVoeFrames(); };
   $("#playVoe").onclick = () => {
     if (voeTimer) { clearInterval(voeTimer); voeTimer = null; $("#playVoe").textContent = "▶"; return; }
@@ -379,7 +377,7 @@ function initVoe() {
 
 // ------------------------------------------------------------------ 5. fusion
 function drawFusion() {
-  const f = RES && RES.fusion; if (!f) return;
+  const f = RES && RES.fusion; if (!f || !has("#trackChart")) return;
   const ages = Object.keys(f).map(Number).sort((a, b) => a - b);
   const mk = (grp, key, metric, name, color, dash) => ({ name, color, dash, points: ages.map((a) => { const x = f[a][grp][key] && f[a][grp][key][metric]; return { x: a, y: x ? x.mean : NaN, sd: x ? x.sd : 0, n: x ? x.n : 0 }; }) });
   const tr = [mk("occluded_tracking", "fused", "x_r2", "Fused world model", css("--c-fused")), mk("occluded_tracking", "vision_memory", "x_r2", "Vision memory", css("--c-vision")),
@@ -393,34 +391,177 @@ function drawFusion() {
 }
 
 // ------------------------------------------------------------------ verdicts
-function drawVerdicts() {
-  const V = (s, r, k, a = 3) => { const x = RES && RES.senses[s] && RES.senses[s][r] && RES.senses[s][r][a][k]; return x ? x.mean.toFixed(2) : "–"; };
+
+// ------------------------------------------------------------------ live numbers (results.json -> text)
+const fx = (x, d = 2) => (Number.isFinite(x) ? x.toFixed(d) : "–");
+const cell = (x, d = 2, pm = true) => (x && Number.isFinite(x.mean) ? `${x.mean.toFixed(d)}${pm && x.n > 1 ? ` ± ${x.sd.toFixed(d)}` : ""}` : "–");
+const SK = (s, r, k, st = 3) => RES && RES.senses && RES.senses[s] && RES.senses[s][r] && RES.senses[s][r][st] && RES.senses[s][r][st][k];
+function liveValue(spec) { // "m|regime|sense|key|stage" | "ms|..." (mean ± sd) | "f|group|key|metric" | "ce|sense|key|age" | "cp|sense|field" | "st|name|field" | "n|regime|sense"
+  const [t, ...a] = spec.split("|");
+  if (!RES) return "–";
+  if (t === "m") return cell(SK(a[1], a[0], a[2], +(a[3] ?? 3)), 2, false);
+  if (t === "ms") return cell(SK(a[1], a[0], a[2], +(a[3] ?? 3)), 2, true);
+  if (t === "n") { const x = SK(a[1], a[0], "pos_r2", 3); return x ? String(x.n) : "–"; }
+  if (t === "f") { const g = RES.fusion && RES.fusion["12"] && RES.fusion["12"][a[0]]; return cell(g && g[a[1]] && g[a[1]][a[2]], 2, false); }
+  if (t === "ce") { const c = RES.extra && RES.extra.ceiling && RES.extra.ceiling[a[0]]; return c && c[a[2]] ? fx(c[a[2]][a[1]]) : "–"; }
+  if (t === "cp") { const c = RES.extra && RES.extra.compute && RES.extra.compute[a[0]]; return c ? fx(c[a[1]], 2) : "–"; }
+  if (t === "st") { const c = RES.extra && RES.extra.stats && RES.extra.stats.comparisons && RES.extra.stats.comparisons[a[0]]; if (!c) return "–"; const v = a[1] === "g" ? (c.hedges_g ?? c.g) : c[a[1]]; return a[1] === "p" ? (Number.isFinite(v) ? (v < 0.001 ? "<0.001" : v.toFixed(3)) : "–") : fx(v); }
+  return "–";
+}
+function fillLive() { document.querySelectorAll("[data-live]").forEach((e) => { e.textContent = liveValue(e.dataset.live); }); }
+
+function drawVerdicts() { // numeric sentences on the home page cards
+  if (!has("[data-card]")) return;
+  const V = (s, r, k, a = 3) => { const x = SK(s, r, k, a); return x ? x.mean.toFixed(2) : "–"; };
   const ft = RES && RES.fusion && RES.fusion["12"] && RES.fusion["12"].occluded_tracking;
   const f = (k) => (ft && ft[k] ? ft[k].x_r2.mean.toFixed(2) : "–");
-  const cards = [
-    ["v-yes", "Mostly", "Do senses mature in the infant order?", `Body sense and touch are good from the start, hearing improves, vision is last: vision position R² ${V("vision", "curriculum_only", "pos_r2", 0)} at birth and ${V("vision", "curriculum_only", "pos_r2")} at 12 months. But this order is set by the input filters, not discovered.`],
-    ["v-partly", "Partly", "Does starting blurry help?", `It costs a little on clear input (vision ${V("vision", "curriculum_only", "pos_r2")} vs ${V("vision", "adult_scratch", "pos_r2")}) and, in hearing, helps (${V("audio", "curriculum_only", "pos_r2")} vs ${V("audio", "adult_scratch", "pos_r2")}). Growing the network on top only slowed learning.`],
-    ["v-no", "Not yet", "Do models expect hidden objects to persist?", "No vision model was surprised when a hidden toy vanished. The fused model was, but only because the toy stopped making a sound."],
-    ["v-yes", "Yes", "Do combined senses beat any one sense?", `A hidden toy's position is best decoded from the fused model (R² ${f("fused")}) versus vision memory (${f("vision_memory")}) or hearing alone (${f("audio_only")}).`],
-  ];
-  $("#verdicts").innerHTML = cards.map(([c, v, q, a], i) => `<div class="card finding"><div class="n">Q${i + 1}</div><h3>${q}</h3><span class="verdict ${c}">${v}</span><p class="lbl" style="margin:0">${a}</p></div>`).join("");
+  const t = {
+    1: `Vision position R² ${V("vision", "curriculum_only", "pos_r2", 0)} at the newborn checkpoint and ${V("vision", "curriculum_only", "pos_r2")} at 12 months; touch and proprioception are close to their final level from the first checkpoint. The order is set by the input filters, not discovered.`,
+    2: `Vision at 12 months: ${V("vision", "curriculum_only", "pos_r2")} with immature input versus ${V("vision", "adult_scratch", "pos_r2")} with adult input. Hearing: ${V("audio", "curriculum_only", "pos_r2")} versus ${V("audio", "adult_scratch", "pos_r2")}. Growing the network on top of immature input slowed learning.`,
+    3: "No vision model had a positive violation-of-expectation index. The fused model did, but the effect was carried by the hearing channel and was absent for a silent object.",
+    4: `Hidden-object position R² at 12 months: fused ${f("fused")}, vision memory ${f("vision_memory")}, hearing alone ${f("audio_only")} (position decoded from the model state).`,
+  };
+  document.querySelectorAll("[data-card]").forEach((e) => { e.textContent = t[e.dataset.card] || ""; });
+}
+
+// ------------------------------------------------------------------ results page tables
+function td(v, cls) { return `<td${cls ? ` class="${cls}"` : ""}>${v}</td>`; }
+function drawResultsTables() {
+  if (!RES) return;
+  const sensesList = Object.entries(SENSES);
+  const T = $("#trajTables");
+  if (T) {
+    T.innerHTML = sensesList.map(([s, label]) => {
+      const head = `<tr><th>Regime</th>${STAGES.map((a) => `<th class="num">${a} mo</th>`).join("")}<th class="num">identity acc. 12 mo</th></tr>`;
+      const rows = REGIMES.map((r) => RES.senses[s] && RES.senses[s][r] ? `<tr><td><span class="dot" style="background:var(${RCOLOR[r]})"></span> ${RLABEL[r]}</td>${STAGES.map((a, i) => td(cell(SK(s, r, "pos_r2", i), 2, true), "num")).join("")}${td(cell(SK(s, r, "type_acc", 3), 2, true), "num")}</tr>` : "").join("");
+      return `<div class="tablewrap"><table class="t"><caption>${label}: toy position R² (probe on adult-quality input; mean ± s.d. over seeds) at each checkpoint</caption>${head}${rows}</table></div>`;
+    }).join("");
+  }
+  const S = $("#statsTable");
+  if (S) {
+    const c = RES.extra && RES.extra.stats && RES.extra.stats.comparisons;
+    if (!c || !Object.keys(c).length) S.innerHTML = "<tr><td>Planned-comparison statistics are generated with the paper and are not yet available in this build of the site.</td></tr>";
+    else {
+      let h = "<tr><th>Comparison (12-month checkpoint)</th><th class=\"num\">Hedges' g</th><th class=\"num\">approx. 95% CI</th><th class=\"num\">p (Welch)</th><th class=\"num\">n per group</th></tr>";
+      for (const [name, d] of Object.entries(c)) {
+        const g = d.hedges_g ?? d.g, na = Array.isArray(d.a) ? d.a.length : (d.n && d.n[0]) ?? d.n, nb = Array.isArray(d.b) ? d.b.length : (d.n && d.n[1]) ?? d.n;
+        let ci = "–";
+        if (Number.isFinite(g) && na && nb) { const se = Math.sqrt((na + nb) / (na * nb) + g * g / (2 * (na + nb))); ci = `[${(g - 1.96 * se).toFixed(2)}, ${(g + 1.96 * se).toFixed(2)}]`; }
+        h += `<tr>${td(name)}${td(fx(g), "num")}${td(ci, "num")}${td(Number.isFinite(d.p) ? (d.p < 0.001 ? "<0.001" : d.p.toFixed(3)) : "–", "num")}${td(na && nb ? `${na} / ${nb}` : "–", "num")}</tr>`;
+      }
+      S.innerHTML = h;
+    }
+  }
+  const F = $("#fusionTable");
+  if (F) {
+    const f = RES.fusion && RES.fusion["12"];
+    if (!f) F.innerHTML = "<tr><td>Fusion results are not available in this build.</td></tr>";
+    else {
+      const rows = [["Hidden toy, x position R²", "occluded_tracking", "x_r2", [["fused", "Fused"], ["vision_memory", "Vision memory"], ["audio_only", "Hearing alone"]]],
+        ["Visible toy, position R²", "fill_in", "pos_r2", [["fused_all", "Fused, all senses"], ["vision_only", "Vision alone"], ["fused_no_vision", "Fused, vision off"]]]];
+      let h = "<tr><th>Quantity (12 mo)</th><th>Readout</th><th class=\"num\">mean ± s.d.</th><th class=\"num\">n seeds</th></tr>";
+      rows.forEach(([q, g, m, keys]) => keys.forEach(([k, l], i) => { const x = f[g] && f[g][k] && f[g][k][m]; h += `<tr>${td(i ? "" : q)}${td(l)}${td(cell(x), "num")}${td(x ? x.n : "–", "num")}</tr>`; }));
+      F.innerHTML = h;
+    }
+  }
+  const Vt = $("#voeTable");
+  if (Vt) {
+    const fv = RES.fusion_voe, seeds = fv ? Object.keys(fv) : [];
+    if (!seeds.length || !fv[seeds[0]]["12"]) Vt.innerHTML = "<tr><td>Fused violation-of-expectation results are not available in this build.</td></tr>";
+    else {
+      const chans = ["vision", "audio", "touch", "proprio", "all"];
+      let h = `<tr><th>Event (12 mo)</th>${chans.map((c) => `<th class="num">${c === "all" ? "All channels" : c === "audio" ? "Hearing" : c === "proprio" ? "Body" : c[0].toUpperCase() + c.slice(1)}</th>`).join("")}</tr>`;
+      Object.entries(EVENTS).forEach(([e, l]) => {
+        h += `<tr>${td(l)}${chans.map((c) => td(cell(agg(seeds.map((s) => fv[s]["12"] && fv[s]["12"][e] && fv[s]["12"][e][c] && fv[s]["12"][e][c].voe_index).filter(Number.isFinite))), "num")).join("")}</tr>`;
+      });
+      Vt.innerHTML = h;
+    }
+  }
+  const C = $("#computeTable");
+  if (C) {
+    const c = RES.extra && RES.extra.compute;
+    if (!c) C.innerHTML = "<tr><td>Compute accounting is not available in this build.</td></tr>";
+    else C.innerHTML = "<tr><th>Sense</th><th class=\"num\">Parameters by stage (grown)</th><th class=\"num\">Fixed size</th><th class=\"num\">Updates × params, grown : fixed</th></tr>" +
+      Object.entries(c).map(([s, d]) => `<tr>${td(SENSES[s] || s)}${td((d.params_by_stage_grown || []).map((x) => x.toLocaleString()).join(" → "), "num")}${td(d.params_fixed ? d.params_fixed.toLocaleString() : "–", "num")}${td(fx(d.ratio_grown_to_fixed), "num")}</tr>`).join("");
+  }
+  const M = $("#milestoneTable");
+  if (M) {
+    const ms = RES.extra && RES.extra.milestones;
+    if (!ms) M.innerHTML = "<tr><td>Milestone analysis is generated with the paper and is not yet available in this build.</td></tr>";
+    else {
+      const flat = (o) => (o && typeof o === "object" ? Object.entries(o).map(([k, v]) => `${k}: ${flat(v)}`).join("; ") : typeof o === "number" ? +o.toFixed(2) : String(o));
+      M.innerHTML = "<tr><th>Quantity</th><th>Value</th></tr>" + Object.entries(ms).map(([k, v]) => `<tr>${td(k.replace(/_/g, " "))}${td(flat(v))}</tr>`).join("");
+    }
+  }
+}
+
+// ------------------------------------------------------------------ model zoo (wiki/models.html)
+const ZOO_PARAMS = { vision: [43507, 152995, 334675, 586499], audio: [13792, 41824, 87264, 149088], touch: [13792, 41824, 87264, 149088], proprio: [8340, 29972, 66452, 117268] };
+const ZOO_LATENT = { vision: 32, audio: 16, touch: 16, proprio: 8 };
+const ZOO_CAP = [[1, 1], [2, 2], [3, 4], [4, 6]];
+const ZOO_AGE = { curriculum_only: [0, 3, 6, 12], grown: [0, 3, 6, 12], growth_only: [12, 12, 12, 12], adult_scratch: [12, 12, 12, 12], shuffled_order: ["random", "random", "random", "random"], reversed_immaturity: [12, 6, 3, 0] };
+const ZOO_PUBLISHED = new Set(["curriculum_only", "adult_scratch", "grown"]);
+const ZOO_GROWS = new Set(["grown", "growth_only"]);
+const REPO = "https://github.com/pikulsomesh/developmental-world-models";
+function drawZoo() {
+  const host = $("#zooTable"); if (!host) return;
+  const fs = $("#zooSense").value, fr = $("#zooRegime").value;
+  let h = "<tr><th>Regime</th><th>Sense</th><th class=\"num\">Stage (months)</th><th class=\"num\">Input age</th><th class=\"num\">Width</th><th class=\"num\">Memory</th><th class=\"num\">Latent</th><th class=\"num\">Parameters</th><th>Checkpoint (seed 0)</th></tr>";
+  let n = 0;
+  REGIMES.forEach((r) => Object.keys(ZOO_PARAMS).forEach((s) => {
+    if ((fs !== "all" && fs !== s) || (fr !== "all" && fr !== r)) return;
+    STAGES.forEach((a, i) => {
+      const grows = ZOO_GROWS.has(r), k = grows ? i : 3, file = `${s}_${r}_stage${i}.pt`;
+      const ck = ZOO_PUBLISHED.has(r) ? `<a href="${REPO}/tree/main/models/${r}/seed0"><code>models/${r}/seed0/${file}</code></a>` : "<span class=\"note\">not distributed</span>";
+      h += `<tr>${td(RLABEL[r])}${td(SENSES[s])}${td(a, "num")}${td(ZOO_AGE[r][i], "num")}${td(`×${ZOO_CAP[k][0]}`, "num")}${td(ZOO_CAP[k][1], "num")}${td(ZOO_LATENT[s], "num")}${td(ZOO_PARAMS[s][k].toLocaleString(), "num")}${td(ck)}</tr>`; n++;
+    });
+  }));
+  host.innerHTML = h; const c = $("#zooCount"); if (c) c.textContent = `${n} checkpoints shown`;
+}
+function initZoo() {
+  if (!has("#zooTable")) return;
+  const rs = $("#zooRegime"), ss = $("#zooSense");
+  rs.add(new Option("All regimes", "all")); REGIMES.forEach((r) => rs.add(new Option(RLABEL[r], r)));
+  ss.add(new Option("All senses", "all")); Object.entries(SENSES).forEach(([k, v]) => ss.add(new Option(v, k)));
+  rs.onchange = ss.onchange = drawZoo; drawZoo();
+}
+
+// ------------------------------------------------------------------ references (wiki/references.html)
+function initRefs() {
+  const host = $("#refList"); if (!host) return;
+  fetch("../data/references.json").then((r) => (r.ok ? r.json() : Promise.reject())).then((refs) => {
+    if (!Array.isArray(refs) || !refs.length) throw 0;
+    host.innerHTML = "<ol>" + refs.map((r) => {
+      const d = r.doi ? (/^https?:/.test(r.doi) ? r.doi : `https://doi.org/${r.doi}`) : "";
+      return `<li id="ref-${String(r.key).replace(/[^\w-]/g, "")}">${String(r.text).replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]))}${d ? ` <a href="${d}">doi</a>` : ""}</li>`;
+    }).join("") + "</ol>";
+  }).catch(() => { host.innerHTML = "<p>The reference list is generated with the paper. See the <a href=\"../paper/report.pdf\">PDF</a> or <a href=\"" + REPO + "/blob/main/report/refs.bib\">refs.bib</a>.</p>"; });
 }
 
 function redrawAll() { drawSenses(); drawTraj(); drawVoeTrace(); drawFusedVoe(); drawFusion(); }
 
-// ------------------------------------------------------------------ boot
-renderMath();
-initSenses(); initModels(); initTraj(); initVoe();
-Promise.all(["data/episodes.json", "data/model_outputs.json", "data/results.json"].map((u) => fetch(u).then((r) => (r.ok ? r.json() : null)).catch(() => null)))
-  .then(([eps, mo, res]) => {
-    if (eps) {
-      TABLES = eps.tables; EP = {};
-      for (const [k, e] of Object.entries(eps.episodes)) EP[k] = { ...e, vision: b64(e.vision), audio: b64(e.audio, "f32"), touch: b64(e.touch, "f32"), proprio: b64(e.proprio, "f32") };
-    }
-    MO = mo; RES = res;
-    drawVerdicts(); regimeTable(); drawModel(); redrawAll(); drawVoeFrames();
-  });
-window.addEventListener("load", renderMath);
+// ------------------------------------------------------------------ boot (runs after site.js has built the page chrome)
+function boot() {
+  renderMath();
+  initSenses(); initModels(); initTraj(); initVoe(); initZoo(); initRefs();
+  const needEP = has("#cVision") || has("#vPos"), needMO = has("#sp0") || has("#voeTrace"),
+    needRES = has("#verdicts, [data-card], [data-live], #regimeTable, #trajChart, #fusedVoe, #trackChart, #trajTables, #statsTable, #fusionTable, #voeTable, #computeTable, #milestoneTable");
+  const get = (need, u) => (need ? fetch(u).then((r) => (r.ok ? r.json() : null)).catch(() => null) : Promise.resolve(undefined));
+  const R = document.body.dataset.root || "";
+  Promise.all([get(needEP, R + "data/episodes.json"), get(needMO, R + "data/model_outputs.json"), get(needRES, R + "data/results.json")])
+    .then(([eps, mo, res]) => {
+      if ((needEP && !eps) || (needMO && !mo) || (needRES && !res)) {
+        const s = $("#dataStatus"); if (s) s.textContent = "Some data files could not be loaded. Serve this folder over HTTP (for example python3 -m http.server) rather than opening the file directly.";
+      }
+      if (eps) {
+        TABLES = eps.tables; EP = {};
+        for (const [k, e] of Object.entries(eps.episodes)) EP[k] = { ...e, vision: b64(e.vision), audio: b64(e.audio, "f32"), touch: b64(e.touch, "f32"), proprio: b64(e.proprio, "f32") };
+      }
+      MO = mo || null; RES = res || null;
+      fillLive(); drawVerdicts(); regimeTable(); drawModel(); redrawAll(); drawVoeFrames(); drawResultsTables();
+    });
+}
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", boot) : boot();
 let rz = null, lastW = innerWidth;
 window.addEventListener("resize", () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rz); rz = setTimeout(redrawAll, 150); });
 })();

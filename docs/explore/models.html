@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model viewer · Do AI Models Learn Like Humans?</title>
+<meta name="description" content="Inspect what each vision world model is given, reconstructs and predicts, for six training regimes and four checkpoints.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Model viewer · Do AI Models Learn Like Humans?">
+<meta property="og:description" content="Inspect what each vision world model is given, reconstructs and predicts, for six training regimes and four checkpoints.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/explore/models.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/explore/models.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="explore/models.html">
+<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
+<a href="../index.html">Home</a> · <a href="../wiki/overview.html">Study design</a> · <a href="../wiki/models.html">Models</a> · <a href="../wiki/methods.html">Methods</a> · <a href="../wiki/theory.html">Theory</a> · <a href="../wiki/results.html">Results</a> · <a href="../wiki/limitations.html">Scope and limitations</a> · <a href="../wiki/reproduce.html">Code and data</a> · <a href="../wiki/references.html">References</a> · <a href="../explore/index.html">Simulations</a> · <a href="../paper/report.pdf">Paper (PDF)</a></div></noscript>
+<main id="main">
+
+<div class="kicker">Tool 2</div>
+<h1>Model viewer</h1>
+<p class="lede">Pick a training regime and a checkpoint. Each row shows twenty frames: what the vision model was given (the world at the age it was trained on), what it reconstructs from its latent code, and what it predicts will happen one frame later.</p>
+<p class="note" id="dataStatus" role="status"></p>
+<div class="controls">
+  <label>Regime <select id="regime" aria-label="Training regime"></select></label>
+  <span class="seg" id="ckpt" role="group" aria-label="Checkpoint"></span>
+</div>
+<div class="card">
+  <div class="sprite-row"><div class="rl">Given</div><div class="strip"><canvas id="sp0" role="img" aria-label="Frames given to the model"></canvas></div></div>
+  <div class="sprite-row"><div class="rl">Rebuilds</div><div class="strip"><canvas id="sp1" role="img" aria-label="Frames reconstructed from the latent code"></canvas></div></div>
+  <div class="sprite-row"><div class="rl">Predicts next</div><div class="strip"><canvas id="sp2" role="img" aria-label="One-step-ahead predictions"></canvas></div></div>
+  <p class="params" id="modelInfo"></p>
+  <p class="note" id="regimeNote"></p>
+</div>
+<h2>Regime comparison</h2>
+<p class="sub">Position R² of the vision latent at the 12-month checkpoint (mean ± s.d. over seeds), on clean input and on newborn-quality input, with the hearing model for comparison. Full tables are on the <a href="../wiki/results.html">Results</a> page.</p>
+<div class="tablewrap"><table class="t" id="regimeTable"></table></div>
+<h2>About this tool</h2>
+<div class="tablewrap"><table class="t"><tbody>
+<tr><th scope="row">What it shows</th><td>Seed-0 vision model outputs for every regime and checkpoint, and the summary comparison across seeds.</td></tr>
+<tr><th scope="row">Data source</th><td><code>data/models/&lt;regime&gt;_&lt;months&gt;.png</code> sprite sheets and <code>data/model_outputs.json</code>; table from <code>data/results.json</code>.</td></tr>
+<tr><th scope="row">Code</th><td><a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/assets/app.js"><code>docs/assets/app.js</code></a> (<code>initModels</code>, <code>regimeTable</code>); architecture in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/models.py"><code>dwm/models.py</code></a>, training in <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/train.py"><code>dwm/train.py</code></a>.</td></tr>
+<tr><th scope="row">Background</th><td><a href="../wiki/models.html">Models</a> (architecture and checkpoint list) and <a href="../wiki/overview.html#regimes">Study design: regimes</a>.</td></tr>
+</tbody></table></div>
+
+</main>
+<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

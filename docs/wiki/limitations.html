@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scope and limitations · Do AI Models Learn Like Humans?</title>
+<meta name="description" content="What the developmental world-model study supports and does not support: synthetic nursery, placeholder tables, decodability versus behaviour, seeds and effect sizes, and what would change the conclusions.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Scope and limitations · Do AI Models Learn Like Humans?">
+<meta property="og:description" content="What the developmental world-model study supports and does not support: synthetic nursery, placeholder tables, decodability versus behaviour, seeds and effect sizes, and what would change the conclusions.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/wiki/limitations.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/wiki/limitations.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="wiki/limitations.html">
+<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
+<a href="../index.html">Home</a> · <a href="../wiki/overview.html">Study design</a> · <a href="../wiki/models.html">Models</a> · <a href="../wiki/methods.html">Methods</a> · <a href="../wiki/theory.html">Theory</a> · <a href="../wiki/results.html">Results</a> · <a href="../wiki/limitations.html">Scope and limitations</a> · <a href="../wiki/reproduce.html">Code and data</a> · <a href="../wiki/references.html">References</a> · <a href="../explore/index.html">Simulations</a> · <a href="../paper/report.pdf">Paper (PDF)</a></div></noscript>
+<main id="main">
+
+<div class="kicker">Wiki</div>
+<h1>Scope and limitations</h1>
+<p class="lede">What the evidence in this study supports, what it does not, and what would change our conclusions. The models are controlled synthetic systems; they are built to isolate specific developmental constraints, and the conclusions are statements about those systems.</p>
+
+<h2 id="supports">What the study supports</h2>
+<ul>
+<li>Within the synthetic nursery, the form of the input schedule (immature to mature) is sufficient to produce an infant-like ordering of what is linearly decodable across senses, and learning lags the information available in the input.</li>
+<li>Within these models, function-preserving growth delays learning because new units start with zero gradient, and reduces training compute.</li>
+<li>Early degraded input improved clean-input hearing localisation and cost a little in vision, under the stated training budget.</li>
+<li>Fusing frozen sense latents improves position decoding of a hidden object relative to single senses.</li>
+<li>Squared-error pixel prediction does not produce violation-of-expectation behaviour for occlusion events in these models, and the mathematical account on <a href="theory.html#surprise">Theory</a> predicts this.</li>
+</ul>
+
+<h2 id="does-not">What the study does not support</h2>
+<ul>
+<li><b>Claims about real infants.</b> The data are synthetic; no behavioural or neural data from infants are used or predicted. The study is a controlled comparison of training regimes, not a model of a child.</li>
+<li><b>Claims about large-scale systems.</b> The models have between 8,340 and 586,499 parameters per sense and were trained for 6,000 to 8,000 updates in total (four stages). Results may differ for much larger models, longer training or natural data.</li>
+<li><b>Claims that a particular developmental order is discovered.</b> The maturation order of the senses is specified by the front-end tables.</li>
+</ul>
+
+<h2 id="limits">Limitations</h2>
+<h3>Environment</h3>
+<p>The nursery is a synthetic 32×32 world with a single moving object (the toy), a hand and a screen. Object types differ in shape, colour, pitch and felt shape; there are no distractors, lighting changes, faces, speech or physical interaction beyond contact detection.</p>
+<h3>Front-end tables</h3>
+<p>Vision tables follow published infant acuity and contrast sensitivity. The tables for hearing, touch and proprioception are coarse placeholders that respect the known order of maturation but are not fitted to measurements. The reported sense ordering (body senses, hearing, vision) therefore follows from the tables.</p>
+<h3>Time</h3>
+<p>"Months" are training stages (checkpoints of one continuous run), not hours of experience. Each stage is the same number of updates; no claim is made about the amount of experience of real infants at those ages.</p>
+<h3>Read-outs</h3>
+<p>Linear probes measure decodability, not what the model uses. Violation-of-expectation is measured with one-step prediction error, which is a model-internal analogue of looking time; infant looking-time paradigms measure behaviour. The two should not be equated.</p>
+<h3 id="seeds">Seeds and statistics</h3>
+<p>Each regime is trained with a small number of independent seeds (the exact n is shown in the tables). Several comparisons have large effect sizes that are not statistically significant; we report effect sizes with approximate intervals as estimates, list every planned comparison, and apply no correction for multiple comparisons. Differences smaller than the seed-to-seed bands are not established. Hyperparameters were set once on the primary regime and shared by all regimes.</p>
+<h3>Capacity and growth</h3>
+<p>The growth schedule is a design choice, and growth in the models adds units whereas the brain prunes synapses. The growth ablation tests an engineering idea, not biology.</p>
+<h3>Companion studies</h3>
+<p>The critical-period, sense-onset-order and perceptual-narrowing results come from companion studies with independent code and stimuli. They are cited as convergent evidence and are not reproduced by the code in this repository.</p>
+<h3>Independent review</h3>
+<p>The report was reviewed internally as a referee would; the review and the responses are published as <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/report/PEER_REVIEW.md"><code>report/PEER_REVIEW.md</code></a>. This is an internal review, not external peer review.</p>
+
+<h2 id="change">What would change our conclusions</h2>
+<ul>
+<li>Fitting the hearing, touch and proprioception tables to measured data, if the resulting maturation order differs from the one used here.</li>
+<li>More seeds per regime reversing the sign or significance of the planned comparisons, in particular the vision robustness comparison and the hearing benefit.</li>
+<li>Latent-space or long-horizon objectives, or explicit uncertainty representations, producing a positive violation-of-expectation index for occlusion in unimodal models.</li>
+<li>Larger models, longer training or natural headcam-style data changing the lag between ceiling and learned representation, or the size of the immaturity cost in vision.</li>
+<li>Behavioural paradigms (habituation, preferential looking) giving results that differ from the prediction-error index.</li>
+<li>A growth schedule that avoids the zero-gradient start (for example non-zero initialisation with a compensating scheme) removing the delay.</li>
+</ul>
+<p>See <a href="results.html">Results</a> for the evidence and <a href="reproduce.html">Code and data</a> to rerun or extend the experiments.</p>
+
+</main>
+<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

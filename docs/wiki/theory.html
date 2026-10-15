@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theory · Do AI Models Learn Like Humans?</title>
+<meta name="description" content="Mathematical, computer-science and neuroscience perspectives: data-processing bound, why squared-error forecasters are not surprised, zero-gradient growth, curriculum as continuation.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Theory · Do AI Models Learn Like Humans?">
+<meta property="og:description" content="Mathematical, computer-science and neuroscience perspectives: data-processing bound, why squared-error forecasters are not surprised, zero-gradient growth, curriculum as continuation.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/wiki/theory.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/wiki/theory.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="wiki/theory.html">
+<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
+<a href="../index.html">Home</a> · <a href="../wiki/overview.html">Study design</a> · <a href="../wiki/models.html">Models</a> · <a href="../wiki/methods.html">Methods</a> · <a href="../wiki/theory.html">Theory</a> · <a href="../wiki/results.html">Results</a> · <a href="../wiki/limitations.html">Scope and limitations</a> · <a href="../wiki/reproduce.html">Code and data</a> · <a href="../wiki/references.html">References</a> · <a href="../explore/index.html">Simulations</a> · <a href="../paper/report.pdf">Paper (PDF)</a></div></noscript>
+<main id="main">
+
+<div class="kicker">Wiki</div>
+<h1>Theory</h1>
+<p class="lede">The same results read through three disciplines: mathematics (what bounds and explains them), computer science (what to do with them) and neuroscience (what the models stand for and where the analogy stops).</p>
+
+<h2 id="math">Mathematics</h2>
+<h3 id="bound">Front ends bound what can be learned</h3>
+<p>Let <span class="m">Y</span> be a property of the scene (the toy's position) and <span class="m">\tilde O_a=\Phi_s(O;a)</span> the filtered observation. For any learned representation <span class="m">Z=e(\tilde O_a)</span>, the data-processing inequality gives</p>
+<div class="eq">I(Z;Y)\le I(\tilde O_a;Y)\le I(O;Y).</div>
+<p>The supervised information ceiling estimates the middle term. The gap between ceiling and model is a property of learning; the ceiling itself is a property of the input.</p>
+
+<h3 id="surprise">Why a squared-error forecaster is not surprised</h3>
+<p>The minimiser of <span class="m">\mathbb E\lVert \hat o_{t+1}-o_{t+1}\rVert^2</span> over predictors of the past is the conditional mean <span class="m">\hat o_{t+1}^\star=\mathbb E[o_{t+1}\mid o_{\le t}]</span>. Behind a screen, let the toy reappear at frame <span class="m">t+1</span> with probability <span class="m">p</span>. At each pixel the optimal forecast is a blend <span class="m">\hat o=(1-p)\,o^{\text{screen}}+p\,o^{\text{toy}}</span>, and the expected surprise is</p>
+<div class="eq">S_{\text{reappear}}=(1-p)^2\Delta^2,\qquad S_{\text{vanish}}=p^2\Delta^2,\qquad \Delta=o^{\text{toy}}-o^{\text{screen}}</div>
+<p>so a model is more surprised by reappearance whenever <span class="m">p&lt;\tfrac12</span>, which holds for most frames of an occlusion of uncertain length. A negative violation-of-expectation index is the expected behaviour of a well-trained pixel forecaster, not a failure of training. Try it on the <a href="../explore/expectation.html">hide-and-seek demo</a>.</p>
+
+<h3 id="growth">Function-preserving growth and its delay</h3>
+<p>Widen a layer from <span class="m">n</span> to <span class="m">n'</span> units, <span class="m">W_1'=\begin{bmatrix}W_1\\R\end{bmatrix}</span>, <span class="m">W_2'=[\,W_2\;\;0\,]</span>. Then <span class="m">W_2'\phi(W_1'x)=W_2\phi(W_1x)</span> for every <span class="m">x</span>. The gradient on the new incoming weights is</p>
+<div class="eq">\frac{\partial\mathcal L}{\partial R}=\big(\mathbf 0^\top\,\delta\big)\odot\phi'(Rx)\,x^\top=0,</div>
+<p>so new units cannot learn until their outgoing weights move away from zero, which takes a number of updates that grows with the inverse of the learning rate. The origin of this zero-gradient start is a saddle that the optimiser must leave. The grown models pay this cost at each of the three growth events.</p>
+
+<h2 id="cs">Computer science</h2>
+<ul>
+<li><b>Curriculum as continuation.</b> Immature input is a curriculum in the sense of continuation methods: optimise a smoothed objective first, then track its minimiser as the smoothing is removed.</li>
+<li><b>Augmentation versus order.</b> In hearing, shuffled input quality is close to the immature schedule and both exceed adult input, which suggests that the benefit is mostly augmentation by degraded input rather than order.</li>
+<li><b>Growth trades accuracy for compute.</b> At matched updates, growth costs a fraction of the parameter-updates of a fixed-size network and delays learning (<a href="results.html#growth">Results</a>).</li>
+<li><b>Late fusion.</b> Late fusion of separately trained senses avoids the competition between modalities seen under joint training, a known problem in multimodal learning; modality dropout trains cross-modal fill-in.</li>
+<li><b>Probes versus paradigms.</b> A read-out can show that information about a hidden object is present while the model's predictions do not use it; object permanence has to be tested with paradigms, not probes.</li>
+</ul>
+
+<h2 id="neuro">Neuroscience</h2>
+<p>Each front end stands for a peripheral or early stage that matures on its own clock. The brain adds synapses and then prunes them (Huttenlocher, 1997) rather than adding neurons, and closes plasticity on per-sense schedules governed by excitatory-inhibitory balance (Hensch, 2005). Our growth ablation is therefore a test of an engineering idea, not of biology; the biologically motivated levers are sensory immaturity and plasticity schedules.</p>
+<div class="tablewrap"><table class="t">
+<caption>Table T1 | Mapping from model components to biological stages</caption>
+<tr><th>Model component</th><th>Biological counterpart</th><th>What matures</th></tr>
+<tr><td>Vision front end</td><td>Optics and cone mosaic of the eye; immature visual cortex</td><td>Acuity, contrast sensitivity, colour</td></tr>
+<tr><td>Hearing front end</td><td>Cochlea and binaural brainstem circuits</td><td>Frequency resolution, high-frequency sensitivity, interaural differences</td></tr>
+<tr><td>Touch front end</td><td>Skin and somatosensory cortex</td><td>Shrinking receptive fields</td></tr>
+<tr><td>Proprioception front end</td><td>Muscle-spindle and joint signals</td><td>Signal-to-noise</td></tr>
+<tr><td>Memory window <span class="m">k</span></td><td>Working memory and persistent activity</td><td>Span of integration</td></tr>
+<tr><td>Fusion world model</td><td>Superior colliculus and superior temporal sulcus</td><td>Multisensory integration</td></tr>
+<tr><td>Network growth</td><td>Synaptogenesis followed by pruning (not neurogenesis)</td><td>Synapse density</td></tr>
+<tr><td>Prediction error and VoE</td><td>Predictive coding; looking-time paradigms</td><td>Expectation</td></tr>
+</table></div>
+<p>Predictive coding frames all of this: each world model minimises the error of its own predictions, and violation of expectation is the behavioural read-out of that error. See <a href="limitations.html">Scope and limitations</a> for why the mapping is an analogy and not an equivalence.</p>
+
+</main>
+<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

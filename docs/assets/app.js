@@ -323,7 +323,7 @@ function drawTraj() {
     ...REGIMES.map((r) => [r, RLABEL[r], css(RCOLOR[r])])], hiddenR, (k) => { if (k === "ceil") return; hiddenR.has(k) ? hiddenR.delete(k) : hiddenR.add(k); drawTraj(); });
   const notes = { vision: "Vision changes most with age, because its front end changes most.", audio: "Hearing localises by comparing the two ears; that difference matures over the year.",
     touch: "Touch is probed on frames where the hand touches the toy. Identity is hard here because the hand rarely covers the whole toy.", proprio: "The body sense is near its ceiling from birth in every regime." };
-  $("#trajNote").textContent = notes[tSense] + (tMetric === "type_acc" ? " Chance is 0.25." : "") + (tMetric === "own_pos_r2" ? " Own-age: the probe is fitted and tested on the input quality that checkpoint was trained on." : "");
+  $("#trajNote").textContent = notes[tSense] + (tMetric === "type_acc" ? " Chance is 0.25." : "") + (tMetric === "own_pos_r2" ? " Own-age: the probe is fitted and tested on input of the age that checkpoint stands for." : "");
 }
 function initTraj() {
   seg($("#senseSeg"), Object.entries(SENSES), tSense, (v) => { tSense = v; drawTraj(); });

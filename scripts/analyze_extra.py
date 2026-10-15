@@ -49,11 +49,14 @@ def load(path, sense):
 
 def own_age(results, out):
     """Probe each checkpoint on input of the age that checkpoint stands for."""
-    res = {}
+    res = out.get("own_age", {})  # resumable: finished (regime, seed) cells are kept
     cache = {}
+    xpath = os.path.join(results, "extra.json")
     for regime in REGIMES:
         for path in sorted(glob.glob(os.path.join(results, regime, "seed*", "vision_*_stage0.pt"))):
             seed = int(path.split(os.sep)[-2][4:])
+            if seed in res.get(regime, {}).get("_seeds", []):
+                continue
             if seed not in cache:
                 s = 1000 * seed
                 cache = {seed: (to_torch(generate(1500, seed=s + 1)), to_torch(generate(400, seed=s + 2)))}
@@ -67,6 +70,10 @@ def own_age(results, out):
                     r = probe_model(m, train, test, age)
                     res.setdefault(regime, {}).setdefault(sense, {}).setdefault(str(age), []).append(r)
                     print("own_age", regime, seed, sense, age, {k: round(v, 3) for k, v in r.items()}, flush=True)
+            res.setdefault(regime, {}).setdefault("_seeds", []).append(seed)
+            out["own_age"] = res
+            with open(xpath, "w") as f:
+                json.dump(out, f, indent=1)
     out["own_age"] = res
 
 

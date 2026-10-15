@@ -1,6 +1,6 @@
 # arXiv submission source
 
-Built on the Research Future template layout (`authblk`, `lineno`, 1.5 spacing, `biblatex` with the NEJM numeric style).
+Built on the Research Future template layout (`authblk`, 1.2 spacing, no line numbers, `biblatex` with the NEJM numeric style).
 
 - `main.tex`: manuscript (generated from `report/REPORT.template.md` by `scripts/build_arxiv.py`; edit the template, not this file)
 - `references.bib`: 30 references, each checked against a primary record; see `report/REFERENCES_VERIFIED.md`

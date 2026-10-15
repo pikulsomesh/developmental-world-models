@@ -3,14 +3,16 @@
 \usepackage[T1]{fontenc}
 \usepackage{authblk}
 \usepackage{setspace}
-\usepackage[margin=1.25in]{geometry}
+\usepackage{etoolbox}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \graphicspath{ {./figures/} }
 \usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{lineno}
-\linenumbers
+\usepackage{url}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 % tables and helpers used by the pandoc-converted text
 \usepackage{longtable,booktabs,array,calc}
@@ -37,7 +39,10 @@ backend=bibtex]{biblatex}
 
 \date{}
 
-\onehalfspacing
+\setstretch{1.2}
+\setlength{\parskip}{0.3em}
+\sloppy
+\AtBeginEnvironment{longtable}{\small}
 
 \begin{document}
 

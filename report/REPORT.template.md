@@ -215,7 +215,7 @@ $$\mathrm{VoE}=\frac{S_{\text{imp}}-S_{\text{pos}}}{S_{\text{imp}}+S_{\text{pos}
 
 **Human and animal studies.** The study uses only synthetic data; no human or animal participants were involved.
 
-**Code and data availability.** All code, configurations and results are at github.com/pikulsomesh/developmental-world-models (MIT licence). `scripts/run_experiments.py` trains every regime, `scripts/analyze_fusion_voe.py` and `scripts/analyze_extra.py` run the analyses, `scripts/make_paper_figures.py` draws the figures, and `scripts/fill_report.py` writes every number in this report from the results files. An interactive companion is at pikulsomesh.github.io/developmental-world-models. Companion studies are in the project's shared folder (`research/age-modeling`, `research/cross-sense`).
+**Code and data availability.** All code, configurations, results and trained checkpoints are at <https://github.com/pikulsomesh/developmental-world-models> (MIT licence). `scripts/run_experiments.py` trains every regime, `scripts/analyze_fusion_voe.py` and `scripts/analyze_extra.py` run the analyses, `scripts/make_paper_figures.py` draws the figures, and `scripts/fill_report.py` writes every number in this report from the results files. An interactive companion and wiki are at <https://pikulsomesh.github.io/developmental-world-models/>. Code and results of the companion studies are in `companion/age-modeling` and `companion/cross-sense`.
 
 # Acknowledgments
 

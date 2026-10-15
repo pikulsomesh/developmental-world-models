@@ -8,7 +8,7 @@ set -e
 cd "$(dirname "$0")"
 python3 ../scripts/fill_report.py
 python3 ../scripts/build_arxiv.py
-pandoc REPORT.md -s --citeproc --bibliography=refs.bib --mathml --embed-resources --css paper.css --metadata link-citations=true \
+pandoc REPORT.md -s --citeproc --bibliography=refs.bib --katex=file://$PWD/vendor/katex/ --embed-resources --css paper.css --metadata link-citations=true \
   --metadata pagetitle="Do AI Models Learn Like Humans?" -o report.html
 CHROME=${CHROME:-/opt/pw-browsers/chromium-1194/chrome-linux/chrome}
 if [ -x "$CHROME" ]; then

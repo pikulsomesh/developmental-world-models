@@ -3,14 +3,16 @@
 \usepackage[T1]{fontenc}
 \usepackage{authblk}
 \usepackage{setspace}
-\usepackage[margin=1.25in]{geometry}
+\usepackage{etoolbox}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \graphicspath{ {./figures/} }
 \usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{lineno}
-\linenumbers
+\usepackage{url}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 % tables and helpers used by the pandoc-converted text
 \usepackage{longtable,booktabs,array,calc}
@@ -37,7 +39,10 @@ backend=bibtex]{biblatex}
 
 \date{}
 
-\onehalfspacing
+\setstretch{1.2}
+\setlength{\parskip}{0.3em}
+\sloppy
+\AtBeginEnvironment{longtable}{\small}
 
 \begin{document}
 
@@ -85,10 +90,10 @@ where \(G_\sigma\) is a separable Gaussian with replicate padding and \(\bar x\)
 \emph{Touch} and \emph{proprioception.} Receptive-field blur \(G_{\tau(a)}\) on the 8\ensuremath{\times}8 patch plus noise; additive noise on proprioception.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2800}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1800}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1800}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1800}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \caption{Developmental parameters at the four checkpoints (intermediate months are interpolated).}\tabularnewline
 \toprule\noalign{}
@@ -228,7 +233,7 @@ Hidden toy, fused vs vision memory & 1.4 & 0.11 & 3/3 \\
 
 \textbf{Human and animal studies.} The study uses only synthetic data; no human or animal participants were involved.
 
-\textbf{Code and data availability.} All code, configurations and results are at github.com/pikulsomesh/developmental-world-models (MIT licence). \texttt{scripts/run\_experiments.py} trains every regime, \texttt{scripts/analyze\_fusion\_voe.py} and \texttt{scripts/analyze\_extra.py} run the analyses, \texttt{scripts/make\_paper\_figures.py} draws the figures, and \texttt{scripts/fill\_report.py} writes every number in this report from the results files. An interactive companion is at pikulsomesh.github.io/developmental-world-models. Companion studies are in the project's shared folder (\texttt{research/age-modeling}, \texttt{research/cross-sense}).
+\textbf{Code and data availability.} All code, configurations, results and trained checkpoints are at \url{https://github.com/pikulsomesh/developmental-world-models} (MIT licence). \texttt{scripts/run\_experiments.py} trains every regime, \texttt{scripts/analyze\_fusion\_voe.py} and \texttt{scripts/analyze\_extra.py} run the analyses, \texttt{scripts/make\_paper\_figures.py} draws the figures, and \texttt{scripts/fill\_report.py} writes every number in this report from the results files. An interactive companion and wiki are at \url{https://pikulsomesh.github.io/developmental-world-models/}. Code and results of the companion studies are in \texttt{companion/age-modeling} and \texttt{companion/cross-sense}.
 
 
 \section{Results}
@@ -236,9 +241,9 @@ Hidden toy, fused vs vision memory & 1.4 & 0.11 & 3/3 \\
 \hypertarget{a-testbed-of-sense-specific-developmental-world-models}{%
 \subsection{A testbed of sense-specific developmental world models}\label{a-testbed-of-sense-specific-developmental-world-models}}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig1_overview.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig1_overview.png}
 \caption{\textbf{Sense-specific developmental world models.} \textbf{a}, Each sense passes a synthetic nursery (a toy that is seen, heard and felt, the infant's babbling hand, and an occluding screen) through a fixed, age-indexed front end \(\Phi_s(\cdot;a)\), and learns its own world model: an encoder \(e\), a dynamics model \(f\) over the last \(k\) latents and the infant's motor command \(u_t\), and a decoder. A fusion world model combines the frozen sense latents. Read-outs are linear probes, violation-of-expectation surprise and occluded tracking. \textbf{b}, The same moment delivered to vision, hearing (left ear, 32 frequency bins over the episode) and touch (an 8\ensuremath{\times}8 patch of skin) at 0, 3, 6 and 12 months. \textbf{c}, Front-end maturity per sense (normalised parameters of Table 1): touch and proprioception start close to mature, hearing partly, vision far behind. \textbf{d}, The six training regimes: input quality over the four training stages; marker size is network width.}
 \end{figure}
 
@@ -249,9 +254,9 @@ Each sense is filtered by a fixed front end whose parameters follow the age \(a\
 \hypertarget{the-input-schedule-sets-the-order-learning-lags-the-input}{%
 \subsection{The input schedule sets the order; learning lags the input}\label{the-input-schedule-sets-the-order-learning-lags-the-input}}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig2_development.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig2_development.png}
 \caption{\textbf{Development of each sense.} \textbf{a}, Toy position decoded from the vision model's latent at each checkpoint (probe fitted and tested on adult-quality input), for the six regimes; dashed grey line, information ceiling (a supervised network trained directly on that age's filtered input). \textbf{b}, The same with the probe fitted and tested on the input quality of the checkpoint's own age. \textbf{c}, Hearing. \textbf{d}, Fraction of the age-matched ceiling reached by the immature-input regime (own-age probe) and by the adult-input regime, for vision (solid) and hearing (dashed). \textbf{e}, Proprioception (hand position R\textsuperscript{2}, squares) and touch (toy identity accuracy, triangles; chance 0.25) are close to their final level from the first checkpoint. \textbf{f}, Age at which each sense's ceiling first reaches half its 12-month value; the order matches infants, by construction of the front-end tables. Lines, mean over seeds; bands, \ensuremath{\pm}1 s.d.; n = 3 seeds per regime.}
 \end{figure}
 
@@ -267,9 +272,9 @@ Adding growth to immature input does not change the shape of the curve; it delay
 \hypertarget{early-immaturity-a-small-cost-in-vision-a-benefit-in-hearing}{%
 \subsection{Early immaturity: a small cost in vision, a benefit in hearing}\label{early-immaturity-a-small-cost-in-vision-a-benefit-in-hearing}}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig3_costs_benefits.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig3_costs_benefits.png}
 \caption{\textbf{Costs and benefits at the 12-month checkpoint.} \textbf{a}, Vision probe R\textsuperscript{2} when tested on newborn-quality input (bars, mean; dots, seeds; whiskers, s.d.). All values are negative (worse than predicting the mean), so differences are in how badly models fail. \textbf{b}, Hearing localisation on clean input. \textbf{c}, Effect sizes (Hedges' g with approximate 95\% CI) and Welch-test p values for the planned comparisons; n per group shown. \textbf{d}, Vision accuracy against training compute (parameter-updates relative to a fixed-size network).}
 \end{figure}
 
@@ -280,9 +285,9 @@ Hearing is different. Models that heard immature sound early localise better on 
 \hypertarget{combined-senses-keep-what-each-sense-loses}{%
 \subsection{Combined senses keep what each sense loses}\label{combined-senses-keep-what-each-sense-loses}}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig4_fusion_expectation.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig4_fusion_expectation.png}
 \caption{\textbf{Fusion and expectation.} \textbf{a}, Horizontal position of a fully hidden toy decoded from the vision model's memory window, from hearing alone and from the fused world model. \textbf{b}, Position of a visible toy at 12 months from vision alone, the fused state, the fused state with vision switched off, and hearing alone. \textbf{c}, Violation-of-expectation (VoE) index of the unimodal vision models; positive means more surprise when the toy fails to reappear. \textbf{d}, VoE index of the fused model broken down by channel, for three events: the toy vanishes from every sense; it vanishes from sight and touch but keeps sounding; a silent toy vanishes. Faded bars, 0 months; solid, 12 months. \textbf{e}, Frame-by-frame surprise of one vision model (immature input, 12 months) on a possible and an impossible event; grey, toy hidden. Bands and whiskers, \ensuremath{\pm}1 s.d. over seeds.}
 \end{figure}
 
@@ -298,9 +303,9 @@ The fused model does show a positive index when the toy vanishes from every sens
 \hypertarget{convergent-evidence-from-two-companion-studies}{%
 \subsection{Convergent evidence from two companion studies}\label{convergent-evidence-from-two-companion-studies}}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig5_companion.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig5_companion.png}
 \caption{\textbf{Companion studies with independent code and stimuli.} \textbf{a}, Critical period: a 3-month window of blurred input, followed by 8 months of clear input, leaves a lasting deficit in fine-detail recognition only when the window comes first. \textbf{b}, Sense-onset order under joint training (next-step R\textsuperscript{2} of each encoder, and of vision predicted from hearing and touch): in the biological order, with vision arriving last, the vision encoder is worst; other orders favour the senses that arrive earlier. \textbf{c}, Perceptual narrowing: trained on two ``native'' identities only, surprise at a never-seen contrast first rises and then falls while the native contrast keeps improving.}
 \end{figure}
 
@@ -397,21 +402,21 @@ Extended Data Figs. 1 to 3 (below), \texttt{report/REFERENCES\_VERIFIED.md} (the
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{ed1_model_outputs.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{ed1_model_outputs.png}
 \caption{\textbf{What the vision models see, rebuild and predict.} For selected regimes and checkpoints: the input given (at the age that stage was trained on), the reconstruction from the latent, and the one-step prediction, for the first 14 frames of one episode.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{ed2_all_senses.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{ed2_all_senses.png}
 \caption{\textbf{All senses, all regimes.} Position R\textsuperscript{2} (top) and identity accuracy (bottom; dotted, chance) per checkpoint.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{ed3_ceiling_ownage.png}
+\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{ed3_ceiling_ownage.png}
 \caption{\textbf{Information ceilings and own-age probes.} \textbf{a}, \textbf{b}, Supervised ceilings per sense and age. \textbf{c}, Hearing probed on own-age input.}
 \end{figure}
 

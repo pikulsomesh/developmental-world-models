@@ -72,6 +72,7 @@
 <tr><td><span class="dot" style="background:var(--c-shuffled)"></span> Shuffled input quality</td><td>fixed</td><td>each batch from a random stage</td><td>Same variety, order removed</td></tr>
 <tr><td><span class="dot" style="background:var(--c-reversed)"></span> Reversed immaturity</td><td>fixed</td><td>12 → 6 → 3 → 0</td><td>Negative control for order</td></tr>
 </table></div>
+<p class="note">Two further vision regimes, <i>blur only</i> and <i>contrast only</i>, follow the immature schedule for one part of the front end and test which part causes the early lag (<a href="results.html#ablation">Results</a>). Every regime, including the order controls and the ablations, is trained with 5 seeds.</p>
 
 <h2 id="protocol">Evaluation protocol</h2>
 <ol>

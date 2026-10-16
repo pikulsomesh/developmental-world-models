@@ -40,7 +40,7 @@ window.DWM.renderMath = renderMath;
 
 function build() {
   const body = document.body, R = body.dataset.root || "", path = body.dataset.path || "index.html";
-  const section = path.startsWith("wiki/") ? "wiki" : path.startsWith("explore/") ? "explore" : path.startsWith("app/") ? "app" : "home";
+  const section = path.startsWith("wiki/") ? "wiki" : path.startsWith("explore/") ? "explore" : path.startsWith("app/") ? "app" : path.startsWith("paper/") ? "papers" : "home";
   const list = section === "wiki" ? WIKI : section === "explore" ? EXPLORE : null;
   const main = document.getElementById("main");
   const link = (href, text, cur) => `<a href="${R}${href}"${cur ? ' aria-current="page"' : ""}>${text}</a>`;
@@ -51,7 +51,7 @@ function build() {
   const hdr = document.createElement("header"); hdr.className = "site-header";
   hdr.innerHTML = `<div class="wrap"><a class="brand" href="${R}index.html">Developmental World Models</a>
     <nav aria-label="Primary">${link("index.html", "Baby Senses Lab", section === "home" || section === "app")}${link("explore/index.html", "Research tools", section === "explore")}${link("wiki/overview.html", "Wiki", section === "wiki")}
-    <a href="${R}paper/report.pdf">Paper</a><a href="${GH}">GitHub</a></nav>
+    ${link("paper/index.html", "Papers", section === "papers")}<a href="${GH}">GitHub</a></nav>
     <button class="icon-btn" id="theme" aria-label="Toggle light or dark theme">Theme</button></div>`;
   skip.after(hdr);
   if (section === "app" || section === "home") { // app tab strip, grouped by phase
@@ -114,7 +114,7 @@ function build() {
     <div><h2>Baby Senses Lab</h2><p>A simulation and research tool from the Developmental World Models project, by Somesh Mohapatra. It is not a medical or diagnostic tool.</p><p>Code released under the MIT licence. Data and figures are generated from the repository.</p></div>
     <div><h2>Wiki</h2><ul>${WIKI.slice(0, 5).map((p) => `<li>${link(p[0], p[1])}</li>`).join("")}</ul></div>
     <div><h2>More</h2><ul>${WIKI.slice(5).map((p) => `<li>${link(p[0], p[1])}</li>`).join("")}<li>${link("explore/index.html", "Simulations and tools")}</li></ul></div>
-    <div><h2>Cite and contribute</h2><ul><li>${link("index.html#cite", "How to cite")}</li><li><a href="${R}paper/report.pdf">Paper (PDF)</a></li><li><a href="${GH}">Source code</a></li><li><a href="${GH}/issues">Report an issue</a></li></ul></div>
+    <div><h2>Cite and contribute</h2><ul><li>${link("index.html#cite", "How to cite")}</li><li>${link("paper/index.html", "Papers")}</li><li><a href="${GH}">Source code</a></li><li><a href="${GH}/issues">Report an issue</a></li></ul></div>
   </div></div>`;
   body.appendChild(f);
   if (!document.getElementById("tip")) { const t = document.createElement("div"); t.className = "tip"; t.id = "tip"; t.setAttribute("role", "tooltip"); body.appendChild(t); }

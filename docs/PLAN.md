@@ -1,7 +1,7 @@
 # Research plan: Sensory-specific Developmental World Models
 
 *Status: living document. Stage 0 (the controlled synthetic nursery with four sense models and a
-fusion model) is implemented in this repository; see the [paper](../report/REPORT.md) for what it shows.*
+fusion model) is implemented in this repository; see the [paper](../papers/world-models/report/REPORT.md) for what it shows.*
 
 ## 0. In one paragraph
 
@@ -221,7 +221,7 @@ category may need an endorsement from an existing arXiv author in that category.
    application.
 6. Appendix — all age tables with sources, hyper-parameters, extra seeds.
 
-The arXiv-format LaTeX source, with every number generated from the results files, lives in [`arxiv/`](../arxiv/).
+The arXiv-format LaTeX source, with every number generated from the results files, lives in [`papers/world-models/arxiv/`](../papers/world-models/arxiv/).
 
 **Figures.** (1) system diagram; (2) what each sense delivers at 0/3/6/12 months
 (rendered by `scripts/make_figures.py`); (3) trajectories of probe accuracy per sense

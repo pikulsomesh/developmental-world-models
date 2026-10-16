@@ -142,7 +142,7 @@ The fused model does show a positive index when the toy vanishes from every sens
 
 **Implications for staged training.** Three design rules follow, each stated for the setting studied here. Reduce contrast or gain only if the cost in speed is acceptable, because it delays learning by the square of the scale with plain gradient descent and gives no lasting information benefit; use blur when the aim is to withhold fine detail early, and expect a lower ceiling in a finite budget; and do not use growth as a substitute for a schedule, because new units contribute nothing until their outgoing weights move. When surprise is the read-out, a squared-error pixel forecaster is the wrong instrument: objectives that predict in latent space [@garrido2025intuitive], represent uncertainty explicitly or are trained on longer horizons should be tested against the same dissociating events.
 
-**Limitations.** Everything is synthetic and small (at most 0.6 million parameters per sense) and is evaluated mainly with linear probes, which measure decodability, not behaviour. The theory is exact for a linear read-out under gradient flow and is suggestive for trained networks. Hearing, touch and proprioception tables are placeholders, and "months" are training stages, not hours of experience. With {{n("curriculum_only")}} seeds per regime, several comparisons have large effect sizes but are not significant (Fig. 5c); we report them as estimates. An internal referee report and our responses are provided with the code (`report/PEER_REVIEW.md`).
+**Limitations.** Everything is synthetic and small (at most 0.6 million parameters per sense) and is evaluated mainly with linear probes, which measure decodability, not behaviour. The theory is exact for a linear read-out under gradient flow and is suggestive for trained networks. Hearing, touch and proprioception tables are placeholders, and "months" are training stages, not hours of experience. With {{n("curriculum_only")}} seeds per regime, several comparisons have large effect sizes but are not significant (Fig. 5c); we report them as estimates. An internal referee report and our responses are provided with the code (`papers/world-models/report/PEER_REVIEW.md`).
 
 **Future work.** The immediate extensions are experience-matched checkpoints of one continuous run per sense, late fusion with sense-onset order as a factor, latent-space and uncertainty-aware objectives tested against the dissociating events, and extending the spectral account to deep networks by measuring the singular-value spectrum of the learned input-output map. The data path runs from this synthetic simulation to an embodied simulator for touch and proprioception [@mattern2024mimo] and to head-camera corpora for vision and hearing [@sullivan2021saycam; @long2024babyview].
 
@@ -281,7 +281,7 @@ $$\mathrm{VoE}=\frac{S_{\text{imp}}-S_{\text{pos}}}{S_{\text{imp}}+S_{\text{pos}
 
 # Supplementary Materials
 
-Extended Data Figs. 1 to 3 (below), `report/REFERENCES_VERIFIED.md` (the reference-verification log) and `report/PEER_REVIEW.md` (an internal referee report with responses) are available in the repository.
+Extended Data Figs. 1 to 3 (below), `report/REFERENCES_VERIFIED.md` (the reference-verification log) and `papers/world-models/report/PEER_REVIEW.md` (an internal referee report with responses) are available in the repository.
 
 # Extended Data
 

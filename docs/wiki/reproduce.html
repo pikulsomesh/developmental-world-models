@@ -37,8 +37,8 @@
 <tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/tests"><code>tests/</code></a></td><td>Unit tests, including function-preserving growth</td></tr>
 <tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/results"><code>results/</code></a></td><td>Raw metrics per regime and seed, <code>extra.json</code>, <code>fusion_voe.json</code>, logs</td></tr>
 <tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/models"><code>models/</code></a></td><td>Research checkpoints (seed 0) for three regimes; see <a href="models.html#checkpoints">Models</a></td></tr>
-<tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/report"><code>report/</code></a></td><td>Paper source (template, bibliography, build script), figures, internal referee report</td></tr>
-<tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/arxiv"><code>arxiv/</code></a></td><td>arXiv-format LaTeX source of the paper</td></tr>
+<tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/world-models/report"><code>report/</code></a></td><td>Paper source (template, bibliography, build script), figures, internal referee report</td></tr>
+<tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/world-models/arxiv"><code>arxiv/</code></a></td><td>arXiv-format LaTeX source of the paper</td></tr>
 <tr><td><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/docs"><code>docs/</code></a></td><td>This site (static HTML, JavaScript and JSON); <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/PLAN.md">PLAN.md</a> and <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/RESULTS.md">RESULTS.md</a></td></tr>
 </table></div>
 
@@ -53,7 +53,7 @@ scripts/queue.sh                        # train all regimes and seeds (wraps scr
 python scripts/analyze_fusion_voe.py    # fused violation-of-expectation by event and channel
 python scripts/analyze_extra.py         # ceilings, own-age probes, statistics, milestones, compute
 python scripts/make_paper_figures.py    # figures 1-5 and extended data
-report/build.sh                         # build the paper from the template and results
+papers/world-models/report/build.sh                         # build the paper from the template and results
 python scripts/export_site_data.py      # regenerate docs/data/*.json for this site</code></pre>
 <p class="note">Seeds and conditions are set by the queue scripts (<a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/queue.sh"><code>queue.sh</code></a>, <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/queue_controls.sh"><code>queue_controls.sh</code></a>, <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/queue_more_seeds.sh"><code>queue_more_seeds.sh</code></a>). Every number in the paper is written by <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/scripts/fill_report.py"><code>scripts/fill_report.py</code></a> from the results files.</p>
 <p>To preview this site locally: <code>cd docs &amp;&amp; python3 -m http.server 8765</code> and open <code>http://localhost:8765/</code>.</p>
@@ -72,7 +72,7 @@ python scripts/export_site_data.py      # regenerate docs/data/*.json for this s
 
 <h2 id="license">Licence and citation</h2>
 <p>Code and data are released under the <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/LICENSE">MIT licence</a>. To cite, use the BibTeX entry on the <a href="../index.html#cite">home page</a>. Checkpoints are research artefacts released for reproduction; see <a href="models.html#checkpoints">Models</a>.</p>
-<p>Planning documents: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/PLAN.md">research plan</a>, <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/RESULTS.md">results log</a>, <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/report/PEER_REVIEW.md">internal referee report</a>.</p>
+<p>Planning documents: <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/PLAN.md">research plan</a>, <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/docs/RESULTS.md">results log</a>, <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/papers/world-models/report/PEER_REVIEW.md">internal referee report</a>.</p>
 
 </main>
 <script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>

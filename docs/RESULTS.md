@@ -1,8 +1,8 @@
 # Results
 
 The full write-up, with figures, methods and the companion studies, is the
-paper-style report: [`report/REPORT.md`](../report/REPORT.md)
-(LaTeX for Overleaf: [`report/report.tex`](../report/report.tex), with `report/refs.bib`).
+paper-style report: [`papers/world-models/report/REPORT.md`](../papers/world-models/report/REPORT.md)
+(arXiv-format LaTeX: [`papers/world-models/arxiv/main.tex`](../papers/world-models/arxiv/main.tex).)
 
 Headline numbers (synthetic nursery, 3 seeds for the main regimes; see the paper for the current table):
 

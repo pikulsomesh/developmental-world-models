@@ -113,7 +113,7 @@ def sp(*path, d=2):
 
 
 def main():
-    src = open(os.path.join(ROOT, "report", "REPORT.template.md")).read()
+    src = open(os.path.join(ROOT, "papers", "world-models", "report", "REPORT.template.md")).read()
     ctx = {k: v for k, v in globals().items() if callable(v)}
 
     def sub(mo):
@@ -124,7 +124,7 @@ def main():
             return "[missing]"
 
     out = re.sub(r"\{\{(.+?)\}\}", sub, src)
-    open(os.path.join(ROOT, "report", "REPORT.md"), "w").write(out)
+    open(os.path.join(ROOT, "papers", "world-models", "report", "REPORT.md"), "w").write(out)
     print("wrote report/REPORT.md")
 
 

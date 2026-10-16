@@ -15,8 +15,9 @@ import shutil
 import subprocess
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-REP = os.path.join(ROOT, "report")
-OUT = os.path.join(ROOT, "arxiv")
+PAPER = os.path.join(ROOT, "papers", "world-models")
+REP = os.path.join(PAPER, "report")
+OUT = os.path.join(PAPER, "arxiv")
 AUTHOR, AFFIL, EMAIL = "Somesh Mohapatra", "Independent", "pikulsomesh@gmail.com"
 TITLE = "Do AI Models Learn Like Humans?"
 

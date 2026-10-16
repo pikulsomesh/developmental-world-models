@@ -34,7 +34,7 @@ from dwm import senses as S  # noqa: E402
 from dwm.env import generate  # noqa: E402
 
 RES = os.path.join(ROOT, "results")
-OUT = os.path.join(ROOT, "report", "figures")
+OUT = os.path.join(ROOT, "papers", "world-models", "report", "figures")
 REGIMES = ["curriculum_only", "grown", "growth_only", "adult_scratch", "shuffled_order", "reversed_immaturity"]
 LABEL = {"curriculum_only": "Immature input", "grown": "Immature + growth", "growth_only": "Growth only",
          "adult_scratch": "Adult input", "shuffled_order": "Shuffled quality", "reversed_immaturity": "Reversed"}

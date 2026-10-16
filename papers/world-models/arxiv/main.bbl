@@ -1,0 +1,1004 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global}
+  \entry{banks1988optical}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BMS}{%
+         family={Banks},
+         familyi={B\bibinitperiod},
+         given={Martin\bibnamedelima S.},
+         giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=BPJ}{%
+         family={Bennett},
+         familyi={B\bibinitperiod},
+         given={Patrick\bibnamedelima J.},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BMSBPJ1}
+    \strng{fullhash}{BMSBPJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1364/josaa.5.002059
+    \endverb
+    \field{number}{12}
+    \field{pages}{2059\bibrangedash 2079}
+    \field{title}{Optical and photoreceptor immaturities limit the spatial and
+  chromatic vision of human neonates}
+    \field{volume}{5}
+    \field{journaltitle}{Journal of the Optical Society of America A}
+    \field{year}{1988}
+  \endentry
+
+  \entry{norcia1985spatial}{article}{}
+    \name{author}{2}{}{%
+      {{hash=NAM}{%
+         family={Norcia},
+         familyi={N\bibinitperiod},
+         given={Anthony\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=TCW}{%
+         family={Tyler},
+         familyi={T\bibinitperiod},
+         given={Christopher\bibnamedelima W.},
+         giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NAMTCW1}
+    \strng{fullhash}{NAMTCW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1016/0042-6989(85)90217-2
+    \endverb
+    \field{number}{10}
+    \field{pages}{1399\bibrangedash 1408}
+    \field{title}{Spatial frequency sweep {VEP}: Visual acuity during the first
+  year of life}
+    \field{volume}{25}
+    \field{journaltitle}{Vision Research}
+    \field{year}{1985}
+  \endentry
+
+  \entry{turkewitz1982limitations}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TG}{%
+         family={Turkewitz},
+         familyi={T\bibinitperiod},
+         given={Gerald},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=KPA}{%
+         family={Kenny},
+         familyi={K\bibinitperiod},
+         given={Patricia\bibnamedelima A.},
+         giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TGKPA1}
+    \strng{fullhash}{TGKPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1002/dev.420150408
+    \endverb
+    \field{number}{4}
+    \field{pages}{357\bibrangedash 368}
+    \field{title}{Limitations on input as a basis for neural organization and
+  perceptual development: A preliminary theoretical statement}
+    \field{volume}{15}
+    \field{journaltitle}{Developmental Psychobiology}
+    \field{year}{1982}
+  \endentry
+
+  \entry{smith2018curriculum}{article}{}
+    \name{author}{4}{}{%
+      {{hash=SLB}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Linda\bibnamedelima B.},
+         giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=JS}{%
+         family={Jayaraman},
+         familyi={J\bibinitperiod},
+         given={Swapnaa},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CE}{%
+         family={Clerkin},
+         familyi={C\bibinitperiod},
+         given={Elizabeth},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=YC}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Chen},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SLBJSCEYC1}
+    \strng{fullhash}{SLBJSCEYC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1016/j.tics.2018.02.004
+    \endverb
+    \field{number}{4}
+    \field{pages}{325\bibrangedash 336}
+    \field{title}{The Developing Infant Creates a Curriculum for Statistical
+  Learning}
+    \field{volume}{22}
+    \field{journaltitle}{Trends in Cognitive Sciences}
+    \field{year}{2018}
+  \endentry
+
+  \entry{orhan2020self}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=OAE}{%
+         family={Orhan},
+         familyi={O\bibinitperiod},
+         given={A.\bibnamedelima Emin},
+         giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=GV}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Vaibhav},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=LBM}{%
+         family={Lake},
+         familyi={L\bibinitperiod},
+         given={Brenden\bibnamedelima M.},
+         giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OAEGVLBM1}
+    \strng{fullhash}{OAEGVLBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Advances in Neural Information Processing Systems}
+    \field{pages}{9960\bibrangedash 9971}
+    \field{title}{Self-supervised learning through the eyes of a child}
+    \field{volume}{33}
+    \field{year}{2020}
+  \endentry
+
+  \entry{orhan2024learning}{article}{}
+    \name{author}{2}{}{%
+      {{hash=OAE}{%
+         family={Orhan},
+         familyi={O\bibinitperiod},
+         given={A.\bibnamedelima Emin},
+         giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=LBM}{%
+         family={Lake},
+         familyi={L\bibinitperiod},
+         given={Brenden\bibnamedelima M.},
+         giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OAELBM1}
+    \strng{fullhash}{OAELBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1038/s42256-024-00802-0
+    \endverb
+    \field{number}{3}
+    \field{pages}{271\bibrangedash 283}
+    \field{title}{Learning high-level visual representations from a child's
+  perspective without strong inductive biases}
+    \field{volume}{6}
+    \field{journaltitle}{Nature Machine Intelligence}
+    \field{year}{2024}
+  \endentry
+
+  \entry{vong2024grounded}{article}{}
+    \name{author}{4}{}{%
+      {{hash=VWK}{%
+         family={Vong},
+         familyi={V\bibinitperiod},
+         given={Wai\bibnamedelima Keen},
+         giveni={W\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=WW}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Wentao},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=OAE}{%
+         family={Orhan},
+         familyi={O\bibinitperiod},
+         given={A.\bibnamedelima Emin},
+         giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=LBM}{%
+         family={Lake},
+         familyi={L\bibinitperiod},
+         given={Brenden\bibnamedelima M.},
+         giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VWKWWOAELBM1}
+    \strng{fullhash}{VWKWWOAELBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1126/science.adi1374
+    \endverb
+    \field{number}{6682}
+    \field{pages}{504\bibrangedash 511}
+    \field{title}{Grounded language acquisition through the eyes and ears of a
+  single child}
+    \field{volume}{383}
+    \field{journaltitle}{Science}
+    \field{year}{2024}
+  \endentry
+
+  \entry{vogelsang2018potential}{article}{}
+    \name{author}{7}{}{%
+      {{hash=VL}{%
+         family={Vogelsang},
+         familyi={V\bibinitperiod},
+         given={Lukas},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=GGS}{%
+         family={Gilad-Gutnick},
+         familyi={G\bibinithyphendelim G\bibinitperiod},
+         given={Sharon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=EE}{%
+         family={Ehrenberg},
+         familyi={E\bibinitperiod},
+         given={Evan},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=YA}{%
+         family={Yonas},
+         familyi={Y\bibinitperiod},
+         given={Albert},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Diamond},
+         familyi={D\bibinitperiod},
+         given={Sidney},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Held},
+         familyi={H\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sinha},
+         familyi={S\bibinitperiod},
+         given={Pawan},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VLGGSEE+1}
+    \strng{fullhash}{VLGGSEEYADSHRSP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1073/pnas.1800901115
+    \endverb
+    \field{number}{44}
+    \field{pages}{11333\bibrangedash 11338}
+    \field{title}{Potential downside of high initial visual acuity}
+    \field{volume}{115}
+    \field{journaltitle}{Proceedings of the National Academy of Sciences}
+    \field{year}{2018}
+  \endentry
+
+  \entry{vogelsang2024impact}{article}{}
+    \name{author}{11}{}{%
+      {{hash=VM}{%
+         family={Vogelsang},
+         familyi={V\bibinitperiod},
+         given={Marin},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=VL}{%
+         family={Vogelsang},
+         familyi={V\bibinitperiod},
+         given={Lukas},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=GP}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Priti},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=GTK}{%
+         family={Gandhi},
+         familyi={G\bibinitperiod},
+         given={Tapan\bibnamedelima K.},
+         giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Shah},
+         familyi={S\bibinitperiod},
+         given={Pragya},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Swami},
+         familyi={S\bibinitperiod},
+         given={Piyush},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=GGS}{%
+         family={Gilad-Gutnick},
+         familyi={G\bibinithyphendelim G\bibinitperiod},
+         given={Sharon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BAS}{%
+         family={Ben-Ami},
+         familyi={B\bibinithyphendelim A\bibinitperiod},
+         given={Shlomit},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Diamond},
+         familyi={D\bibinitperiod},
+         given={Sidney},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Ganesh},
+         familyi={G\bibinitperiod},
+         given={Suma},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sinha},
+         familyi={S\bibinitperiod},
+         given={Pawan},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VMVLGP+1}
+    \strng{fullhash}{VMVLGPGTKSPSPGGSBASDSGSSP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1126/science.adk9587
+    \endverb
+    \field{number}{6698}
+    \field{pages}{907\bibrangedash 912}
+    \field{title}{Impact of early visual experience on later usage of color
+  cues}
+    \field{volume}{384}
+    \field{journaltitle}{Science}
+    \field{year}{2024}
+  \endentry
+
+  \entry{sheybani2023curriculum}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=SS}{%
+         family={Sheybani},
+         familyi={S\bibinitperiod},
+         given={Saber},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hansaria},
+         familyi={H\bibinitperiod},
+         given={Himanshu},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=WJN}{%
+         family={Wood},
+         familyi={W\bibinitperiod},
+         given={Justin\bibnamedelima N.},
+         giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=SLB}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Linda\bibnamedelima B.},
+         giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=TZ}{%
+         family={Tiganj},
+         familyi={T\bibinitperiod},
+         given={Zoran},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SSHHWJNSLBTZ1}
+    \strng{fullhash}{SSHHWJNSLBTZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Advances in Neural Information Processing Systems}
+    \field{title}{Curriculum Learning With Infant Egocentric Videos}
+    \field{volume}{36}
+    \field{year}{2023}
+  \endentry
+
+  \entry{achille2019critical}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=AA}{%
+         family={Achille},
+         familyi={A\bibinitperiod},
+         given={Alessandro},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rovere},
+         familyi={R\bibinitperiod},
+         given={Matteo},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Soatto},
+         familyi={S\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AARMSS1}
+    \strng{fullhash}{AARMSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 1711.08856
+    \endverb
+    \field{note}{arXiv preprint arXiv:1711.08856 (v3, February 2019; first
+  posted 2017). A conference version was reported at ICLR 2019 but could not be
+  confirmed against a primary record}
+    \field{title}{Critical Learning Periods in Deep Neural Networks}
+    \field{eprinttype}{arXiv}
+    \field{year}{2019}
+  \endentry
+
+  \entry{kleinman2023critical}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=KM}{%
+         family={Kleinman},
+         familyi={K\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Achille},
+         familyi={A\bibinitperiod},
+         given={Alessandro},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Soatto},
+         familyi={S\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KMAASS1}
+    \strng{fullhash}{KMAASS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}
+    \verb{doi}
+    \verb 10.1109/CVPR52729.2023.02327
+    \endverb
+    \field{pages}{24296\bibrangedash 24305}
+    \field{title}{Critical Learning Periods for Multisensory Integration in
+  Deep Networks}
+    \field{year}{2023}
+  \endentry
+
+  \entry{elman1993learning}{article}{}
+    \name{author}{1}{}{%
+      {{hash=EJL}{%
+         family={Elman},
+         familyi={E\bibinitperiod},
+         given={Jeffrey\bibnamedelima L.},
+         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{EJL1}
+    \strng{fullhash}{EJL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1016/0010-0277(93)90058-4
+    \endverb
+    \field{number}{1}
+    \field{pages}{71\bibrangedash 99}
+    \field{title}{Learning and development in neural networks: The importance
+  of starting small}
+    \field{volume}{48}
+    \field{journaltitle}{Cognition}
+    \field{year}{1993}
+  \endentry
+
+  \entry{rohde1999language}{article}{}
+    \name{author}{2}{}{%
+      {{hash=RDLT}{%
+         family={Rohde},
+         familyi={R\bibinitperiod},
+         given={Douglas L.\bibnamedelima T.},
+         giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  T\bibinitperiod},
+      }}%
+      {{hash=PDC}{%
+         family={Plaut},
+         familyi={P\bibinitperiod},
+         given={David\bibnamedelima C.},
+         giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RDLTPDC1}
+    \strng{fullhash}{RDLTPDC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1016/S0010-0277(99)00031-1
+    \endverb
+    \field{number}{1}
+    \field{pages}{67\bibrangedash 109}
+    \field{title}{Language acquisition in the absence of explicit negative
+  evidence: How important is starting small?}
+    \field{volume}{72}
+    \field{journaltitle}{Cognition}
+    \field{year}{1999}
+  \endentry
+
+  \entry{wu2021curricula}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=WX}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Xiaoxia},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=DE}{%
+         family={Dyer},
+         familyi={D\bibinitperiod},
+         given={Ethan},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=NB}{%
+         family={Neyshabur},
+         familyi={N\bibinitperiod},
+         given={Behnam},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WXDENB1}
+    \strng{fullhash}{WXDENB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{International Conference on Learning Representations}
+    \field{title}{When Do Curricula Work?}
+    \field{year}{2021}
+  \endentry
+
+  \entry{saxe2019mathematical}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SAM}{%
+         family={Saxe},
+         familyi={S\bibinitperiod},
+         given={Andrew\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=MJL}{%
+         family={McClelland},
+         familyi={M\bibinitperiod},
+         given={James\bibnamedelima L.},
+         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Ganguli},
+         familyi={G\bibinitperiod},
+         given={Surya},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAMMJLGS1}
+    \strng{fullhash}{SAMMJLGS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1073/pnas.1820226116
+    \endverb
+    \field{number}{23}
+    \field{pages}{11537\bibrangedash 11546}
+    \field{title}{A mathematical theory of semantic development in deep neural
+  networks}
+    \field{volume}{116}
+    \field{journaltitle}{Proceedings of the National Academy of Sciences}
+    \field{year}{2019}
+  \endentry
+
+  \entry{mohapatra2026senses}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=MS}{%
+         family={Mohapatra},
+         familyi={M\bibinitperiod},
+         given={Somesh},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MS1}
+    \strng{fullhash}{MS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Companion manuscript, in preparation; source in the same
+  repository (papers/baby-senses)}
+    \field{title}{What Infants Sense at Each Age: Age-Tuned Neural Networks and
+  an Interactive Simulator}
+    \field{year}{2026}
+  \endentry
+
+  \entry{bahrick2000intersensory}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BLE}{%
+         family={Bahrick},
+         familyi={B\bibinitperiod},
+         given={Lorraine\bibnamedelima E.},
+         giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=LR}{%
+         family={Lickliter},
+         familyi={L\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BLELR1}
+    \strng{fullhash}{BLELR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1037/0012-1649.36.2.190
+    \endverb
+    \field{number}{2}
+    \field{pages}{190\bibrangedash 201}
+    \field{title}{Intersensory redundancy guides attentional selectivity and
+  perceptual learning in infancy}
+    \field{volume}{36}
+    \field{journaltitle}{Developmental Psychology}
+    \field{year}{2000}
+  \endentry
+
+  \entry{garrido2025intuitive}{article}{}
+    \name{author}{8}{}{%
+      {{hash=GQ}{%
+         family={Garrido},
+         familyi={G\bibinitperiod},
+         given={Quentin},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Ballas},
+         familyi={B\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Assran},
+         familyi={A\bibinitperiod},
+         given={Mahmoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Bardes},
+         familyi={B\bibinitperiod},
+         given={Adrien},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=NL}{%
+         family={Najman},
+         familyi={N\bibinitperiod},
+         given={Laurent},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rabbat},
+         familyi={R\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DE}{%
+         family={Dupoux},
+         familyi={D\bibinitperiod},
+         given={Emmanuel},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GQBNAM+1}
+    \strng{fullhash}{GQBNAMBANLRMDELY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 2502.11831
+    \endverb
+    \field{title}{Intuitive physics understanding emerges from self-supervised
+  pretraining on natural videos}
+    \field{journaltitle}{arXiv preprint arXiv:2502.11831}
+    \field{eprinttype}{arXiv}
+    \field{year}{2025}
+  \endentry
+
+  \entry{mattern2024mimo}{article}{}
+    \name{author}{7}{}{%
+      {{hash=MD}{%
+         family={Mattern},
+         familyi={M\bibinitperiod},
+         given={Dominik},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Schumacher},
+         familyi={S\bibinitperiod},
+         given={Pierre},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=LFM}{%
+         family={L{\'o}pez},
+         familyi={L\bibinitperiod},
+         given={Francisco\bibnamedelima M.},
+         giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=RMC}{%
+         family={Raabe},
+         familyi={R\bibinitperiod},
+         given={Marcel\bibnamedelima C.},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=EMR}{%
+         family={Ernst},
+         familyi={E\bibinitperiod},
+         given={Markus\bibnamedelima R.},
+         giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Aubret},
+         familyi={A\bibinitperiod},
+         given={Arthur},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Triesch},
+         familyi={T\bibinitperiod},
+         given={Jochen},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MDSPLFM+1}
+    \strng{fullhash}{MDSPLFMRMCEMRAATJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1109/TCDS.2024.3350448
+    \endverb
+    \field{number}{4}
+    \field{pages}{1291\bibrangedash 1301}
+    \field{title}{{MIMo}: A Multimodal Infant Model for Studying Cognitive
+  Development}
+    \field{volume}{16}
+    \field{journaltitle}{IEEE Transactions on Cognitive and Developmental
+  Systems}
+    \field{year}{2024}
+  \endentry
+
+  \entry{sullivan2021saycam}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SJ}{%
+         family={Sullivan},
+         familyi={S\bibinitperiod},
+         given={Jessica},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mei},
+         familyi={M\bibinitperiod},
+         given={Michelle},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Perfors},
+         familyi={P\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=WE}{%
+         family={Wojcik},
+         familyi={W\bibinitperiod},
+         given={Erica},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=FMC}{%
+         family={Frank},
+         familyi={F\bibinitperiod},
+         given={Michael\bibnamedelima C.},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SJMMPAWEFMC1}
+    \strng{fullhash}{SJMMPAWEFMC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1162/opmi_a_00039
+    \endverb
+    \field{pages}{20\bibrangedash 29}
+    \field{title}{{SAYCam}: A Large, Longitudinal Audiovisual Dataset Recorded
+  From the Infant's Perspective}
+    \field{volume}{5}
+    \field{journaltitle}{Open Mind}
+    \field{year}{2021}
+  \endentry
+
+  \entry{long2024babyview}{article}{}
+    \name{author}{12}{}{%
+      {{hash=LB}{%
+         family={Long},
+         familyi={L\bibinitperiod},
+         given={Bria},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=XV}{%
+         family={Xiang},
+         familyi={X\bibinitperiod},
+         given={Violet},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Stojanov},
+         familyi={S\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SRZ}{%
+         family={Sparks},
+         familyi={S\bibinitperiod},
+         given={Robert\bibnamedelima Z.},
+         giveni={R\bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+      {{hash=YZ}{%
+         family={Yin},
+         familyi={Y\bibinitperiod},
+         given={Zi},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=KGE}{%
+         family={Keene},
+         familyi={K\bibinitperiod},
+         given={Grace\bibnamedelima E.},
+         giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=TAWM}{%
+         family={Tan},
+         familyi={T\bibinitperiod},
+         given={Alvin W.\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim
+  M\bibinitperiod},
+      }}%
+      {{hash=FSY}{%
+         family={Feng},
+         familyi={F\bibinitperiod},
+         given={Steven\bibnamedelima Y.},
+         giveni={S\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhuang},
+         familyi={Z\bibinitperiod},
+         given={Chengxu},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=MVA}{%
+         family={Marchman},
+         familyi={M\bibinitperiod},
+         given={Virginia\bibnamedelima A.},
+         giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=YDLK}{%
+         family={Yamins},
+         familyi={Y\bibinitperiod},
+         given={Daniel L.\bibnamedelima K.},
+         giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  K\bibinitperiod},
+      }}%
+      {{hash=FMC}{%
+         family={Frank},
+         familyi={F\bibinitperiod},
+         given={Michael\bibnamedelima C.},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LBXVSS+1}
+    \strng{fullhash}{LBXVSSSRZYZKGETAWMFSYZCMVAYDLKFMC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 2406.10447
+    \endverb
+    \field{title}{The {BabyView} dataset: High-resolution egocentric videos of
+  infants' and young children's everyday experiences}
+    \field{journaltitle}{arXiv preprint arXiv:2406.10447}
+    \field{eprinttype}{arXiv}
+    \field{year}{2024}
+  \endentry
+
+  \entry{watters2019spatial}{article}{}
+    \name{author}{4}{}{%
+      {{hash=WN}{%
+         family={Watters},
+         familyi={W\bibinitperiod},
+         given={Nicholas},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=ML}{%
+         family={Matthey},
+         familyi={M\bibinitperiod},
+         given={Loic},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BCP}{%
+         family={Burgess},
+         familyi={B\bibinitperiod},
+         given={Christopher\bibnamedelima P.},
+         giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lerchner},
+         familyi={L\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WNMLBCPLA1}
+    \strng{fullhash}{WNMLBCPLA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 1901.07017
+    \endverb
+    \field{title}{Spatial Broadcast Decoder: A Simple Architecture for Learning
+  Disentangled Representations in {VAEs}}
+    \field{journaltitle}{arXiv preprint arXiv:1901.07017}
+    \field{eprinttype}{arXiv}
+    \field{year}{2019}
+  \endentry
+\enddatalist
+\endinput

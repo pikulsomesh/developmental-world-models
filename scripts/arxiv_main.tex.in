@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{authblk}
 \usepackage{setspace}
 \usepackage{etoolbox}
@@ -15,7 +16,7 @@
 \usepackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 % tables and helpers used by the pandoc-converted text
-\usepackage{longtable,booktabs,array,calc}
+\usepackage{longtable,booktabs,array,calc,tabularx}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 %%%%%% Bibliography %%%%%%
@@ -54,11 +55,11 @@ backend=bibtex]{biblatex}
 
 %%INTRO%%
 
-%%METHODS%%
-
 %%RESULTS%%
 
 %%DISCUSSION%%
+
+%%METHODS%%
 
 %%BACKMATTER%%
 

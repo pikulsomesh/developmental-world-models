@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{authblk}
 \usepackage{setspace}
 \usepackage{etoolbox}
@@ -15,7 +16,7 @@
 \usepackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 % tables and helpers used by the pandoc-converted text
-\usepackage{longtable,booktabs,array,calc}
+\usepackage{longtable,booktabs,array,calc,tabularx}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 %%%%%% Bibliography %%%%%%
@@ -28,7 +29,7 @@ backend=bibtex]{biblatex}
 \usepackage[hidelinks]{hyperref}
 
 %%%%%% Title %%%%%%
-\title{Do AI Models Learn Like Humans?}
+\title{Learning Dynamics of Predictive World Models Under Developmental Input Constraints}
 
 %%%%%% Authors %%%%%%
 \author[1*]{Somesh Mohapatra}
@@ -49,7 +50,7 @@ backend=bibtex]{biblatex}
 \maketitle
 
 \begin{abstract}
-Infants learn from input that is degraded, ordered in time and delivered by senses that mature at different rates, whereas machine-learning systems are usually trained on clean, shuffled data. We ask how such constraints change the learning dynamics of predictive world models, networks that learn by forecasting their own sensory input. We formalise a staged training problem in which each sense's input passes through a fixed, age-indexed filter and the network may grow, and we derive four results. First, what a model can learn about a scene property is bounded by what the filtered input retains. Second, under gradient flow on squared error, an input mode is learned on a time scale inversely proportional to its variance: scaling input contrast by a factor \(\kappa\) delays learning by exactly \(\kappa^{-2}\) and leaves the ceiling unchanged, whereas blur removes high-frequency modes and lowers the ceiling reachable in a finite budget. Third, widening a network with function-preserving initialisation gives the new units zero gradient until their outgoing weights move, which delays learning. Fourth, a squared-error forecaster predicts a conditional mean and is therefore more surprised by an occluded object's reappearance than by its disappearance. We test these in a controlled multisensory simulation with one world model per sense, six training regimes and 5 seeds. The exact linear solution predicts that newborn-quality vision learns 39 times more slowly than adult-quality vision; the trained networks lag their information ceiling accordingly (0.02 against 0.57). Growth halves compute but slows learning, a gentle start helps hearing (0.45 \ensuremath{\pm} 0.01 against 0.39 \ensuremath{\pm} 0.05) and costs vision a little, and fusing senses tracks a hidden object better than any single sense. As the theory predicts, no network is surprised by an object's disappearance unless a sound gives it away.
+Infants learn from input that is degraded, ordered in time and delivered by senses that mature at different rates, whereas machine-learning systems are usually trained on clean, shuffled data. We ask how such constraints change the learning dynamics of predictive world models, networks that learn by forecasting their own sensory input. We formalise a staged training problem in which each sense's input passes through a fixed, age-indexed filter and the network may grow, and we derive four results. First, what a model can learn about a scene property is bounded by what the filtered input retains. Second, under gradient flow on squared error, an input mode is learned on a time scale inversely proportional to its variance: scaling input contrast by a factor \(\kappa\) delays learning by exactly \(\kappa^{-2}\) and leaves the ceiling unchanged, whereas blur removes high-frequency modes and lowers the ceiling reachable in a finite budget. Third, widening a network with function-preserving initialisation gives the new units zero gradient until their outgoing weights move, which delays learning. Fourth, a squared-error forecaster predicts a conditional mean and is therefore more surprised by an occluded object's reappearance than by its disappearance. We test these in a controlled multisensory simulation with one world model per sense, six training regimes and 5 seeds. The exact linear solution predicts that newborn-quality vision learns 39 times more slowly than adult-quality vision; the trained networks lag their information ceiling accordingly (0.02 against 0.57). Growth halves compute but slows learning, a gentle start helps hearing (0.45 \ensuremath{\pm} 0.01 against 0.39 \ensuremath{\pm} 0.05) and costs vision a little, and fusing senses tracks a hidden object better than any single sense. In the trained vision model, ablating the front end shows that the contrast schedule, not blur, produces the early lag, as the theory predicts, and no network is surprised by an object's disappearance unless a sound gives it away.
 \end{abstract}
 
 \section{Introduction}
@@ -75,7 +76,7 @@ We provide one for predictive world models, networks trained to forecast their o
 
 Nothing in our models is gated by age. No module switches on at a given point; every capability is measured, not built in. Terms are defined where they are first used and collected in the box below.
 
-\textbf{Companion paper.} The same simulation and age-indexed front ends underlie a companion manuscript on sensory perception across infant ages, which collects published milestones for each sense, shows the front-end tables and the application built on them, and uses three of our modelling studies for what they say about perception \autocite{mohapatra2026senses}. The two papers share data and say so where they do. Shared with the companion paper: the front-end parameter tables (Table 1 here; Fig. 2 there), the information-ceiling and own-age probe data for vision and hearing (Fig. 3 and Extended Data Fig. 3 here; Fig. 3 there, plotted differently), and the one-sentence finding that the ceiling-based half-age measure does not recover the infant order. New in this paper and absent there: the formal problem, the four propositions and their proofs, the spectral analysis (Fig. 2), the six training regimes with statistics and the front-end ablations, the growth analysis, the fusion model and the violation-of-expectation dissociation. The companion experiments (critical period, sense-onset order, perceptual narrowing) are reported only in the companion paper.
+\textbf{Companion paper.} The same simulation and age-indexed front ends underlie a companion manuscript on sensory perception across infant ages, which collects published milestones for each sense, shows the front-end tables and the application built on them, and uses three of our modelling studies for what they say about perception \autocite{mohapatra2026senses}. The two papers share data and say so where they do. Shared with the companion paper: the front-end parameter tables (Table 2 here; Fig. 2 there), the information-ceiling and own-age probe data for vision and hearing (Fig. 3 and Extended Data Fig. 3 here; Fig. 3 there, plotted differently), and the one-sentence finding that the ceiling-based half-age measure does not recover the infant order. New in this paper and absent there: the formal problem, the four propositions and their proofs, the spectral analysis (Fig. 2), the six training regimes with statistics and the front-end ablations, the growth analysis, the fusion model and the violation-of-expectation dissociation. The companion experiments (critical period, sense-onset order, perceptual narrowing) are reported only in the companion paper.
 
 \textbf{Terms.} \emph{World model}: a network that learns to predict what it will sense next. \emph{Front end}: a fixed filter that degrades an observation to the quality a sensory system has at a given age. \emph{Checkpoint}: the state of a network after each of four training stages, labelled 0, 3, 6 and 12 months (training stages, not real time). \emph{Probe}: a linear read-out fitted to a network's internal state; it measures what is stored, not what the network does with it. \emph{Score (\(R^2\))}: the fraction of the variance of a quantity that a probe recovers, from 0 (no better than the mean) to 1. \emph{Information ceiling}: the best score achievable from the same filtered input, estimated with a separate network trained on the task itself. \emph{Violation of expectation}: comparing surprise at a possible and an impossible event. \emph{Fusion model}: a network that combines the internal states of the sense models.
 
@@ -83,11 +84,17 @@ Nothing in our models is gated by age. No module switches on at a given point; e
 
 \textbf{Scene and observations.} A scene state \(s_t\) evolves under the agent's action \(u_t\). Each sense \(s\) delivers an adult-quality observation \(o_t^{s}\), a deterministic function of the scene (Methods). A property \(Y_t=g(s_t)\), such as the position or identity of a toy, is the quantity we ask a representation to retain.
 
-\textbf{Front ends.} At age \(a\) the sense delivers \(\tilde o_t^{s}=\Phi_s(o_t^{s};a)\), where \(\Phi_s\) is a fixed, non-learned filter whose parameters (acuity, contrast, colour, frequency resolution, noise) are interpolated from published infant values for vision and from coarse tables for the other senses (Table 1). The age \(a\) indexes input quality, never network structure.
+\textbf{Front ends.} At age \(a\) the sense delivers \(\tilde o_t^{s}=\Phi_s(o_t^{s};a)\), where \(\Phi_s\) is a fixed, non-learned filter whose parameters (acuity, contrast, colour, frequency resolution, noise) are interpolated from published infant values for vision and from coarse tables for the other senses (Table 2). The age \(a\) indexes input quality, never network structure.
 
 \textbf{World models.} Each sense has an encoder \(e\), a dynamics model over the last \(k\) latents and the action, and a decoder \(d\) (Methods, eqs. for \(z_t\) and \(\mathcal L\)). The training objective at age \(a\) is the sum of a reconstruction error and a one-step prediction error on \(\tilde o\), so the network is a predictor of its own filtered input. A fusion model combines the frozen latents of the four sense models.
 
-\textbf{Regimes.} Training proceeds in four stages and the model is read out at the end of each, called checkpoints 0, 3, 6 and 12 months. Six regimes (Table 2) cross the input schedule (adult quality throughout, immature input improving with age, input quality drawn at random per batch, or immature input in reverse order) with capacity (fixed or grown by function-preserving widening). All regimes see the same data, the same number of updates and the same hyperparameters, so any difference is due to the schedule or to growth.
+\textbf{Regimes.} Training proceeds in four stages and the model is read out at the end of each, called checkpoints 0, 3, 6 and 12 months. Six regimes (Table 3) cross the input schedule (adult quality throughout, immature input improving with age, input quality drawn at random per batch, or immature input in reverse order) with capacity (fixed or grown by function-preserving widening). All regimes see the same data, the same number of updates and the same hyperparameters, so any difference is due to the schedule or to growth.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{fig1_overview.png}
+\caption{\textbf{Sense-specific developmental world models.} \textbf{a}, Each sense passes a synthetic nursery (a toy that is seen, heard and felt, the infant's babbling hand, and an occluding screen) through a fixed filter \(\Phi_s(\cdot;a)\) indexed by age, and learns its own world model: an encoder \(e\), a dynamics model \(f\) over the last \(k\) latents and the infant's motor command \(u_t\), and a decoder. A fusion world model combines the frozen sense latents. Read-outs are linear probes, violation-of-expectation surprise and occluded tracking. \textbf{b}, The same moment delivered to vision, hearing (left ear, 32 frequency bins over the episode) and touch (an 8\ensuremath{\times}8 patch of skin) at 0, 3, 6 and 12 months. \textbf{c}, Front-end maturity per sense (normalised parameters of Table 2): touch and proprioception start close to mature, hearing partly, vision far behind. \textbf{d}, The six training regimes: input quality over the four training stages; marker size is network width.}
+\end{figure}
 
 \section{Theory}
 
@@ -129,9 +136,128 @@ Fig. 2 shows the spectral quantities of Proposition 2 measured on the simulation
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig6_theory.png}
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{fig6_theory.png}
 \caption{\textbf{Spectral account of learning time.} For the toy-position read-out from filtered frames. \textbf{a}, Eigenvalue spectrum of the input covariance at the four ages: immature front ends shrink it by orders of magnitude. \textbf{b}, Exact gradient-flow solution \(R^2(t)\) of Proposition 2 for each age with the step size fixed by the adult input; dotted lines, the linear ceilings. \textbf{c}, Time to half the ceiling when only contrast is scaled by \(\kappa\): the exact solution follows \(\kappa^{-2}\). \textbf{d}, Blur alone: the ceiling falls with the blur width while the time to half ceiling barely moves.}
 \end{figure}
+
+
+\section{Results}
+
+\hypertarget{a-simulation-that-isolates-each-constraint}{%
+\subsection{A simulation that isolates each constraint}\label{a-simulation-that-isolates-each-constraint}}
+
+The simulated world renders one toy of four types, a babbling hand and, in half the scenes, a vertical screen into four streams: 32\ensuremath{\times}32 colour vision, binaural hearing (2 ears \ensuremath{\times} 32 frequency bins, panned by position and passing through the screen), an 8\ensuremath{\times}8 tactile patch on the hand, and four-dimensional proprioception (Fig. 1a; Methods). Each toy type is specified redundantly across senses, by shape and colour, pitch and felt shape \autocite{bahrick2000intersensory}. Each sense is filtered by a fixed front end whose parameters follow the age \(a\) (Fig. 1b, c; Table 2); for vision the parameters are published infant acuity and contrast sensitivity \autocite{norcia1985spatial,banks1988optical}, and for hearing, touch and proprioception they are coarse placeholder tables that respect the known order of maturation. Behind each front end is a world model of the same family (Methods). Each sense is trained in one continuous run of four stages and read out at the end of each. Six regimes (Fig. 1d; Table 3) cross the two levers, input schedule and network growth, with two order controls.
+
+\hypertarget{the-input-sets-the-order-of-development-and-learning-lags-what-the-input-allows}{%
+\subsection{The input sets the order of development, and learning lags what the input allows}\label{the-input-sets-the-order-of-development-and-learning-lags-what-the-input-allows}}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{fig2_development.png}
+\caption{\textbf{Development of each sense.} The ceiling and own-age data for vision and hearing are also plotted against age in the companion paper \autocite{mohapatra2026senses}. \textbf{a}, Toy position decoded from the vision model's latent at each checkpoint (probe fitted and tested on adult-quality input), for the six regimes; dashed grey line, information ceiling (a supervised network trained directly on that age's filtered input). \textbf{b}, The same with the probe fitted and tested on the input quality of the checkpoint's own age. \textbf{c}, Hearing. \textbf{d}, Fraction of the age-matched ceiling reached by the immature-input regime (own-age probe) and by the adult-input regime, for vision (solid) and hearing (dashed). \textbf{e}, Proprioception (hand position R\textsuperscript{2}, squares) and touch (toy identity accuracy, triangles; chance 0.25) are close to their final level from the first checkpoint. \textbf{f}, Age at which each sense's information ceiling first reaches half its 12-month value; this measure does not recover the infant order (Kendall \ensuremath{\tau} against touch \textless{} hearing \textless{} vision in the panel title), because the vision ceiling is already high at birth. Lines, mean over seeds; bands, \ensuremath{\pm}1 s.d.; n = 5 seeds per regime.}
+\end{figure}
+
+With immature input, the vision model cannot localise the toy at the first checkpoint (position \(R^2\) 0.02 \ensuremath{\pm} 0.00) and is still poor at the second (0.31 \ensuremath{\pm} 0.15), then rises to 0.85 \ensuremath{\pm} 0.04 (Fig. 3a). Trained on adult-quality input the same network localises the toy from the first checkpoint (0.69 \ensuremath{\pm} 0.04) and ends at 0.89 \ensuremath{\pm} 0.03. Hearing, touch and the body senses are close to their final level much earlier (Fig. 3c, e), so vision is the last sense to develop, which is put there by the front-end tables. Measured by the age at which each sense's information ceiling reaches half its 12-month value (touch 0, hearing 4, vision 0 months; Kendall \(\tau\) = 0.00 against the order touch, hearing, vision; Fig. 3f) the infant order is not recovered, because the vision ceiling is already high at birth even though the learned model is not.
+
+Proposition 1 asks whether this early failure is the input or the learner. Probing on each checkpoint's own input (Fig. 3b) gives 0.00 \ensuremath{\pm} 0.01 at 0 months and 0.85 \ensuremath{\pm} 0.04 at 12, so it is not a distribution shift from training on blurred and testing on sharp images. The newborn input is not empty: a supervised network trained directly on it reaches \(R^2\) = 0.57 (Fig. 3a, dashed), and the exact linear solution of Proposition 2 reaches 0.79. The gap between 0.57 and 0.02 is therefore a property of learning. Proposition 2 also quantifies it: with the step size set by adult input, the newborn front end shrinks the total input variance from 32.20 to 0.12 and lengthens the time to half ceiling 39-fold (Fig. 2a, b). The vision model approaches its ceiling only as the front end sharpens (Fig. 3d).
+
+\hypertarget{contrast-sets-the-speed-of-learning-and-blur-sets-the-ceiling-in-theory-and-in-the-linear-model}{%
+\subsection{Contrast sets the speed of learning and blur sets the ceiling, in theory and in the linear model}\label{contrast-sets-the-speed-of-learning-and-blur-sets-the-ceiling-in-theory-and-in-the-linear-model}}
+
+Scaling contrast alone by \(\kappa\) delays the linear solution by \(\kappa^{-2}\) to within 1\% over a 44-fold range, and leaves its ceiling unchanged (Fig. 2c). Blur alone leaves the time to half ceiling almost unchanged but lowers the ceiling from 0.95 without blur to 0.80 at the newborn width of 2.14 px (Fig. 2d). The linear read-out is not the network, and the networks are trained with Adam, which removes the global scale effect; ablations of the front end test which component matters in the trained vision model.
+
+\hypertarget{contrast-not-blur-produces-the-early-lag-in-the-trained-network}{%
+\subsection{Contrast, not blur, produces the early lag in the trained network}\label{contrast-not-blur-produces-the-early-lag-in-the-trained-network}}
+
+When only blur follows age, the vision model already localises the toy at the first checkpoint (0.36 \ensuremath{\pm} 0.07, against 0.69 \ensuremath{\pm} 0.04 for adult input and 0.02 \ensuremath{\pm} 0.00 for the full schedule), reaches 0.80 \ensuremath{\pm} 0.03 at the second and ends at 0.88 \ensuremath{\pm} 0.03 (Fig. 4a). When only contrast follows age, the model reproduces the full lag (0.04 \ensuremath{\pm} 0.03 at the first checkpoint, 0.50 \ensuremath{\pm} 0.07 at the second) and identity accuracy follows the same pattern (0.39 \ensuremath{\pm} 0.02 against 0.67 \ensuremath{\pm} 0.04 for blur only at the second checkpoint; Fig. 4b). Contrast therefore accounts for nearly all of the early delay, as Proposition 2 predicts, even though the networks are trained with Adam; blur alone costs little speed at this image scale. Two caveats apply. The ablations have 2 seeds each, so these are estimates, and colour saturation was held at the adult value in both, so its contribution is untested.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.7\textwidth,height=0.78\textheight,keepaspectratio]{fig7_ablation.png}
+\caption{\textbf{Front-end ablations in the trained vision model.} Vision probe score (\textbf{a}, toy position; \textbf{b}, toy identity; adult-quality test input) at the four checkpoints for adult input, the full immature schedule, and schedules in which only blur or only contrast follows age (colour is adult throughout in both). Lines, mean over seeds; bands, \ensuremath{\pm}1 s.d.; n shown in the legend (the two ablations have fewer seeds than the main regimes).}
+\end{figure}
+
+\hypertarget{growth-delays-learning-and-halves-the-parameter-updates}{%
+\subsection{Growth delays learning and halves the parameter-updates}\label{growth-delays-learning-and-halves-the-parameter-updates}}
+
+Adding growth to immature input does not change the shape of the curve; it delays it (Fig. 3a). The grown vision model is still at \(R^2\) 0.04 \ensuremath{\pm} 0.03 at the 3-month checkpoint and ends at 0.79 \ensuremath{\pm} 0.06, against 0.85 \ensuremath{\pm} 0.04 for the fixed-size network; identity accuracy is 0.49 \ensuremath{\pm} 0.06 against 0.64 \ensuremath{\pm} 0.06 (Hedges' \(g\) = \ensuremath{-}2.2, \(p\) = 0.005). Growth without immature input learns quickly and ends near the adult-input model (0.86 \ensuremath{\pm} 0.04). At matched updates, growing networks use 0.48 of the fixed network's parameter-updates (Fig. 5d). This is the plateau Proposition 3 predicts: new units begin learning only through their outgoing weights, so each widening is followed by a stall, and growth trades accuracy for compute.
+
+\hypertarget{early-immaturity-costs-vision-a-little-and-helps-hearing}{%
+\subsection{Early immaturity costs vision a little and helps hearing}\label{early-immaturity-costs-vision-a-little-and-helps-hearing}}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{fig3_costs_benefits.png}
+\caption{\textbf{Costs and benefits at the 12-month checkpoint.} \textbf{a}, Vision probe R\textsuperscript{2} when tested on newborn-quality input (bars, mean; dots, seeds; whiskers, s.d.). All values are negative (worse than predicting the mean), so differences are in how badly models fail. \textbf{b}, Hearing localisation on clean input. \textbf{c}, Effect sizes (Hedges' g with approximate 95\% CI) and Welch-test p values for the planned comparisons; n per group shown. \textbf{d}, Vision accuracy against training compute (parameter-updates relative to a fixed-size network).}
+\end{figure}
+
+On clean input the adult-input vision model is best. Immature input costs 0.89 \ensuremath{-} 0.85 in \(R^2\) (\(g\) = \ensuremath{-}1.2, \(p\) = 0.06). Tested on newborn-quality input, every model fails (Fig. 5a), with regimes that saw immature input failing less on average (\ensuremath{-}0.22 \ensuremath{\pm} 0.14 against \ensuremath{-}0.40 \ensuremath{\pm} 0.22 for adult input), but the difference is within seed variability (\(p\) = 0.16); we do not claim a robustness benefit in vision.
+
+Hearing differs. Models that heard immature sound early localise better on clean input at 12 months (0.45 \ensuremath{\pm} 0.01 immature, 0.46 \ensuremath{\pm} 0.01 immature with growth) than models that only heard adult-quality sound (0.39 \ensuremath{\pm} 0.05 adult input, 0.32 \ensuremath{\pm} 0.11 growth only; Fig. 5b; \(g\) = 1.5, \(p\) = 0.05). Shuffled input quality (0.45 \ensuremath{\pm} 0.01) is close to the immature schedule, so the benefit comes from having heard degraded input at all, a form of augmentation (the mixture objective of training at several qualities), more than from its order. Reversing the schedule is the clearest negative control: the vision model that ends on newborn-quality input falls from 0.87 \ensuremath{\pm} 0.01 to 0.58 \ensuremath{\pm} 0.08, so what the model has learned does not survive a late degradation.
+
+\hypertarget{fusing-senses-recovers-what-each-sense-alone-loses}{%
+\subsection{Fusing senses recovers what each sense alone loses}\label{fusing-senses-recovers-what-each-sense-alone-loses}}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{fig4_fusion_expectation.png}
+\caption{\textbf{Fusion and expectation.} \textbf{a}, Horizontal position of a fully hidden toy decoded from the vision model's memory window, from hearing alone and from the fused world model. \textbf{b}, Position of a visible toy at 12 months from vision alone, the fused state, the fused state with vision switched off, and hearing alone. \textbf{c}, Violation-of-expectation (VoE) index of the unimodal vision models; positive means more surprise when the toy fails to reappear. \textbf{d}, VoE index of the fused model broken down by channel, for three events: the toy vanishes from every sense; it vanishes from sight and touch but keeps sounding; a silent toy vanishes. Faded bars, 0 months; solid, 12 months. \textbf{e}, Frame-by-frame surprise of one vision model (immature input, 12 months) on a possible and an impossible event; grey, toy hidden. Bands and whiskers, \ensuremath{\pm}1 s.d. over seeds.}
+\end{figure}
+
+During a long occlusion, the hidden toy's horizontal position can be decoded from the vision model's memory (\(R^2\) 0.60 \ensuremath{\pm} 0.08 at 12 months), from hearing, which passes through the screen (0.42 \ensuremath{\pm} 0.09), and best from the fused world model (0.75 \ensuremath{\pm} 0.06; Fig. 6a; paired difference fused minus vision positive in every seed). The advantage appears at 6 months and nothing is decodable at 0 to 3 months, when neither vision nor binaural hearing can localise. For a visible toy, the fused state is better than vision alone (0.87 \ensuremath{\pm} 0.03 against 0.79 \ensuremath{\pm} 0.06) and, with vision switched off, still recovers position from hearing, touch and the hand (0.53 \ensuremath{\pm} 0.01; Fig. 6b).
+
+\hypertarget{surprise-follows-the-conditional-mean-not-the-stored-position}{%
+\subsection{Surprise follows the conditional mean, not the stored position}\label{surprise-follows-the-conditional-mean-not-the-stored-position}}
+
+No unimodal vision model, in any regime, has a positive violation-of-expectation index (Fig. 6c): all are more surprised when the toy reappears than when it fails to, like a predictor that copies the last frame (Fig. 6e). This holds although the hidden toy's position is decodable from the same model's memory. It is the behaviour Proposition 4 predicts for a squared-error forecaster when the reappearance time is uncertain.
+
+The fused model does show a positive index when the toy vanishes from every sense (0.32 \ensuremath{\pm} 0.11 at 12 months), but its channels show where the surprise comes from: hearing 0.75 \ensuremath{\pm} 0.05, vision \ensuremath{-}0.04 \ensuremath{\pm} 0.05 (Fig. 6d). The model notices that the sound stopped. When the toy vanishes from sight but keeps sounding, the overall index is \ensuremath{-}0.02 \ensuremath{\pm} 0.01 and the vision channel \ensuremath{-}0.09 \ensuremath{\pm} 0.07; when a silent toy vanishes, they are \ensuremath{-}0.04 \ensuremath{\pm} 0.02 and \ensuremath{-}0.23 \ensuremath{\pm} 0.11. Without a sound to give the event away, the fused model does not expect the toy back either: a read-out can show that information about a hidden object is present while the model's predictions do not use it.
+
+
+\section{Discussion}
+
+\textbf{What the theory explains.} Table 1 sets each proposition against what we observed. The information bound and the learning-time law together account for the main shape of development in the vision model: a front end that shrinks input variance and removes fine detail makes the early read-out both lower and slower, and the self-supervised model reaches only a small fraction of the ceiling until the front end sharpens. The growth delay accounts for why growing the network did not help, and the conditional-mean result accounts for the sign of the surprise index.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption{Predictions of the theory and what was observed.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Proposition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Prediction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observation
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Proposition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Prediction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. Information bound & Learned score cannot exceed the ceiling at that input quality & Holds at every age; early gap is large for vision \\
+2. Learning time & Contrast scales speed by \(\kappa^{-2}\); blur limits the ceiling & Exact in the linear model; in the trained network, contrast-only reproduces the lag and blur-only barely slows learning \\
+3. Growth delay & A plateau after each widening; fewer parameter-updates & Grown model lags; uses about half the parameter-updates \\
+4. Conditional mean & Negative surprise index when reappearance is uncertain & Negative for every unimodal vision model; positive only when a sound gives the event away \\
+\end{longtable}
+
+\textbf{What it does not explain.} The linear solution is a lower bound on how deep networks behave, and the trained vision model lags its ceiling far more than the linear model lags its own, which shows that most of the delay lies in learning features, not in fitting a read-out. Proposition 2 does not apply as stated to adaptive optimisers, yet the ablations show that contrast, the component it singles out, still accounts for the early lag in the trained network. Nor does the theory explain the benefit of early immaturity in hearing: the shuffled-order control suggests augmentation, but we have not derived it.
+
+\textbf{Implications for staged training.} Three design rules follow, each stated for the setting studied here. Reduce contrast or gain only if the cost in speed is acceptable, because it delays learning by the square of the scale with plain gradient descent and gives no lasting information benefit; use blur when the aim is to withhold fine detail early, and expect a lower ceiling in a finite budget; and do not use growth as a substitute for a schedule, because new units contribute nothing until their outgoing weights move. When surprise is the read-out, a squared-error pixel forecaster is the wrong instrument: objectives that predict in latent space \autocite{garrido2025intuitive}, represent uncertainty explicitly or are trained on longer horizons should be tested against the same dissociating events.
+
+\textbf{Limitations.} Everything is synthetic and small (at most 0.6 million parameters per sense) and is evaluated mainly with linear probes, which measure decodability, not behaviour. The theory is exact for a linear read-out under gradient flow and is suggestive for trained networks. Hearing, touch and proprioception tables are placeholders, and the labels 0, 3, 6 and 12 months name training stages and carry no claim about hours of experience. With 5 seeds per regime, several comparisons have large effect sizes but are not significant (Fig. 5c); we report them as estimates. An internal referee report and our responses are provided with the code (\texttt{papers/world-models/report/PEER\_REVIEW.md}).
+
+\textbf{Future work.} The immediate extensions are experience-matched checkpoints of one continuous run per sense, late fusion with sense-onset order as a factor, latent-space and uncertainty-aware objectives tested against the dissociating events, and extending the spectral account to deep networks by measuring the singular-value spectrum of the learned input-output map. The data path runs from this synthetic simulation to an embodied simulator for touch and proprioception \autocite{mattern2024mimo} and to head-camera corpora for vision and hearing \autocite{sullivan2021saycam,long2024babyview}.
 
 
 \section{Materials and Methods}
@@ -139,7 +265,7 @@ Fig. 2 shows the spectral quantities of Proposition 2 measured on the simulation
 \hypertarget{experimental-design}{%
 \subsection{Experimental design}\label{experimental-design}}
 
-The study compares six training regimes (Table 2), plus two front-end ablations for vision, for four sense-specific world models at four checkpoints, with six analyses specified before the final runs: a spectral analysis of the filtered input (below); probes at adult-quality, own-age and newborn-quality input; a supervised information ceiling; violation-of-expectation surprise with dissociating events; occluded tracking and fill-in with a fusion model; and planned statistical comparisons (Table 4). Each regime is trained with the same data, the same number of updates and shared hyperparameters.
+The study compares six training regimes (Table 3), plus two front-end ablations for vision, for four sense-specific world models at four checkpoints, with six analyses specified before the final runs: a spectral analysis of the filtered input (below); probes at adult-quality, own-age and newborn-quality input; a supervised information ceiling; violation-of-expectation surprise with dissociating events; occluded tracking and fill-in with a fusion model; and planned statistical comparisons (Table 4). Each regime is trained with the same data, the same number of updates and shared hyperparameters.
 
 \hypertarget{environment}{%
 \subsection{Environment}\label{environment}}
@@ -151,7 +277,7 @@ Episodes last \(T=20\) frames. A toy of type \(c\in\{1,\dots,4\}\) moves with co
 \hypertarget{front-ends}{%
 \subsection{Front ends}\label{front-ends}}
 
-All front ends are fixed functions \(\tilde o=\Phi_s(o;a)\) whose parameters are linearly interpolated in age from Table 1.
+All front ends are fixed functions \(\tilde o=\Phi_s(o;a)\) whose parameters are linearly interpolated in age from Table 2.
 
 \emph{Vision.} Write \(\mathrm{cpd}(a)\) for acuity (cycles per degree), \(\mathrm{CS}(a)\) for contrast sensitivity and \(\gamma(a)\) for colour saturation at age \(a\); then
 The first equation sets how much to blur the image, with more blur at lower acuity. The equations then apply that blur, pull the contrast towards the image average, and fade the colour towards grey, each by an amount that depends on age.
@@ -228,7 +354,7 @@ The network is penalised for failing to reproduce what it senses now and for fai
 \begin{equation}\mathcal L=\frac{\sum_t w_t\lVert d(z_t)-\tilde o_t\rVert^2}{\sum_t w_t}+\frac{\sum_t w_{t+1}\lVert d(\hat z_{t+1})-\tilde o_{t+1}\rVert^2}{\sum_t w_{t+1}}+0.1\,\lVert\hat z_{t+1}-\mathrm{sg}(z_{t+1})\rVert^2,\end{equation}
 with \(\mathrm{sg}\) the stop-gradient. For vision, per-pixel weights \(w=1+20\,\max_c|\tilde o_t-\tilde o_{t-1}|\) up-weight what moves, a stand-in for the orienting to motion without which the small toy is ignored. The vision encoder is a three-layer CNN with two coordinate channels and the decoder a spatial-broadcast decoder \autocite{watters2019spatial}; other senses use two-layer MLPs. Widths scale with the multiplier \(w\in\{1,2,3,4\}\).
 
-\textbf{Growth.} \texttt{grow(w\textquotesingle{},\ k\textquotesingle{})} widens every hidden layer as in Box 1 and lengthens the window by adding input weights of zero for the new (older) memory slots, so the model's function is unchanged (verified for every layer by a unit test, \texttt{tests/test\_growth.py}). Vision models grow from 43,507 to 586,499 parameters and hearing models from 13,792 to 149,088.
+\textbf{Growth.} \texttt{grow(w\textquotesingle{},\ k\textquotesingle{})} widens every hidden layer as in Proposition 3 and lengthens the window by adding input weights of zero for the new (older) memory slots, so the model's function is unchanged (verified for every layer by a unit test, \texttt{tests/test\_growth.py}). Vision models grow from 43,507 to 586,499 parameters and hearing models from 13,792 to 149,088.
 
 \textbf{Training.} Adam, learning rate \(2\times10^{-3}\), batch 32, 2,000 updates per stage for vision and 1,500 for other senses, four stages in one continuous run; weights carry over between stages and a fresh Adam optimiser is started at each stage, so all regimes see the same optimiser schedule. Hyperparameters were set once on the immature-input regime and shared by all regimes. Seeds: 5 for each regime (fusion uses the grown regime's checkpoints).
 
@@ -330,122 +456,6 @@ Hidden toy, fused vs vision memory & 1.8 & 0.01 & 5/5 \\
 \textbf{Code and data availability.} All code, configurations, results and trained checkpoints are at \url{https://github.com/pikulsomesh/developmental-world-models} (MIT licence). \texttt{scripts/run\_experiments.py} trains every regime, \texttt{scripts/analyze\_fusion\_voe.py} and \texttt{scripts/analyze\_extra.py} run the analyses, \texttt{scripts/make\_paper\_figures.py} draws the figures, and \texttt{scripts/fill\_report.py} writes every number in this report from the results files. An interactive companion and wiki are at \url{https://pikulsomesh.github.io/developmental-world-models/}.
 
 
-\section{Results}
-
-\hypertarget{a-simulation-that-isolates-each-constraint}{%
-\subsection{A simulation that isolates each constraint}\label{a-simulation-that-isolates-each-constraint}}
-
-The simulated world renders one toy of four types, a babbling hand and, in half the scenes, a vertical screen into four streams: 32\ensuremath{\times}32 colour vision, binaural hearing (2 ears \ensuremath{\times} 32 frequency bins, panned by position and passing through the screen), an 8\ensuremath{\times}8 tactile patch on the hand, and four-dimensional proprioception (Fig. 1a; Methods). Each toy type is specified redundantly across senses, by shape and colour, pitch and felt shape \autocite{bahrick2000intersensory}. Each sense is filtered by a fixed front end whose parameters follow the age \(a\) (Fig. 1b, c; Table 1); for vision the parameters are published infant acuity and contrast sensitivity \autocite{norcia1985spatial,banks1988optical}, and for hearing, touch and proprioception they are coarse placeholder tables that respect the known order of maturation. Behind each front end is a world model of the same family (Methods). Each sense is trained in one continuous run of four stages and read out at the end of each. Six regimes (Fig. 1d; Table 2) cross the two levers, input schedule and network growth, with two order controls.
-
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig1_overview.png}
-\caption{\textbf{Sense-specific developmental world models.} \textbf{a}, Each sense passes a synthetic nursery (a toy that is seen, heard and felt, the infant's babbling hand, and an occluding screen) through a fixed filter \(\Phi_s(\cdot;a)\) indexed by age, and learns its own world model: an encoder \(e\), a dynamics model \(f\) over the last \(k\) latents and the infant's motor command \(u_t\), and a decoder. A fusion world model combines the frozen sense latents. Read-outs are linear probes, violation-of-expectation surprise and occluded tracking. \textbf{b}, The same moment delivered to vision, hearing (left ear, 32 frequency bins over the episode) and touch (an 8\ensuremath{\times}8 patch of skin) at 0, 3, 6 and 12 months. \textbf{c}, Front-end maturity per sense (normalised parameters of Table 1): touch and proprioception start close to mature, hearing partly, vision far behind. \textbf{d}, The six training regimes: input quality over the four training stages; marker size is network width.}
-\end{figure}
-
-\hypertarget{the-input-sets-the-order-of-development-and-learning-lags-what-the-input-allows}{%
-\subsection{The input sets the order of development, and learning lags what the input allows}\label{the-input-sets-the-order-of-development-and-learning-lags-what-the-input-allows}}
-
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig2_development.png}
-\caption{\textbf{Development of each sense.} The ceiling and own-age data for vision and hearing are also plotted against age in the companion paper \autocite{mohapatra2026senses}. \textbf{a}, Toy position decoded from the vision model's latent at each checkpoint (probe fitted and tested on adult-quality input), for the six regimes; dashed grey line, information ceiling (a supervised network trained directly on that age's filtered input). \textbf{b}, The same with the probe fitted and tested on the input quality of the checkpoint's own age. \textbf{c}, Hearing. \textbf{d}, Fraction of the age-matched ceiling reached by the immature-input regime (own-age probe) and by the adult-input regime, for vision (solid) and hearing (dashed). \textbf{e}, Proprioception (hand position R\textsuperscript{2}, squares) and touch (toy identity accuracy, triangles; chance 0.25) are close to their final level from the first checkpoint. \textbf{f}, Age at which each sense's information ceiling first reaches half its 12-month value; this measure does not recover the infant order (Kendall \ensuremath{\tau} against touch \textless{} hearing \textless{} vision in the panel title), because the vision ceiling is already high at birth. Lines, mean over seeds; bands, \ensuremath{\pm}1 s.d.; n = 5 seeds per regime.}
-\end{figure}
-
-With immature input, the vision model cannot localise the toy at the first checkpoint (position \(R^2\) 0.02 \ensuremath{\pm} 0.00) and is still poor at the second (0.31 \ensuremath{\pm} 0.15), then rises to 0.85 \ensuremath{\pm} 0.04 (Fig. 3a). Trained on adult-quality input the same network localises the toy from the first checkpoint (0.69 \ensuremath{\pm} 0.04) and ends at 0.89 \ensuremath{\pm} 0.03. Hearing, touch and the body senses are close to their final level much earlier (Fig. 3c, e), so vision is the last sense to develop, which is put there by the front-end tables. Measured by the age at which each sense's information ceiling reaches half its 12-month value (touch 0, hearing 4, vision 0 months; Kendall \(\tau\) = 0.00 against the order touch, hearing, vision; Fig. 3f) the infant order is not recovered, because the vision ceiling is already high at birth even though the learned model is not.
-
-Proposition 1 asks whether this early failure is the input or the learner. Probing on each checkpoint's own input (Fig. 3b) gives 0.00 \ensuremath{\pm} 0.01 at 0 months and 0.85 \ensuremath{\pm} 0.04 at 12, so it is not a distribution shift from training on blurred and testing on sharp images. The newborn input is not empty: a supervised network trained directly on it reaches \(R^2\) = 0.57 (Fig. 3a, dashed), and the exact linear solution of Proposition 2 reaches 0.79. The gap between 0.57 and 0.02 is therefore a property of learning. Proposition 2 also quantifies it: with the step size set by adult input, the newborn front end shrinks the total input variance from 32.20 to 0.12 and lengthens the time to half ceiling 39-fold (Fig. 2a, b). The vision model approaches its ceiling only as the front end sharpens (Fig. 3d).
-
-\hypertarget{contrast-sets-the-speed-of-learning-and-blur-sets-the-ceiling-in-theory-and-in-the-linear-model}{%
-\subsection{Contrast sets the speed of learning and blur sets the ceiling, in theory and in the linear model}\label{contrast-sets-the-speed-of-learning-and-blur-sets-the-ceiling-in-theory-and-in-the-linear-model}}
-
-Scaling contrast alone by \(\kappa\) delays the linear solution by \(\kappa^{-2}\) to within 1\% over a 44-fold range, and leaves its ceiling unchanged (Fig. 2c). Blur alone leaves the time to half ceiling almost unchanged but lowers the ceiling from 0.95 without blur to 0.80 at the newborn width of 2.14 px (Fig. 2d). The linear read-out is not the network, and the networks are trained with Adam, which removes the global scale effect; ablations of the front end test which component matters in the trained vision model.
-
-\textbf{Front-end ablations.} Two further vision regimes, in which only blur or only contrast follows age, are being trained to test which component slows the trained network; their results are not yet in this version.
-
-\hypertarget{growth-delays-learning-and-halves-the-parameter-updates}{%
-\subsection{Growth delays learning and halves the parameter-updates}\label{growth-delays-learning-and-halves-the-parameter-updates}}
-
-Adding growth to immature input does not change the shape of the curve; it delays it (Fig. 3a). The grown vision model is still at \(R^2\) 0.04 \ensuremath{\pm} 0.03 at the 3-month checkpoint and ends at 0.79 \ensuremath{\pm} 0.06, against 0.85 \ensuremath{\pm} 0.04 for the fixed-size network; identity accuracy is 0.49 \ensuremath{\pm} 0.06 against 0.64 \ensuremath{\pm} 0.06 (Hedges' \(g\) = \ensuremath{-}2.2, \(p\) = 0.005). Growth without immature input learns quickly and ends near the adult-input model (0.86 \ensuremath{\pm} 0.04). At matched updates, growing networks use 0.48 of the fixed network's parameter-updates (Fig. 5d). This is the plateau Proposition 3 predicts: new units begin learning only through their outgoing weights, so each widening is followed by a stall, and growth trades accuracy for compute.
-
-\hypertarget{early-immaturity-costs-vision-a-little-and-helps-hearing}{%
-\subsection{Early immaturity costs vision a little and helps hearing}\label{early-immaturity-costs-vision-a-little-and-helps-hearing}}
-
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig3_costs_benefits.png}
-\caption{\textbf{Costs and benefits at the 12-month checkpoint.} \textbf{a}, Vision probe R\textsuperscript{2} when tested on newborn-quality input (bars, mean; dots, seeds; whiskers, s.d.). All values are negative (worse than predicting the mean), so differences are in how badly models fail. \textbf{b}, Hearing localisation on clean input. \textbf{c}, Effect sizes (Hedges' g with approximate 95\% CI) and Welch-test p values for the planned comparisons; n per group shown. \textbf{d}, Vision accuracy against training compute (parameter-updates relative to a fixed-size network).}
-\end{figure}
-
-On clean input the adult-input vision model is best. Immature input costs 0.89 \ensuremath{-} 0.85 in \(R^2\) (\(g\) = \ensuremath{-}1.2, \(p\) = 0.06). Tested on newborn-quality input, every model fails (Fig. 5a), with regimes that saw immature input failing less on average (\ensuremath{-}0.22 \ensuremath{\pm} 0.14 against \ensuremath{-}0.40 \ensuremath{\pm} 0.22 for adult input), but the difference is within seed variability (\(p\) = 0.16); we do not claim a robustness benefit in vision.
-
-Hearing differs. Models that heard immature sound early localise better on clean input at 12 months (0.45 \ensuremath{\pm} 0.01 immature, 0.46 \ensuremath{\pm} 0.01 immature with growth) than models that only heard adult-quality sound (0.39 \ensuremath{\pm} 0.05 adult input, 0.32 \ensuremath{\pm} 0.11 growth only; Fig. 5b; \(g\) = 1.5, \(p\) = 0.05). Shuffled input quality (0.45 \ensuremath{\pm} 0.01) is close to the immature schedule, so the benefit comes from having heard degraded input at all, a form of augmentation (the mixture objective of training at several qualities), more than from its order. Reversing the schedule is the clearest negative control: the vision model that ends on newborn-quality input falls from 0.87 \ensuremath{\pm} 0.01 to 0.58 \ensuremath{\pm} 0.08, so what the model has learned does not survive a late degradation.
-
-\hypertarget{fusing-senses-recovers-what-each-sense-alone-loses}{%
-\subsection{Fusing senses recovers what each sense alone loses}\label{fusing-senses-recovers-what-each-sense-alone-loses}}
-
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{fig4_fusion_expectation.png}
-\caption{\textbf{Fusion and expectation.} \textbf{a}, Horizontal position of a fully hidden toy decoded from the vision model's memory window, from hearing alone and from the fused world model. \textbf{b}, Position of a visible toy at 12 months from vision alone, the fused state, the fused state with vision switched off, and hearing alone. \textbf{c}, Violation-of-expectation (VoE) index of the unimodal vision models; positive means more surprise when the toy fails to reappear. \textbf{d}, VoE index of the fused model broken down by channel, for three events: the toy vanishes from every sense; it vanishes from sight and touch but keeps sounding; a silent toy vanishes. Faded bars, 0 months; solid, 12 months. \textbf{e}, Frame-by-frame surprise of one vision model (immature input, 12 months) on a possible and an impossible event; grey, toy hidden. Bands and whiskers, \ensuremath{\pm}1 s.d. over seeds.}
-\end{figure}
-
-During a long occlusion, the hidden toy's horizontal position can be decoded from the vision model's memory (\(R^2\) 0.60 \ensuremath{\pm} 0.08 at 12 months), from hearing, which passes through the screen (0.42 \ensuremath{\pm} 0.09), and best from the fused world model (0.75 \ensuremath{\pm} 0.06; Fig. 6a; paired difference fused minus vision positive in every seed). The advantage appears at 6 months and nothing is decodable at 0 to 3 months, when neither vision nor binaural hearing can localise. For a visible toy, the fused state is better than vision alone (0.87 \ensuremath{\pm} 0.03 against 0.79 \ensuremath{\pm} 0.06) and, with vision switched off, still recovers position from hearing, touch and the hand (0.53 \ensuremath{\pm} 0.01; Fig. 6b).
-
-\hypertarget{surprise-follows-the-conditional-mean-not-the-stored-position}{%
-\subsection{Surprise follows the conditional mean, not the stored position}\label{surprise-follows-the-conditional-mean-not-the-stored-position}}
-
-No unimodal vision model, in any regime, has a positive violation-of-expectation index (Fig. 6c): all are more surprised when the toy reappears than when it fails to, like a predictor that copies the last frame (Fig. 6e). This holds although the hidden toy's position is decodable from the same model's memory. It is the behaviour Proposition 4 predicts for a squared-error forecaster when the reappearance time is uncertain.
-
-The fused model does show a positive index when the toy vanishes from every sense (0.32 \ensuremath{\pm} 0.11 at 12 months), but its channels show where the surprise comes from: hearing 0.75 \ensuremath{\pm} 0.05, vision \ensuremath{-}0.04 \ensuremath{\pm} 0.05 (Fig. 6d). The model notices that the sound stopped. When the toy vanishes from sight but keeps sounding, the overall index is \ensuremath{-}0.02 \ensuremath{\pm} 0.01 and the vision channel \ensuremath{-}0.09 \ensuremath{\pm} 0.07; when a silent toy vanishes, they are \ensuremath{-}0.04 \ensuremath{\pm} 0.02 and \ensuremath{-}0.23 \ensuremath{\pm} 0.11. Without a sound to give the event away, the fused model does not expect the toy back either: a read-out can show that information about a hidden object is present while the model's predictions do not use it.
-
-
-\section{Discussion}
-
-\textbf{What the theory explains.} Table 3 sets each proposition against what we observed. The information bound and the learning-time law together account for the main shape of development in the vision model: a front end that shrinks input variance and removes fine detail makes the early read-out both lower and slower, and the self-supervised model reaches only a small fraction of the ceiling until the front end sharpens. The growth delay accounts for why growing the network did not help, and the conditional-mean result accounts for the sign of the surprise index.
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
-\caption{Predictions of the theory and what was observed.}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Proposition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Prediction
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Observation
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Proposition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Prediction
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Observation
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-1. Information bound & Learned score cannot exceed the ceiling at that input quality & Holds at every age; early gap is large for vision \\
-2. Learning time & Contrast scales speed by \(\kappa^{-2}\); blur limits the ceiling & Exact in the linear model; trained-network ablations in Results \\
-3. Growth delay & A plateau after each widening; fewer parameter-updates & Grown model lags; uses about half the parameter-updates \\
-4. Conditional mean & Negative surprise index when reappearance is uncertain & Negative for every unimodal vision model; positive only when a sound gives the event away \\
-\end{longtable}
-
-\textbf{What it does not explain.} The linear solution is a lower bound on how deep networks behave, and the trained vision model lags its ceiling far more than the linear model lags its own, which shows that most of the delay lies in learning features, not in fitting a read-out. Proposition 2 does not apply as stated to adaptive optimisers, and the ablations show which component of the front end matters in practice. Nor does the theory explain the benefit of early immaturity in hearing: the shuffled-order control suggests augmentation, but we have not derived it.
-
-\textbf{Implications for staged training.} Three design rules follow, each stated for the setting studied here. Reduce contrast or gain only if the cost in speed is acceptable, because it delays learning by the square of the scale with plain gradient descent and gives no lasting information benefit; use blur when the aim is to withhold fine detail early, and expect a lower ceiling in a finite budget; and do not use growth as a substitute for a schedule, because new units contribute nothing until their outgoing weights move. When surprise is the read-out, a squared-error pixel forecaster is the wrong instrument: objectives that predict in latent space \autocite{garrido2025intuitive}, represent uncertainty explicitly or are trained on longer horizons should be tested against the same dissociating events.
-
-\textbf{Limitations.} Everything is synthetic and small (at most 0.6 million parameters per sense) and is evaluated mainly with linear probes, which measure decodability, not behaviour. The theory is exact for a linear read-out under gradient flow and is suggestive for trained networks. Hearing, touch and proprioception tables are placeholders, and the labels 0, 3, 6 and 12 months name training stages and carry no claim about hours of experience. With 5 seeds per regime, several comparisons have large effect sizes but are not significant (Fig. 5c); we report them as estimates. An internal referee report and our responses are provided with the code (\texttt{papers/world-models/report/PEER\_REVIEW.md}).
-
-\textbf{Future work.} The immediate extensions are experience-matched checkpoints of one continuous run per sense, late fusion with sense-onset order as a factor, latent-space and uncertainty-aware objectives tested against the dissociating events, and extending the spectral account to deep networks by measuring the singular-value spectrum of the learned input-output map. The data path runs from this synthetic simulation to an embodied simulator for touch and proprioception \autocite{mattern2024mimo} and to head-camera corpora for vision and hearing \autocite{sullivan2021saycam,long2024babyview}.
-
-
 \textbf{General.} During the preparation of this work, the author used an AI assistant (Claude, Anthropic) to help write and run analysis code, draw figures and draft text. The author reviewed and edited the content and takes full responsibility for the content of the publication.
 
 \textbf{Author contributions.} S. Mohapatra conceived the study, directed the work and approved the final text.
@@ -465,19 +475,19 @@ Extended Data Figs. 1 to 3 (below), \texttt{report/REFERENCES\_VERIFIED.md} (the
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{ed1_model_outputs.png}
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{ed1_model_outputs.png}
 \caption{\textbf{What the vision models see, rebuild and predict.} For selected regimes and checkpoints: the input given (at the age that stage was trained on), the reconstruction from the latent, and the one-step prediction, for the first 14 frames of one episode.}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{ed2_all_senses.png}
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{ed2_all_senses.png}
 \caption{\textbf{All senses, all regimes.} Position R\textsuperscript{2} (top) and identity accuracy (bottom; dotted, chance) per checkpoint.}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{ed3_ceiling_ownage.png}
+\includegraphics[width=1\textwidth,height=0.78\textheight,keepaspectratio]{ed3_ceiling_ownage.png}
 \caption{\textbf{Information ceilings and own-age probes.} The same ceiling data are plotted by age in Fig. 3 of the companion paper \autocite{mohapatra2026senses}. \textbf{a}, \textbf{b}, Supervised ceilings per sense and age. \textbf{c}, Hearing probed on own-age input.}
 \end{figure}
 

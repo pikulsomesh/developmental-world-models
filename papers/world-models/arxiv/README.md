@@ -17,4 +17,4 @@ Or upload the folder to Overleaf (compiler: pdfLaTeX). For the arXiv upload incl
 ## Notes
 
 - The correspondence address in `main.tex` is the account email; edit `EMAIL` in `scripts/build_arxiv.py` to change it.
-- This source was generated without a TeX engine in the build environment (linted with chktex only), so compile it once on Overleaf and fix any warnings before submitting.
+- The source compiles cleanly with pdfLaTeX and BibTeX (TeX Live 2023); `main.bbl` is included for arXiv. The PDF it produces is also the paper's published PDF (`../report/report.pdf`).

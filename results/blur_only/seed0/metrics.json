@@ -1,0 +1,113 @@
+{
+ "stages": [
+  0,
+  3,
+  6,
+  12
+ ],
+ "steps_per_stage": {
+  "vision": 2000,
+  "audio": 1500,
+  "touch": 1500,
+  "proprio": 1500
+ },
+ "senses": {
+  "vision": {
+   "blur_only": [
+    {
+     "pred_err_own": 0.0005155502003617585,
+     "pred_err_adult": 0.009444398805499077,
+     "probe_adult": {
+      "pos_r2": 0.4114719925918605,
+      "pos_mae_px": 4.723240979638378,
+      "type_acc": 0.486375
+     },
+     "probe_newborn": {
+      "pos_r2": -0.7268718694191398,
+      "pos_mae_px": 8.208514359431284,
+      "type_acc": 0.29475
+     },
+     "voe": {
+      "surprise_possible": 0.001583983238961082,
+      "surprise_impossible": 0.001164793377101887,
+      "voe_index": -0.15250051947094717
+     },
+     "age": 0,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.0030012582428753376,
+     "pred_err_adult": 0.005554242990911007,
+     "probe_adult": {
+      "pos_r2": 0.8231034578849956,
+      "pos_mae_px": 2.3004172227945654,
+      "type_acc": 0.694375
+     },
+     "probe_newborn": {
+      "pos_r2": -0.2501021200559044,
+      "pos_mae_px": 7.169250856132943,
+      "type_acc": 0.285125
+     },
+     "voe": {
+      "surprise_possible": 0.006930795959196985,
+      "surprise_impossible": 0.0061275154387112705,
+      "voe_index": -0.0615148847357391
+     },
+     "age": 3,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.005703234579414129,
+     "pred_err_adult": 0.005703234579414129,
+     "probe_adult": {
+      "pos_r2": 0.8797365767419462,
+      "pos_mae_px": 1.7418256065238493,
+      "type_acc": 0.857125
+     },
+     "probe_newborn": {
+      "pos_r2": -0.25238541809536996,
+      "pos_mae_px": 7.213799603680187,
+      "type_acc": 0.24225
+     },
+     "voe": {
+      "surprise_possible": 0.011420328957028688,
+      "surprise_impossible": 0.009702940199058502,
+      "voe_index": -0.08130317070145732
+     },
+     "age": 6,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.005299521144479513,
+     "pred_err_adult": 0.005299521144479513,
+     "probe_adult": {
+      "pos_r2": 0.8976423409785707,
+      "pos_mae_px": 1.4890590571969582,
+      "type_acc": 0.891625
+     },
+     "probe_newborn": {
+      "pos_r2": -0.6281564548283678,
+      "pos_mae_px": 8.027085475890013,
+      "type_acc": 0.2625
+     },
+     "voe": {
+      "surprise_possible": 0.011708139565307647,
+      "surprise_impossible": 0.010440965244779363,
+      "voe_index": -0.05721108511578288
+     },
+     "age": 12,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    }
+   ]
+  }
+ },
+ "fusion": {}
+}

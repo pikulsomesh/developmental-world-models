@@ -19,7 +19,7 @@ PAPER = os.path.join(ROOT, "papers", "world-models")
 REP = os.path.join(PAPER, "report")
 OUT = os.path.join(PAPER, "arxiv")
 AUTHOR, AFFIL, EMAIL = "Somesh Mohapatra", "Independent", "pikulsomesh@gmail.com"
-TITLE = "Do AI Models Learn Like Humans?"
+TITLE = "Learning Dynamics of Predictive World Models Under Developmental Input Constraints"
 
 
 def pandoc(md: str) -> str:
@@ -114,7 +114,7 @@ def main():
     # Table 1 has a long first column: give it more room than the four value columns
     main_tex = main_tex.replace("(\\columnwidth - 8\\tabcolsep) * \\real{0.2000}", "(\\columnwidth - 8\\tabcolsep) * \\real{0.1800}", 4).replace("(\\columnwidth - 8\\tabcolsep) * \\real{0.1800}", "(\\columnwidth - 8\\tabcolsep) * \\real{0.2800}", 1)
     # keep figure aspect ratio; pandoc's width+height pair would stretch the image
-    main_tex = main_tex.replace("width=1\\textwidth,height=\\textheight", "width=\\textwidth,height=0.78\\textheight,keepaspectratio")
+    main_tex = re.sub(r"width=([0-9.]+)\\textwidth,height=\\textheight", r"width=\1\\textwidth,height=0.78\\textheight,keepaspectratio", main_tex)
     main_tex = main_tex.replace("\\begin{figure}\n", "\\begin{figure}[tbp]\n")
     open(os.path.join(OUT, "main.tex"), "w").write(main_tex)
     shutil.copy(os.path.join(REP, "refs.bib"), os.path.join(OUT, "references.bib"))

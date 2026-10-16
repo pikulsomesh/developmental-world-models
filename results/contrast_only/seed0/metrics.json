@@ -1,0 +1,113 @@
+{
+ "stages": [
+  0,
+  3,
+  6,
+  12
+ ],
+ "steps_per_stage": {
+  "vision": 2000,
+  "audio": 1500,
+  "touch": 1500,
+  "proprio": 1500
+ },
+ "senses": {
+  "vision": {
+   "contrast_only": [
+    {
+     "pred_err_own": 0.00035214819945394993,
+     "pred_err_adult": 0.027545301243662834,
+     "probe_adult": {
+      "pos_r2": 0.05655687042069124,
+      "pos_mae_px": 6.42109658179382,
+      "type_acc": 0.245
+     },
+     "probe_newborn": {
+      "pos_r2": -0.2997141779810073,
+      "pos_mae_px": 7.342983885003944,
+      "type_acc": 0.2435
+     },
+     "voe": {
+      "surprise_possible": 0.00042688287183409554,
+      "surprise_impossible": 0.0003524253235082142,
+      "voe_index": -0.09554313527163151
+     },
+     "age": 0,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.001559872878715396,
+     "pred_err_adult": 0.014811864122748375,
+     "probe_adult": {
+      "pos_r2": 0.5559870426891038,
+      "pos_mae_px": 3.975878566851961,
+      "type_acc": 0.371125
+     },
+     "probe_newborn": {
+      "pos_r2": -0.010873251385620897,
+      "pos_mae_px": 6.619053522872906,
+      "type_acc": 0.28475
+     },
+     "voe": {
+      "surprise_possible": 0.0030012335727224127,
+      "surprise_impossible": 0.0024808838049648328,
+      "voe_index": -0.09491766263076644
+     },
+     "age": 3,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.004122712183743715,
+     "pred_err_adult": 0.006370507646352053,
+     "probe_adult": {
+      "pos_r2": 0.7874032881982933,
+      "pos_mae_px": 2.569030902579962,
+      "type_acc": 0.629625
+     },
+     "probe_newborn": {
+      "pos_r2": -0.12160788883462104,
+      "pos_mae_px": 6.881425973269874,
+      "type_acc": 0.275375
+     },
+     "voe": {
+      "surprise_possible": 0.008234273525886238,
+      "surprise_impossible": 0.006838667730335146,
+      "voe_index": -0.09259014361082663
+     },
+     "age": 6,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    },
+    {
+     "pred_err_own": 0.005529959220439196,
+     "pred_err_adult": 0.005529959220439196,
+     "probe_adult": {
+      "pos_r2": 0.8361562787917369,
+      "pos_mae_px": 2.1661820901325632,
+      "type_acc": 0.683125
+     },
+     "probe_newborn": {
+      "pos_r2": -0.16807929040055813,
+      "pos_mae_px": 6.985680442199726,
+      "type_acc": 0.24
+     },
+     "voe": {
+      "surprise_possible": 0.01302496881922707,
+      "surprise_impossible": 0.01159470645012334,
+      "voe_index": -0.05809428245726279
+     },
+     "age": 12,
+     "params": 586499,
+     "width": 4,
+     "window": 6
+    }
+   ]
+  }
+ },
+ "fusion": {}
+}

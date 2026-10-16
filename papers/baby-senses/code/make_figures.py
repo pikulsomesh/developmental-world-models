@@ -34,10 +34,10 @@ a = np.linspace(0, 24, 241)
 # ================= Figure 1: milestone timeline per sense
 MS = [  # (row, month, label, placement): u/d = above/below, L = left-aligned from the dot
     ("Touch", 0, "responds everywhere;\nrooting, grasp", "uL"), ("Touch", 3, "explores with\nhands and mouth", "d"), ("Touch", 6, "explores textures\nwith fingers", "uL"),
-    ("Taste and smell", 0, "prefers flavours met\nin the womb", "uL"),
-    ("Hearing", 0, "prefers mother's voice\nand native rhythm", "uL"), ("Hearing", 4.5, "recognises\nown name", "d"), ("Hearing", 6, "vowels tune to\nhome language", "uL"),
+    ("Taste and smell", 0, "prefers odours met\nin the womb", "uL"),
+    ("Hearing", 0, "prefers mother's\nvoice", "uL"), ("Hearing", 4.5, "recognises\nown name", "d"), ("Hearing", 6, "vowels tune to\nhome language", "uL"),
     ("Hearing", 11, "non-native consonants\nharder", "d"),
-    ("Vision", 0, "prefers face-like\npatterns", "uL"), ("Vision", 2, "smooth pursuit;\ncolour emerges", "d"), ("Vision", 4, "binocular\ndepth", "uL"),
+    ("Vision", 0, "prefers face-like\npatterns", "uL"), ("Vision", 2, "smooth pursuit\ndevelops", "d"), ("Vision", 4, "binocular\ndepth", "uL"),
     ("Vision", 9, "face narrowing to\nfamiliar faces", "d"),
 ]
 rows = ["Vision", "Hearing", "Taste and smell", "Touch"]

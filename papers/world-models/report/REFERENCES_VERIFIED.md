@@ -57,3 +57,7 @@ Every reference cited in the paper was checked against an authoritative record (
 ## Not independently confirmed from a primary page
 
 - DOIs for `kleinman2023critical` (seen on one proceedings index only) and the arXiv-only entries (no DOI used).
+
+## Companion manuscript
+
+`mohapatra2026senses` is the author's own companion manuscript (in preparation, same repository); it is cited for shared data and scope, not as an external source, and has no external record to verify.

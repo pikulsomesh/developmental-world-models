@@ -73,7 +73,10 @@ def main():
         lam, w, ceil = stats(a, frames, pos)
         p = cap.vision_params(a)
         th = t_half(lam, w, eta, ceil)
+        ts = np.logspace(0, 4.5, 40)
         out["ages"][str(a)] = {
+            "spectrum": [float(v) for v in np.sort(lam)[::-1][:80]],
+            "curve_t": [float(t) for t in ts], "curve_r2": r2_curve(lam, w, eta, ts),
             "blur_sigma_px": p["blur_sigma_px"], "contrast_gain": p["contrast_gain"],
             "total_variance": float(lam.sum()), "lambda_max": float(lam.max()),
             "linear_ceiling_r2": ceil, "t_half": th,

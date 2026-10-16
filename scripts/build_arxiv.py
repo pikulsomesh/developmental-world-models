@@ -1,6 +1,6 @@
 """Assemble the arXiv-ready LaTeX source (arxiv/main.tex) from report/REPORT.md.
 
-Uses the Research Future template layout: article class, authblk, 1.2 spacing, no line numbers,
+Uses the Research Future template layout (Introduction, problem setting, theory, methods, results, discussion): article class, authblk, 1.2 spacing, no line numbers,
 biblatex nejm numeric citations, sections Introduction / Materials and Methods / Results /
 Discussion / back matter. Body text is converted from the (number-filled) Markdown report with
 pandoc so wording and numbers always match the PDF and the site.
@@ -77,14 +77,10 @@ def main():
     md = open(os.path.join(REP, "REPORT.md")).read()
     pre, secs = split_sections(md)
     abstract = re.search(r"::: summary\n(.+?)\n:::", pre, re.S).group(1).strip().strip("*").strip()
-    box = re.search(r"::: box\n(.+?)\n:::", secs["Discussion"] + "\n" + "\n".join(secs.values()), re.S)
-    box_md = None
-    for k, v in secs.items():
+    for k, v in secs.items():  # drop any boxed perspectives; the theory lives in its own section
         m = re.search(r"::: box\n(.+?)\n:::", v, re.S)
         if m:
-            box_md = m.group(1)
             secs[k] = v.replace(m.group(0), "")
-    box_md = re.sub(r"^## Box 1 \| .*\n", "", box_md)
 
     def conv(text, shift=0):
         t = pandoc(clean_md(text))
@@ -95,9 +91,10 @@ def main():
     sec = lambda title, body: "\\section{" + title + "}\n\n" + body
     intro = sec("Introduction", conv(secs["Introduction"]))
     methods = sec("Materials and Methods", conv(secs["Materials and Methods"]))
+    setting = sec("Problem setting", conv(secs["Problem setting"]))
+    theory = sec("Theory", conv(secs["Theory"]))
     results = sec("Results", conv(secs["Results"]))
-    disc = "\\section{Discussion}\n\n" + conv(secs["Discussion"] + "\n## Perspectives from mathematics, computer science and neuroscience\n\n" +
-                box_md)
+    disc = "\\section{Discussion}\n\n" + conv(secs["Discussion"])
     ed = ("\\clearpage\n\\section*{Extended Data (Supplementary Figures)}\n\\setcounter{figure}{0}\n"
           "\\renewcommand{\\thefigure}{S\\arabic{figure}}\n\n" + conv(secs["Extended Data"]))
     # headings: pandoc turns '##' into \subsection already when top-level is section? -> pandoc maps ## to \subsection with default top-level=section
@@ -105,7 +102,7 @@ def main():
     abstract_tex = pandoc(abstract).strip()
     refs_note = ""
     main_tex = (tpl.replace("%%TITLE%%", TITLE).replace("%%AUTHOR%%", AUTHOR).replace("%%AFFIL%%", AFFIL)
-                .replace("%%EMAIL%%", EMAIL).replace("%%ABSTRACT%%", abstract_tex).replace("%%INTRO%%", intro)
+                .replace("%%EMAIL%%", EMAIL).replace("%%ABSTRACT%%", abstract_tex).replace("%%INTRO%%", intro + "\n" + setting + "\n" + theory)
                 .replace("%%METHODS%%", methods).replace("%%RESULTS%%", results).replace("%%DISCUSSION%%", disc)
                 .replace("%%BACKMATTER%%", conv(secs["Acknowledgments"]).replace("\\section{Acknowledgments}", "\\section*{Acknowledgments}")
                          + "\n" + conv(secs["Supplementary Materials"]).replace("\\section{Supplementary Materials}", "\\section*{Supplementary Materials}")

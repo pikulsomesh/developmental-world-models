@@ -12,6 +12,7 @@ regenerated from the results files when seeds are added:
   n(regime, sense="vision")                      number of seeds
   cp(sense, field)                               compute accounting
   ms(field, sense=None)                          milestones
+  sp(*path, d=2)                                 spectral analysis (results/spectral.json)
 """
 from __future__ import annotations
 
@@ -98,6 +99,17 @@ def cp(sense, field):
 def ms(field, sense=None):
     x = EXTRA["milestones"][field]
     return f"{x[sense]}" if sense else (f"{x:.2f}" if isinstance(x, float) else str(x))
+
+
+SPEC = json.load(open(os.path.join(RES, "spectral.json"))) if os.path.exists(os.path.join(RES, "spectral.json")) else {}
+
+
+def sp(*path, d=2):
+    """Value from results/spectral.json, e.g. sp("ages", "0", "t_half_rel", d=0)."""
+    x = SPEC
+    for k in path:
+        x = x[int(k)] if isinstance(x, list) else x[k]
+    return f"{x:,.{d}f}".replace("-", "−")
 
 
 def main():

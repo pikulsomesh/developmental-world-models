@@ -423,6 +423,63 @@ def fig5():
     save(fig, "fig5_companion")
 
 
+AGE_COL = {"0": "#b3262e", "3": "#e07b39", "6": "#6a9fd8", "12": "#1f4e8c"}
+
+
+def fig6():
+    """Spectral account of learning time (results/spectral.json)."""
+    sp = json.load(open(os.path.join(RES, "spectral.json")))
+    fig, axs = plt.subplots(1, 4, figsize=(180 * MM, 60 * MM), gridspec_kw={"wspace": 0.75})
+    ax = axs[0]
+    for a, d in sp["ages"].items():
+        ax.semilogy(range(1, len(d["spectrum"]) + 1), d["spectrum"], color=AGE_COL[a], lw=1.1, label=f"{a} mo")
+    ax.set_xlabel("mode (sorted)"); ax.set_ylabel("input variance $\\lambda_i$"); ax.legend(frameon=False, fontsize=5.5)
+    ax.set_title("Input spectrum", fontsize=6.5, loc="left"); panel(ax, "a")
+    ax = axs[1]
+    for a, d in sp["ages"].items():
+        ax.semilogx(d["curve_t"], d["curve_r2"], color=AGE_COL[a], lw=1.1)
+        ax.axhline(d["linear_ceiling_r2"], color=AGE_COL[a], lw=0.4, ls=":")
+    ax.set_xlabel("gradient steps $t$"); ax.set_ylabel("linear read-out $R^2(t)$")
+    ax.set_title("Learning curves", fontsize=6.5, loc="left"); panel(ax, "b")
+    ax = axs[2]
+    c = sp["sweeps"]["contrast"]
+    g = np.array([d["gain"] for d in c]); r = np.array([d["t_half_rel"] for d in c])
+    ax.loglog(g, r, "o", color="#2a78d6", ms=3.5, label="exact solution")
+    gg = np.linspace(g.min(), 1, 50); ax.loglog(gg, 1 / gg ** 2, "-", color="#999999", lw=0.9, label="$1/\\kappa^2$")
+    ax.set_xlabel("contrast gain $\\kappa$"); ax.set_ylabel("time to half ceiling (rel.)"); ax.legend(frameon=False, fontsize=5.5)
+    ax.set_xticks([0.15, 0.3, 0.5, 1]); ax.set_xticklabels(["0.15", "0.3", "0.5", "1"]); ax.minorticks_off(); ax.set_yticks([1, 10]); ax.set_yticklabels(["1", "10"])
+    ax.set_title("Contrast: speed", fontsize=6.5, loc="left"); panel(ax, "c")
+    ax = axs[3]
+    b = sp["sweeps"]["blur"]
+    ax.plot([d["sigma"] for d in b], [d["ceiling"] for d in b], "o-", color="#eb6834", ms=3.5, lw=1)
+    ax.set_xlabel("blur $\\sigma$ (px)"); ax.set_ylabel("linear ceiling $R^2$")
+    ax2 = ax.twinx(); ax2.plot([d["sigma"] for d in b], [d["t_half_rel"] for d in b], "s--", color="#999999", ms=3, lw=0.8)
+    ax2.set_ylabel("time to half ceiling (rel.)", color="#777777"); ax2.set_ylim(0, 2)
+    ax.set_title("Blur: ceiling", fontsize=6.5, loc="left"); panel(ax, "d")
+    save(fig, "fig6_theory")
+
+
+def fig7():
+    """Front-end ablations: which component of immaturity slows or limits the vision model."""
+    regs = [("adult_scratch", "Adult input", COL["adult_scratch"]), ("curriculum_only", "Full immaturity", COL["curriculum_only"]),
+            ("blur_only", "Blur only", "#7b3fb0"), ("contrast_only", "Contrast only", "#00a3a3")]
+    fig, axs = plt.subplots(1, 2, figsize=(120 * MM, 52 * MM), gridspec_kw={"wspace": 0.4})
+    for ax, (key, ylab, ttl) in zip(axs, [("pos_r2", "probe $R^2$ (adult input)", "Toy position"),
+                                          ("type_acc", "identity accuracy", "Toy identity")]):
+        for r, lab, c in regs:
+            arr = series(r, "vision", "probe_adult", key)
+            band(ax, range(4), arr, c, label=f"{lab} (n={len(arr)})", marker="o")
+        if key == "pos_r2":
+            a, v = ceiling("vision", "pos_r2")
+            if a is not None:
+                ax.plot([list(a).index(x) if x in list(a) else np.nan for x in STAGES], [v[list(a).index(x)] for x in STAGES],
+                        ":", color=GREY, lw=1, label="ceiling") if all(x in list(a) for x in STAGES) else None
+        ax.set_xticks(range(4)); ax.set_xticklabels([str(a) for a in STAGES])
+        ax.set_xlabel("checkpoint (months)"); ax.set_ylabel(ylab); ax.set_title(ttl, fontsize=6.5, loc="left")
+    axs[0].legend(frameon=False, fontsize=5.2, loc="lower right"); panel(axs[0], "a"); panel(axs[1], "b")
+    save(fig, "fig7_ablation")
+
+
 # ------------------------------------------------------------------ Extended Data
 def ed1():
     from PIL import Image
@@ -479,6 +536,6 @@ def ed3():
 
 
 if __name__ == "__main__":
-    names = sys.argv[1:] or ["fig1", "fig2", "fig3", "fig4", "fig5", "ed1", "ed2", "ed3"]
+    names = sys.argv[1:] or ["fig1", "fig2", "fig3", "fig4", "fig5", "fig6", "fig7", "ed1", "ed2", "ed3"]
     for n in names:
         globals()[n]()

@@ -101,7 +101,7 @@ Proposition 1 asks whether this early failure is the input or the learner. Probi
 
 Scaling contrast alone by $\kappa$ delays the linear solution by $\kappa^{-2}$ to within 1% over a 44-fold range, and leaves its ceiling unchanged (Fig. 2c). Blur alone leaves the time to half ceiling almost unchanged but lowers the ceiling from {{sp("sweeps","blur","0","ceiling")}} without blur to {{sp("sweeps","blur","4","ceiling")}} at the newborn width of {{sp("ages","0","blur_sigma_px")}} px (Fig. 2d). The linear read-out is not the network, and the networks are trained with Adam, which removes the global scale effect; ablations of the front end test which component matters in the trained vision model.
 
-ABLATION_SECTION_PENDING
+**Front-end ablations.** Two further vision regimes, in which only blur or only contrast follows age, are being trained to test which component slows the trained network; their results are not yet in this version.
 
 ## Growth delays learning and halves the parameter-updates
 

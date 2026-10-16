@@ -18,6 +18,7 @@ import torch
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from dwm import capability as cap  # noqa: E402
+from dwm.senses import MixedAge  # noqa: E402
 from dwm.env import generate  # noqa: E402
 from dwm.fusion import run_fusion  # noqa: E402
 from dwm.models import SenseWorldModel, clone  # noqa: E402
@@ -35,6 +36,10 @@ CONDITIONS = {
     "growth_only": (True, "adult"),
     "shuffled_order": (False, "shuffled"),
     "reversed_immaturity": (False, "reversed"),
+    # front-end ablations (vision only): only one component of immaturity follows age
+    "blur_only": (False, "blur_only"),
+    "contrast_only": (False, "contrast_only"),
+    "color_only": (False, "color_only"),
 }
 
 
@@ -85,7 +90,9 @@ def main():
                     c = cap.capacity(age)
                     m.grow(c["width"], c["window"])
                 train_age = {"age": age, "adult": 12, "shuffled": list(cap.STAGES),
-                             "reversed": cap.STAGES[::-1][i]}[schedule]
+                             "reversed": cap.STAGES[::-1][i],
+                             "blur_only": MixedAge(age, blur=age), "contrast_only": MixedAge(age, contrast=age),
+                             "color_only": MixedAge(age, color=age)}[schedule]
                 own_age = age if schedule == "shuffled" else train_age
                 train_sense(m, train, train_age, steps[sense], seed=args.seed * 100 + i)
                 ev = evaluate_sense(m, train, test, own_age=own_age)

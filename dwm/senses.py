@@ -46,14 +46,27 @@ def blur1d(x: torch.Tensor, sigma: float) -> torch.Tensor:
     return F.conv1d(F.pad(x, (r, r), mode="replicate"), k.view(1, 1, -1).repeat(c, 1, 1), groups=c)
 
 
+class MixedAge(float):
+    """An age whose vision components can differ, for ablations of the front end.
+
+    `float(MixedAge(...))` is the nominal age; `.blur`, `.contrast` and `.color` are the ages at which
+    each component of the vision front end is evaluated."""
+
+    def __new__(cls, nominal, blur=12.0, contrast=12.0, color=12.0):
+        o = super().__new__(cls, nominal)
+        o.blur, o.contrast, o.color = blur, contrast, color
+        return o
+
+
 def vision(x: torch.Tensor, age: float, gen: torch.Generator | None = None) -> torch.Tensor:
     """x: (N, 3, H, W) in [0, 1]."""
-    p = cap.vision_params(age, x.shape[-1])
-    x = blur2d(x, p["blur_sigma_px"])
+    ab, ac, ak = (age.blur, age.contrast, age.color) if isinstance(age, MixedAge) else (age, age, age)
+    px = x.shape[-1]
+    x = blur2d(x, cap.vision_params(ab, px)["blur_sigma_px"])
     mean = x.mean(dim=(1, 2, 3), keepdim=True)
-    x = mean + (x - mean) * p["contrast_gain"]
+    x = mean + (x - mean) * cap.vision_params(ac, px)["contrast_gain"]
     lum = (0.299 * x[:, 0:1] + 0.587 * x[:, 1:2] + 0.114 * x[:, 2:3])
-    x = lum + (x - lum) * p["color_saturation"]
+    x = lum + (x - lum) * cap.vision_params(ak, px)["color_saturation"]
     return x.clamp(0, 1)
 
 

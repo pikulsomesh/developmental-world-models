@@ -52,7 +52,7 @@ function build() {
   hdr.innerHTML = `<div class="wrap"><a class="brand" href="${R}index.html">Developmental World Models</a>
     <nav aria-label="Primary">${link("index.html", "Baby Senses Lab", section === "home" || section === "app")}${link("explore/index.html", "Research tools", section === "explore")}${link("wiki/overview.html", "Wiki", section === "wiki")}
     ${link("paper/index.html", "Papers", section === "papers")}<a href="${GH}">GitHub</a></nav>
-    <button class="icon-btn" id="theme" aria-label="Toggle light or dark theme">Theme</button></div>`;
+    <button class="icon-btn" id="theme" type="button"></button></div>`;
   skip.after(hdr);
   if (section === "app" || section === "home") { // app tab strip, grouped by phase
     const an = document.createElement("nav"); an.className = "appnav"; an.setAttribute("aria-label", "Baby Senses Lab");
@@ -60,12 +60,17 @@ function build() {
     an.innerHTML = `<div class="wrap">${APP.map((p) => { const head = p[2] && p[2] !== ph ? `<span class="ph">Phase ${p[2]}</span>` : ""; ph = p[2] || ph; return head + link(p[0], p[1], p[0] === path); }).join("")}</div>`;
     hdr.after(an);
   }
-  document.getElementById("theme").onclick = () => {
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
+  // light / dark: follows the system until the visitor picks one, then remembers it
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
+  const tb = document.getElementById("theme");
+  const paintTheme = () => { const d = isDark(); tb.textContent = d ? "☀ Light mode" : "☾ Dark mode"; tb.setAttribute("aria-label", d ? "Switch to light mode" : "Switch to dark mode"); };
+  tb.onclick = () => {
+    root.dataset.theme = isDark() ? "light" : "dark";
     try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
-    window.dispatchEvent(new Event("themechange"));
+    paintTheme(); window.dispatchEvent(new Event("themechange"));
   };
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintTheme); } catch (e) {}
+  paintTheme();
 
   // headings: ids + in-page list
   const h2s = [...main.querySelectorAll("h2")];
@@ -111,10 +116,10 @@ function build() {
   // footer
   const f = document.createElement("footer"); f.className = "site-footer";
   f.innerHTML = `<div class="wrap"><div class="cols">
-    <div><h2>Baby Senses Lab</h2><p>A simulation and research tool from the Developmental World Models project, by Somesh Mohapatra. It is not a medical or diagnostic tool.</p><p>Code released under the MIT licence. Data and figures are generated from the repository.</p></div>
+    <div><h2>Baby Senses Lab</h2><p>A simulation and research tool from the Developmental World Models project, by Somesh Mohapatra. It is not a medical or diagnostic tool.</p><p>Code is open source (see the <a href="${GH}/blob/main/LICENSE">licence</a>). Data and figures are generated from the repository.</p></div>
     <div><h2>Wiki</h2><ul>${WIKI.slice(0, 5).map((p) => `<li>${link(p[0], p[1])}</li>`).join("")}</ul></div>
     <div><h2>More</h2><ul>${WIKI.slice(5).map((p) => `<li>${link(p[0], p[1])}</li>`).join("")}<li>${link("explore/index.html", "Simulations and tools")}</li></ul></div>
-    <div><h2>Cite and contribute</h2><ul><li>${link("index.html#cite", "How to cite")}</li><li>${link("paper/index.html", "Papers")}</li><li><a href="${GH}">Source code</a></li><li><a href="${GH}/issues">Report an issue</a></li></ul></div>
+    <div><h2>Cite and contribute</h2><ul><li>${link("index.html#cite", "How to cite")}</li><li><a href="${R}paper/report.pdf">Paper 1: learning dynamics (PDF)</a></li><li><a href="${R}paper/baby-senses.pdf">Paper 2: what infants sense (PDF)</a></li><li>${link("paper/index.html", "Both papers")}</li><li><a href="${GH}">Source code</a></li><li><a href="${GH}/issues">Report an issue</a></li></ul></div>
   </div></div>`;
   body.appendChild(f);
   if (!document.getElementById("tip")) { const t = document.createElement("div"); t.className = "tip"; t.id = "tip"; t.setAttribute("role", "tooltip"); body.appendChild(t); }

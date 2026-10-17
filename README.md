@@ -63,4 +63,4 @@ Synthetic scene, four senses, six training regimes, fusion world model, own-age 
 
 ## License
 
-MIT (code). The plan and paper text are © the authors until the preprint is posted.
+Code: see [LICENSE](LICENSE). The plan and paper text are © the authors until the preprint is posted.

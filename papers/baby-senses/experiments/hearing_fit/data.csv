@@ -1,0 +1,12 @@
+id,age_months,freq_hz,infant_minus_adult_db,kind,approx,use_primary,use_alt,source,locator
+a1,1,500,45,low,0,0,0,"Werner & Gillenwater 1990 (Infant Behav Dev 13:355-375), SECONDARY: as reported in Werner course notes 'Human Auditory Development' (U Washington; faculty.washington.edu/lawerner/sphsc462/Development.pdf), p.16","'2- to 4-week-old infants' behavioral thresholds to pure tones were about 45 dB higher than adults' at 500 Hz'"
+a2,1,4000,35,high,0,1,1,"Werner 2007 J Commun Disord 40:275-283 (citing Werner & Gillenwater 1990)","Sec. 1.1: '1-month-old's behavioral response threshold at 4000 Hz is about 35 dB higher than an adults''"
+b1,3,500,23,low,0,1,1,"Olsho et al. 1988 JASA 84:1316-1324","Discussion p.1323: '3-month-olds' thresholds at 500 Hz average about 23 dB higher than those of adults'"
+b2,3,4000,19,high,0,1,0,"Olsho et al. 1988 JASA 84:1316-1324","Discussion p.1323: 'at 4000 Hz they average about 19 dB higher'"
+b3,3,4000,30,high,0,0,1,"Werner 2007 J Commun Disord 40:275-283 (citing Tharpe & Ashmead 2001; Werner & Gillenwater 1990; Olsho et al. 1987)","Sec. 1.1: 'By 3 months, the difference in threshold at 4000 Hz has improved to 30 dB re: adult threshold' (conflicts with Olsho 19 dB)"
+b4,3,8000,30,high,1,0,0,"Olsho et al. 1988 JASA 84:1316-1324","Results Sec. B p.1322: 'by about 30 dB at 8000 Hz' (also 'almost 30 dB', Discussion p.1323); 15-20 dB for 250-4000 Hz"
+c1,6,250,15,low,1,1,1,"Olsho et al. 1988 JASA 84:1316-1324","Results p.1322: 'at 250 Hz, thresholds are still elevated by about 15 dB'"
+c2,6,4000,15,high,1,1,1,"Werner 2007 J Commun Disord 40:275-283 (citing Olsho et al. 1988; Trehub et al. 1980)","Sec. 2: '6-month-olds' thresholds are only about 15 dB higher than adults' at frequencies above 2000 Hz'"
+c3,6,8000,10,high,1,0,0,"Olsho et al. 1988 JASA 84:1316-1324","Results p.1322: 'at 8000 Hz, the difference ... is less than 10 dB' (upper bound, not used in fit)"
+c4,6,500,20,low,1,0,1,"Werner 2007 J Commun Disord 40:275-283","Sec. 2: 'Absolute sensitivity to low frequencies remains about 20 dB poorer than in adults' (age assignment ambiguous: stated for the period after 6 months; used only in sensitivity fit)"
+d1,12,NA,12.5,overall,1,1,1,"Olsho et al. 1988 JASA 84:1316-1324","Abstract: 6- and 12-month-olds 'about 10-15 dB' above adults (pooled; midpoint 12.5 used; difference larger at low frequencies; no 12-month-only numbers)"

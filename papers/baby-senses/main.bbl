@@ -899,8 +899,8 @@
     \field{labeltitlesource}{title}
   \field{howpublished}{\url{https://github.com/pikulsomesh/developmental-world-models}}
     \field{note}{Companion manuscript}
-    \field{title}{Learning Dynamics of Predictive World Models Under
-  Developmental Input Constraints}
+    \field{title}{Learning Like Infants: Input Constraints in Predictive World
+  Models}
     \field{year}{2026}
   \endentry
 
@@ -1675,6 +1675,84 @@
     \field{volume}{23}
     \field{journaltitle}{Developmental Psychology}
     \field{year}{1987}
+  \endentry
+
+  \entry{werner1990puretone}{article}{}
+    \name{author}{2}{}{%
+      {{hash=WLA}{%
+         family={Werner},
+         familyi={W\bibinitperiod},
+         given={Lynne\bibnamedelima A.},
+         giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=GJM}{%
+         family={Gillenwater},
+         familyi={G\bibinitperiod},
+         given={Jean\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WLAGJM1}
+    \strng{fullhash}{WLAGJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1016/0163-6383(90)90040-F
+    \endverb
+    \field{number}{3}
+    \field{pages}{355\bibrangedash 375}
+    \field{title}{Pure-tone sensitivity of 2- to 5-week-old infants}
+    \field{volume}{13}
+    \field{journaltitle}{Infant Behavior and Development}
+    \field{year}{1990}
+  \endentry
+
+  \entry{olsho1988pure}{article}{}
+    \name{author}{5}{}{%
+      {{hash=OLW}{%
+         family={Olsho},
+         familyi={O\bibinitperiod},
+         given={Lynne\bibnamedelima Werner},
+         giveni={L\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=KEG}{%
+         family={Koch},
+         familyi={K\bibinitperiod},
+         given={Elizabeth\bibnamedelima G.},
+         giveni={E\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=CEA}{%
+         family={Carter},
+         familyi={C\bibinitperiod},
+         given={Elizabeth\bibnamedelima A.},
+         giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=HCF}{%
+         family={Halpin},
+         familyi={H\bibinitperiod},
+         given={Christopher\bibnamedelima F.},
+         giveni={C\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=SNB}{%
+         family={Spetner},
+         familyi={S\bibinitperiod},
+         given={Nancy\bibnamedelima B.},
+         giveni={N\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OLWKEGCEAHCFSNB1}
+    \strng{fullhash}{OLWKEGCEAHCFSNB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1121/1.396630
+    \endverb
+    \field{number}{4}
+    \field{pages}{1316\bibrangedash 1324}
+    \field{title}{Pure-tone sensitivity of human infants}
+    \field{volume}{84}
+    \field{journaltitle}{The Journal of the Acoustical Society of America}
+    \field{year}{1988}
   \endentry
 
   \entry{sullivan2021saycam}{article}{}

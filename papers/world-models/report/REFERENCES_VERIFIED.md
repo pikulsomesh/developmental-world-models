@@ -61,3 +61,9 @@ Every reference cited in the paper was checked against an authoritative record (
 ## Companion manuscript
 
 `mohapatra2026senses` is the author's own companion manuscript (in preparation, same repository); it is cited for shared data and scope, not as an external source, and has no external record to verify.
+| `ha2018world` | Verified | https://arxiv.org/abs/1803.10122v1 | Title, authors, date (27 Mar 2018) and Zenodo DOI confirmed; no journal reference. |
+| `lecun2022path` | Verified | OpenReview forum BZ5a1r-kVsf | Title, author, 2022 confirmed; position paper, no publisher version. |
+| `assran2023self` | Verified | CVF open access page (CVPR 2023) | Title, 8 authors in order, pages 15619-15629 confirmed. |
+| `bardes2024revisiting` | Verified | MLAnthology / OpenReview QaCCuDfBk2 | Title, 8 authors in order, TMLR 2024 confirmed. |
+| `li2025words` | Verified | https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence | Title, author and date (10 Nov 2025) read on the essay itself; three capabilities (generative, multimodal, interactive) confirmed. An essay, not peer reviewed. |
+| `villalobos2024will` | Verified | https://proceedings.mlr.press/v235/villalobos24a.html | Title, 6 authors, ICML 2024 (PMLR 235), pages 49523-49544 confirmed. Cited for the projection that the stock of public human text will be largely used up within the decade. |

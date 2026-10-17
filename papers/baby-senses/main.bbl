@@ -904,6 +904,179 @@
     \field{year}{2026}
   \endentry
 
+  \entry{mayer1995monocular}{article}{}
+    \name{author}{6}{}{%
+      {{hash=MDL}{%
+         family={Mayer},
+         familyi={M\bibinitperiod},
+         given={D.\bibnamedelima L.},
+         giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=BAS}{%
+         family={Beiser},
+         familyi={B\bibinitperiod},
+         given={A.\bibnamedelima S.},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=WAF}{%
+         family={Warner},
+         familyi={W\bibinitperiod},
+         given={A.\bibnamedelima F.},
+         giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=PEM}{%
+         family={Pratt},
+         familyi={P\bibinitperiod},
+         given={E.\bibnamedelima M.},
+         giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=RKN}{%
+         family={Raye},
+         familyi={R\bibinitperiod},
+         given={K.\bibnamedelima N.},
+         giveni={K\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=LJM}{%
+         family={Lang},
+         familyi={L\bibinitperiod},
+         given={J.\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MDLBASWAFPEMRKNLJM1}
+    \strng{fullhash}{MDLBASWAFPEMRKNLJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{PMID: 7890497}
+    \field{number}{3}
+    \field{pages}{671\bibrangedash 685}
+    \field{title}{Monocular acuity norms for the {Teller} {Acuity} {Cards}
+  between ages one month and four years}
+    \field{volume}{36}
+    \field{journaltitle}{Investigative Ophthalmology \& Visual Science}
+    \field{year}{1995}
+  \endentry
+
+  \entry{teller1997first}{article}{}
+    \name{author}{1}{}{%
+      {{hash=TDY}{%
+         family={Teller},
+         familyi={T\bibinitperiod},
+         given={D.\bibnamedelima Y.},
+         giveni={D\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TDY1}
+    \strng{fullhash}{TDY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{PMID: 9344342}
+    \field{number}{11}
+    \field{pages}{2183\bibrangedash 2203}
+    \field{title}{First glances: the vision of infants. {The} {Friedenwald}
+  lecture}
+    \field{volume}{38}
+    \field{journaltitle}{Investigative Ophthalmology \& Visual Science}
+    \field{year}{1997}
+  \endentry
+
+  \entry{zubler2022evidence}{article}{}
+    \name{author}{13}{}{%
+      {{hash=ZJM}{%
+         family={Zubler},
+         familyi={Z\bibinitperiod},
+         given={Jennifer\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=WLD}{%
+         family={Wiggins},
+         familyi={W\bibinitperiod},
+         given={Lisa\bibnamedelima D.},
+         giveni={L\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=MMM}{%
+         family={Macias},
+         familyi={M\bibinitperiod},
+         given={Michelle\bibnamedelima M.},
+         giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=WTM}{%
+         family={Whitaker},
+         familyi={W\bibinitperiod},
+         given={Toni\bibnamedelima M.},
+         giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=SJS}{%
+         family={Shaw},
+         familyi={S\bibinitperiod},
+         given={Judith\bibnamedelima S.},
+         giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SJK}{%
+         family={Squires},
+         familyi={S\bibinitperiod},
+         given={Jane\bibnamedelima K.},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=PJA}{%
+         family={Pajek},
+         familyi={P\bibinitperiod},
+         given={Julie\bibnamedelima A.},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=WRB}{%
+         family={Wolf},
+         familyi={W\bibinitperiod},
+         given={Rebecca\bibnamedelima B.},
+         giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=SKS}{%
+         family={Slaughter},
+         familyi={S\bibinitperiod},
+         given={Karnesha\bibnamedelima S.},
+         giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=BAS}{%
+         family={Broughton},
+         familyi={B\bibinitperiod},
+         given={Amber\bibnamedelima S.},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=GKL}{%
+         family={Gerndt},
+         familyi={G\bibinitperiod},
+         given={Krysta\bibnamedelima L.},
+         giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=MBJ}{%
+         family={Mlodoch},
+         familyi={M\bibinitperiod},
+         given={Bethany\bibnamedelima J.},
+         giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=LPH}{%
+         family={Lipkin},
+         familyi={L\bibinitperiod},
+         given={Paul\bibnamedelima H.},
+         giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZJMWLDMMM+1}
+    \strng{fullhash}{ZJMWLDMMMWTMSJSSJKPJAWRBSKSBASGKLMBJLPH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1542/peds.2021-052138
+    \endverb
+    \field{number}{3}
+    \field{pages}{e2021052138}
+    \field{title}{Evidence-informed milestones for developmental surveillance
+  tools}
+    \field{volume}{149}
+    \field{journaltitle}{Pediatrics}
+    \field{year}{2022}
+  \endentry
+
   \entry{mandel1995infants}{article}{}
     \name{author}{3}{}{%
       {{hash=MDR}{%
@@ -1162,80 +1335,47 @@
     \field{year}{2007}
   \endentry
 
-  \entry{mayer1995monocular}{article}{}
-    \name{author}{6}{}{%
-      {{hash=MDL}{%
-         family={Mayer},
-         familyi={M\bibinitperiod},
-         given={D.\bibnamedelima L.},
-         giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod},
+  \entry{frank2021variability}{book}{}
+    \name{author}{4}{}{%
+      {{hash=FMC}{%
+         family={Frank},
+         familyi={F\bibinitperiod},
+         given={Michael\bibnamedelima C.},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
       }}%
-      {{hash=BAS}{%
-         family={Beiser},
+      {{hash=BM}{%
+         family={Braginsky},
          familyi={B\bibinitperiod},
-         given={A.\bibnamedelima S.},
-         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Mika},
+         giveni={M\bibinitperiod},
       }}%
-      {{hash=WAF}{%
-         family={Warner},
-         familyi={W\bibinitperiod},
-         given={A.\bibnamedelima F.},
-         giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
+      {{hash=YD}{%
+         family={Yurovsky},
+         familyi={Y\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
       }}%
-      {{hash=PEM}{%
-         family={Pratt},
-         familyi={P\bibinitperiod},
-         given={E.\bibnamedelima M.},
-         giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=RKN}{%
-         family={Raye},
-         familyi={R\bibinitperiod},
-         given={K.\bibnamedelima N.},
-         giveni={K\bibinitperiod\bibinitdelim N\bibinitperiod},
-      }}%
-      {{hash=LJM}{%
-         family={Lang},
-         familyi={L\bibinitperiod},
-         given={J.\bibnamedelima M.},
-         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      {{hash=MVA}{%
+         family={Marchman},
+         familyi={M\bibinitperiod},
+         given={Virginia\bibnamedelima A.},
+         giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{MDLBASWAFPEMRKNLJM1}
-    \strng{fullhash}{MDLBASWAFPEMRKNLJM1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{note}{PMID: 7890497}
-    \field{number}{3}
-    \field{pages}{671\bibrangedash 685}
-    \field{title}{Monocular acuity norms for the {Teller} {Acuity} {Cards}
-  between ages one month and four years}
-    \field{volume}{36}
-    \field{journaltitle}{Investigative Ophthalmology \& Visual Science}
-    \field{year}{1995}
-  \endentry
-
-  \entry{teller1997first}{article}{}
-    \name{author}{1}{}{%
-      {{hash=TDY}{%
-         family={Teller},
-         familyi={T\bibinitperiod},
-         given={D.\bibnamedelima Y.},
-         giveni={D\bibinitperiod\bibinitdelim Y\bibinitperiod},
-      }}%
+    \list{publisher}{1}{%
+      {MIT Press}%
     }
-    \strng{namehash}{TDY1}
-    \strng{fullhash}{TDY1}
+    \strng{namehash}{FMCBMYDMVA1}
+    \strng{fullhash}{FMCBMYDMVA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{PMID: 9344342}
-    \field{number}{11}
-    \field{pages}{2183\bibrangedash 2203}
-    \field{title}{First glances: the vision of infants. {The} {Friedenwald}
-  lecture}
-    \field{volume}{38}
-    \field{journaltitle}{Investigative Ophthalmology \& Visual Science}
-    \field{year}{1997}
+    \field{isbn}{9780262045100}
+    \field{title}{Variability and Consistency in Early Language Learning: The
+  {Wordbank} Project}
+    \list{location}{1}{%
+      {Cambridge, MA}%
+    }
+    \field{year}{2021}
   \endentry
 
   \entry{norcia1985spatial}{article}{}
@@ -1481,49 +1621,6 @@
     \field{volume}{2}
     \field{journaltitle}{Nature Neuroscience}
     \field{year}{1999}
-  \endentry
-
-  \entry{frank2021variability}{book}{}
-    \name{author}{4}{}{%
-      {{hash=FMC}{%
-         family={Frank},
-         familyi={F\bibinitperiod},
-         given={Michael\bibnamedelima C.},
-         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
-      }}%
-      {{hash=BM}{%
-         family={Braginsky},
-         familyi={B\bibinitperiod},
-         given={Mika},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=YD}{%
-         family={Yurovsky},
-         familyi={Y\bibinitperiod},
-         given={Daniel},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=MVA}{%
-         family={Marchman},
-         familyi={M\bibinitperiod},
-         given={Virginia\bibnamedelima A.},
-         giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {MIT Press}%
-    }
-    \strng{namehash}{FMCBMYDMVA1}
-    \strng{fullhash}{FMCBMYDMVA1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{isbn}{9780262045100}
-    \field{title}{Variability and Consistency in Early Language Learning: The
-  {Wordbank} Project}
-    \list{location}{1}{%
-      {Cambridge, MA}%
-    }
-    \field{year}{2021}
   \endentry
 
   \entry{bergelson2012}{article}{}
@@ -1951,103 +2048,6 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2017}
-  \endentry
-
-  \entry{zubler2022evidence}{article}{}
-    \name{author}{13}{}{%
-      {{hash=ZJM}{%
-         family={Zubler},
-         familyi={Z\bibinitperiod},
-         given={Jennifer\bibnamedelima M.},
-         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=WLD}{%
-         family={Wiggins},
-         familyi={W\bibinitperiod},
-         given={Lisa\bibnamedelima D.},
-         giveni={L\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=MMM}{%
-         family={Macias},
-         familyi={M\bibinitperiod},
-         given={Michelle\bibnamedelima M.},
-         giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=WTM}{%
-         family={Whitaker},
-         familyi={W\bibinitperiod},
-         given={Toni\bibnamedelima M.},
-         giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=SJS}{%
-         family={Shaw},
-         familyi={S\bibinitperiod},
-         given={Judith\bibnamedelima S.},
-         giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=SJK}{%
-         family={Squires},
-         familyi={S\bibinitperiod},
-         given={Jane\bibnamedelima K.},
-         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
-      }}%
-      {{hash=PJA}{%
-         family={Pajek},
-         familyi={P\bibinitperiod},
-         given={Julie\bibnamedelima A.},
-         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
-      }}%
-      {{hash=WRB}{%
-         family={Wolf},
-         familyi={W\bibinitperiod},
-         given={Rebecca\bibnamedelima B.},
-         giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod},
-      }}%
-      {{hash=SKS}{%
-         family={Slaughter},
-         familyi={S\bibinitperiod},
-         given={Karnesha\bibnamedelima S.},
-         giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=BAS}{%
-         family={Broughton},
-         familyi={B\bibinitperiod},
-         given={Amber\bibnamedelima S.},
-         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=GKL}{%
-         family={Gerndt},
-         familyi={G\bibinitperiod},
-         given={Krysta\bibnamedelima L.},
-         giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
-      }}%
-      {{hash=MBJ}{%
-         family={Mlodoch},
-         familyi={M\bibinitperiod},
-         given={Bethany\bibnamedelima J.},
-         giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-      {{hash=LPH}{%
-         family={Lipkin},
-         familyi={L\bibinitperiod},
-         given={Paul\bibnamedelima H.},
-         giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{ZJMWLDMMM+1}
-    \strng{fullhash}{ZJMWLDMMMWTMSJSSJKPJAWRBSKSBASGKLMBJLPH1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \verb{doi}
-    \verb 10.1542/peds.2021-052138
-    \endverb
-    \field{number}{3}
-    \field{pages}{e2021052138}
-    \field{title}{Evidence-informed milestones for developmental surveillance
-  tools}
-    \field{volume}{149}
-    \field{journaltitle}{Pediatrics}
-    \field{year}{2022}
   \endentry
 \enddatalist
 \endinput

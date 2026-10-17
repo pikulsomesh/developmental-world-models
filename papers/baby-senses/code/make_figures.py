@@ -33,31 +33,45 @@ a = np.linspace(0, 24, 241)
 
 # ================= Figure 1: milestone timeline per sense
 MS = [  # (row, month, label, placement): u/d = above/below, L = left-aligned from the dot
-    ("Touch", 0, "responds everywhere;\nrooting, grasp", "uL"), ("Touch", 3, "explores with\nhands and mouth", "d"), ("Touch", 6, "explores textures\nwith fingers", "uL"),
+    ("Touch", 0, "responds everywhere;\nrooting, grasp", "uL"), ("Touch", 3, "explores with\nhands and mouth", "d"),
+    ("Touch", 18, "walks alone: touch and\nbody sense guide balance", "u"),
     ("Taste and smell", 0, "prefers odours met\nin the womb", "uL"),
     ("Hearing", 0, "prefers mother's\nvoice", "uL"), ("Hearing", 4.5, "recognises\nown name", "d"), ("Hearing", 6, "vowels tune to\nhome language", "uL"),
-    ("Hearing", 11, "non-native consonants\nharder", "d"),
-    ("Vision", 0, "prefers face-like\npatterns", "uL"), ("Vision", 2, "smooth pursuit\ndevelops", "d"), ("Vision", 4, "binocular\ndepth", "uL"),
+    ("Hearing", 11, "non-native consonants\nharder", "d"), ("Hearing", 18, "follows spoken\none-step directions", "u"), ("Hearing", 24, "understands\nhundreds of words", "uR"),
+    ("Vision", 0, "prefers face-like\npatterns", "uL"), ("Vision", 2.5, "smooth pursuit\ndevelops", "d"), ("Vision", 4, "binocular\ndepth", "uL"),
     ("Vision", 9, "face narrowing to\nfamiliar faces", "d"),
+]
+SPANS = [  # (row, from, to, label): gradual refinement over a period
+    ("Touch", 3, 24, "locating touch in the space around the body improves gradually"),
+    ("Hearing", 6, 24, "localising sounds and listening in noise keep improving"),
+    ("Vision", 12, 24, "acuity keeps sharpening; adult values only in the preschool years"),
 ]
 rows = ["Vision", "Hearing", "Taste and smell", "Touch"]
 col = {"Vision": C["vision"], "Hearing": C["hearing"], "Taste and smell": C["chem"], "Touch": C["touch"]}
-SP = 1.6
-fig, ax = plt.subplots(figsize=(7.2, 4.4))
+SP = 1.7
+fig, ax = plt.subplots(figsize=(7.2, 4.9))
 ax.grid(axis="y", visible=False)
+ax.axvspan(0, 12, color="#f2f1ed", zorder=0, lw=0)
 for i, r in enumerate(rows):
     y = i * SP
-    ax.plot([-3, 24], [y, y], color=GRID, lw=6, solid_capstyle="round", zorder=1)
+    ax.plot([-1.5, 24], [y, y], color=GRID, lw=6, solid_capstyle="round", zorder=1)
+    for rr, a0, a1, lab in SPANS:
+        if rr != r: continue
+        ax.plot([a0, a1], [y, y], color=col[r], lw=6, alpha=0.35, solid_capstyle="round", zorder=2)
+        ax.text(a1, y - 0.36, lab, ha="right", va="top", fontsize=6.3, color=INK2, style="italic")
     for rr, m, lab, pl in MS:
         if rr != r: continue
-        up = pl.startswith("u"); left = pl.endswith("L")
+        up = pl.startswith("u"); left = pl.endswith("L"); right = pl.endswith("R")
         ax.scatter([m], [y], s=46, color=col[r], edgecolor="white", linewidth=1.5, zorder=3)
-        ax.annotate(lab, (m, y), xytext=(-3 if left else 0, 9 if up else -9), textcoords="offset points", ha="left" if left else "center",
-                    va="bottom" if up else "top", fontsize=6.8, color=INK, linespacing=1.0)
-top = (len(rows) - 1) * SP + 0.75
-ax.axvline(0, color=INK2, lw=0.8, ls="--", zorder=0); ax.text(-0.15, top, "birth", fontsize=7, color=INK2, ha="right")
+        ax.annotate(lab, (m, y), xytext=(-3 if left else (3 if right else 0), 9 if up else -9), textcoords="offset points",
+                    ha="left" if left else ("right" if right else "center"), va="bottom" if up else "top", fontsize=6.8, color=INK, linespacing=1.0)
+ax.text(24, 2 * SP - 0.36, "no later milestone in the sources we could verify", ha="right", va="top", fontsize=6.3, color=INK2, style="italic")
+top = (len(rows) - 1) * SP + 0.8
+ax.text(6, top, "first year: models and website", ha="center", fontsize=7, color=INK2)
+ax.text(18, top, "second year: website tables only", ha="center", fontsize=7, color=INK2)
+ax.axvline(0, color=INK2, lw=0.8, ls="--", zorder=0)
 ax.set_yticks([i * SP for i in range(len(rows))]); ax.set_yticklabels(rows)
-ax.set_xlim(-3, 24.5); ax.set_ylim(-0.9, top + 0.3); ax.set_xticks([0, 3, 6, 9, 12, 15, 18, 21, 24])
+ax.set_xlim(-1.5, 24.6); ax.set_ylim(-1.0, top + 0.35); ax.set_xticks([0, 3, 6, 9, 12, 15, 18, 21, 24])
 ax.set_xlabel("Age (months after birth)")
 ax.spines["left"].set_visible(False); ax.tick_params(axis="y", length=0)
 fig.tight_layout(); fig.savefig(OUT + "fig1_timeline.png", dpi=300); plt.close(fig)

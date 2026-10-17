@@ -643,55 +643,182 @@
     \field{year}{2019}
   \endentry
 
-  \entry{mohapatra2026senses}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=MS}{%
-         family={Mohapatra},
-         familyi={M\bibinitperiod},
-         given={Somesh},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{MS1}
-    \strng{fullhash}{MS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{note}{Companion manuscript, in preparation; source in the same
-  repository (papers/baby-senses)}
-    \field{title}{What Infants Sense at Each Age: Age-Tuned Neural Networks and
-  an Interactive Simulator}
-    \field{year}{2026}
-  \endentry
-
-  \entry{bahrick2000intersensory}{article}{}
+  \entry{ha2018world}{misc}{}
     \name{author}{2}{}{%
-      {{hash=BLE}{%
-         family={Bahrick},
-         familyi={B\bibinitperiod},
-         given={Lorraine\bibnamedelima E.},
-         giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+      {{hash=HD}{%
+         family={Ha},
+         familyi={H\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
       }}%
-      {{hash=LR}{%
-         family={Lickliter},
-         familyi={L\bibinitperiod},
-         given={Robert},
-         giveni={R\bibinitperiod},
+      {{hash=SJ}{%
+         family={Schmidhuber},
+         familyi={S\bibinitperiod},
+         given={J{\"u}rgen},
+         giveni={J\bibinitperiod},
       }}%
     }
-    \strng{namehash}{BLELR1}
-    \strng{fullhash}{BLELR1}
+    \strng{namehash}{HDSJ1}
+    \strng{fullhash}{HDSJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \verb{doi}
-    \verb 10.1037/0012-1649.36.2.190
+    \verb 10.5281/zenodo.1207631
     \endverb
-    \field{number}{2}
-    \field{pages}{190\bibrangedash 201}
-    \field{title}{Intersensory redundancy guides attentional selectivity and
-  perceptual learning in infancy}
-    \field{volume}{36}
-    \field{journaltitle}{Developmental Psychology}
-    \field{year}{2000}
+    \verb{eprint}
+    \verb 1803.10122
+    \endverb
+    \field{title}{World Models}
+    \field{eprinttype}{arXiv}
+    \field{year}{2018}
+  \endentry
+
+  \entry{lecun2022path}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LY1}
+    \strng{fullhash}{LY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{OpenReview position paper}
+    \field{title}{A Path Towards Autonomous Machine Intelligence}
+    \verb{url}
+    \verb https://openreview.net/forum?id=BZ5a1r-kVsf
+    \endverb
+    \field{year}{2022}
+  \endentry
+
+  \entry{assran2023self}{inproceedings}{}
+    \name{author}{8}{}{%
+      {{hash=AM}{%
+         family={Assran},
+         familyi={A\bibinitperiod},
+         given={Mahmoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DQ}{%
+         family={Duval},
+         familyi={D\bibinitperiod},
+         given={Quentin},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={Misra},
+         familyi={M\bibinitperiod},
+         given={Ishan},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Bojanowski},
+         familyi={B\bibinitperiod},
+         given={Piotr},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vincent},
+         familyi={V\bibinitperiod},
+         given={Pascal},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rabbat},
+         familyi={R\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Ballas},
+         familyi={B\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AMDQMI+1}
+    \strng{fullhash}{AMDQMIBPVPRMLYBN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}
+    \field{pages}{15619\bibrangedash 15629}
+    \field{title}{Self-Supervised Learning From Images With a Joint-Embedding
+  Predictive Architecture}
+    \field{year}{2023}
+  \endentry
+
+  \entry{bardes2024revisiting}{article}{}
+    \name{author}{8}{}{%
+      {{hash=BA}{%
+         family={Bardes},
+         familyi={B\bibinitperiod},
+         given={Adrien},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GQ}{%
+         family={Garrido},
+         familyi={G\bibinitperiod},
+         given={Quentin},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Ponce},
+         familyi={P\bibinitperiod},
+         given={Jean},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CX}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Xinlei},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rabbat},
+         familyi={R\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Assran},
+         familyi={A\bibinitperiod},
+         given={Mido},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Ballas},
+         familyi={B\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BAGQPJ+1}
+    \strng{fullhash}{BAGQPJCXRMLYAMBN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Revisiting Feature Prediction for Learning Visual
+  Representations from Video}
+    \verb{url}
+    \verb https://openreview.net/forum?id=QaCCuDfBk2
+    \endverb
+    \field{journaltitle}{Transactions on Machine Learning Research}
+    \field{year}{2024}
   \endentry
 
   \entry{garrido2025intuitive}{article}{}
@@ -757,6 +884,133 @@
     \field{journaltitle}{arXiv preprint arXiv:2502.11831}
     \field{eprinttype}{arXiv}
     \field{year}{2025}
+  \endentry
+
+  \entry{li2025words}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=LFF}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Fei-Fei},
+         giveni={F\bibinithyphendelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LFF1}
+    \strng{fullhash}{LFF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{Substack essay, 10 November 2025}
+    \field{title}{From Words to Worlds: Spatial Intelligence is {AI}'s Next
+  Frontier}
+    \verb{url}
+    \verb https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intellig
+    \verb ence
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{villalobos2024will}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=VP}{%
+         family={Villalobos},
+         familyi={V\bibinitperiod},
+         given={Pablo},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HA}{%
+         family={Ho},
+         familyi={H\bibinitperiod},
+         given={Anson},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Sevilla},
+         familyi={S\bibinitperiod},
+         given={Jaime},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BT}{%
+         family={Besiroglu},
+         familyi={B\bibinitperiod},
+         given={Tamay},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Heim},
+         familyi={H\bibinitperiod},
+         given={Lennart},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hobbhahn},
+         familyi={H\bibinitperiod},
+         given={Marius},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VPHASJBTHLHM1}
+    \strng{fullhash}{VPHASJBTHLHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Proceedings of the 41st International Conference on
+  Machine Learning}
+    \field{pages}{49523\bibrangedash 49544}
+    \field{series}{Proceedings of Machine Learning Research}
+    \field{title}{Position: Will We Run Out of Data? Limits of {LLM} Scaling
+  Based on Human-Generated Data}
+    \field{volume}{235}
+    \field{year}{2024}
+  \endentry
+
+  \entry{mohapatra2026senses}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=MS}{%
+         family={Mohapatra},
+         familyi={M\bibinitperiod},
+         given={Somesh},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MS1}
+    \strng{fullhash}{MS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Companion manuscript, in preparation; source in the same
+  repository (papers/baby-senses)}
+    \field{title}{What Infants Sense at Each Age: Age-Tuned Neural Networks and
+  an Interactive Simulator}
+    \field{year}{2026}
+  \endentry
+
+  \entry{bahrick2000intersensory}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BLE}{%
+         family={Bahrick},
+         familyi={B\bibinitperiod},
+         given={Lorraine\bibnamedelima E.},
+         giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=LR}{%
+         family={Lickliter},
+         familyi={L\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BLELR1}
+    \strng{fullhash}{BLELR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1037/0012-1649.36.2.190
+    \endverb
+    \field{number}{2}
+    \field{pages}{190\bibrangedash 201}
+    \field{title}{Intersensory redundancy guides attentional selectivity and
+  perceptual learning in infancy}
+    \field{volume}{36}
+    \field{journaltitle}{Developmental Psychology}
+    \field{year}{2000}
   \endentry
 
   \entry{mattern2024mimo}{article}{}

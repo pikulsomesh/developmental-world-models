@@ -13,6 +13,7 @@
 \usepackage{amssymb}
 \usepackage{url}
 \usepackage{float}
+\usepackage[section]{placeins}
 \usepackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 % tables and helpers used by the pandoc-converted text
@@ -64,5 +65,7 @@ backend=bibtex]{biblatex}
 %%BACKMATTER%%
 
 \printbibliography
+
+%%EXTENDED%%
 
 \end{document}

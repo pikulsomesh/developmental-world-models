@@ -54,3 +54,8 @@ Access note: during this run PubMed and PMC served bot-check pages, Europe PMC's
 | jang2024convolutional | Corrected | https://bmcl.korea.ac.kr/publication/2021_jang_jov/ (lab publication page) | Year is 2021, not 2024: J Vis 21(12):6, Nov 2021, DOI 10.1167/jov.21.12.6. The key is kept as given. | CNNs trained blurry-to-clear: face-trained networks stay robust to blur and keep a low-spatial-frequency bias, object-trained networks do not. Infant blur alone does not explain adult blur robustness for objects. |
 | avbersek2021training | Verified | https://pmc.ncbi.nlm.nih.gov/articles/PMC8458991 | none; DOI 10.1167/jov.21.10.14; PMID 34533580 | DCNNs trained coarse-to-fine (low to high spatial frequency) recognise blurred objects much better, and only mixed training matched human performance. |
 | teller1998spatial | REMOVED | PubMed search hit at https://pubmed.ncbi.nlm.nih.gov/9893838 (title only; page itself blocked). Adjacent record PMID 9893839 (BVS mirror) is Vision Res 38(21):3283–92, which fits pp. 3275–3282 for this paper. | Authors, pages and DOI could not be confirmed from a record. | I could not check whether it supports "most chromatic discriminations are present by 2–3 months" (abstract not accessible). |
+
+## Added October 2026 (hearing threshold fit)
+
+- olsho1988pure: verified against the AIP/ASA record (JASA 84(4):1316-1324, doi:10.1121/1.396630); full text read.
+- werner1990puretone: verified via the DOI record (Infant Behav Dev 13(3):355-375, doi:10.1016/0163-6383(90)90040-F) and the Werner 2007 reference list. Its numbers are used only as reported in Werner 2007.

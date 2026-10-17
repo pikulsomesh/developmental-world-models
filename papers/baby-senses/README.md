@@ -1,6 +1,6 @@
-# Paper 2: What Infants Sense at Each Age
+# Paper 2: Simulating Infant Senses
 
-*What Infants Sense at Each Age: Age-Tuned Neural Networks and an Interactive Simulator*.
+*Simulating Infant Senses with Age-Tuned Networks*.
 
 A developmental-neuroscience paper on **sensory perception, not cognition**: what infants perceive through touch, taste and smell, hearing and vision from birth to 24 months; how age-indexed front ends plus small prediction networks give a quick simulation of it; and the Baby Senses Lab (`docs/app/`), a browser-only simulation and research tool (not a screening or diagnostic test).
 

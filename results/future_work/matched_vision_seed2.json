@@ -1,0 +1,43 @@
+{
+ "job": "matched_vision",
+ "seed": 2,
+ "total_updates": 8000,
+ "checkpoints": [
+  {
+   "age": 1,
+   "updates": 667,
+   "probe_own": {
+    "pos_r2": 0.009388078843619807,
+    "pos_mae_px": 6.562953334558924,
+    "type_acc": 0.31925
+   }
+  },
+  {
+   "age": 3,
+   "updates": 2000,
+   "probe_own": {
+    "pos_r2": 0.031110026053248974,
+    "pos_mae_px": 6.486418704327049,
+    "type_acc": 0.26075
+   }
+  },
+  {
+   "age": 6,
+   "updates": 4000,
+   "probe_own": {
+    "pos_r2": 0.7426093032390781,
+    "pos_mae_px": 2.8874754329670655,
+    "type_acc": 0.458625
+   }
+  },
+  {
+   "age": 12,
+   "updates": 8000,
+   "probe_own": {
+    "pos_r2": 0.8725543892441598,
+    "pos_mae_px": 1.8828099320536977,
+    "type_acc": 0.618875
+   }
+  }
+ ]
+}

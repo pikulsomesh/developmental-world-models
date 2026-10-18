@@ -3,3 +3,5 @@ __pycache__/
 results/*/seed*/*.pt
 .pytest_cache/
 results/logs/
+runs/
+results/future_work/logs/

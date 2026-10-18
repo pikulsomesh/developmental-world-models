@@ -65,3 +65,13 @@ Access note: during this run PubMed and PMC served bot-check pages, Europe PMC's
 - grill2020bootstrap: verified against the NeurIPS 2020 proceedings page (papers.nips.cc, hash f3ada80d5c4ee70142b17b8192b2958e) and arXiv 2006.07733 (14 authors, Grill first, Valko last). Supports the claim cited: the online network predicts the target network's representation, and the target is a slow-moving average of the online network. Page range not seen, so it is left out.
 - bardes2022vicreg: verified against the ICLR 2022 poster listing (iclr.cc/virtual/2022/poster/6481) and arXiv 2105.04906v3 ("Accepted at ICLR 2022"). Supports the claim cited: a variance term keeps each embedding dimension's spread above a threshold and a covariance term decorrelates dimensions, to prevent collapse.
 - worldlabs2025rtfm: company blog post, verified through a search restricted to worldlabs.ai (title "RTFM: A Real-Time Frame Model", dated 16 October 2025); the site itself could not be fetched from this environment. It describes a real-time generative model that learns end-to-end from large-scale video, without explicit 3D representations, and uses spatially grounded frames as memory. It gives no architecture specification, paper or code, which is the only claim it supports in the text.
+
+## Added October 2026 (world-models sentence in the introduction)
+
+These three entries are copied unchanged from paper 1's bibliography, where each was checked against its primary record (see `papers/world-models/report/REFERENCES_VERIFIED.md`). The sources could not be re-fetched from this environment (blocked), so the paper 1 checks stand.
+
+- ha2018world: arXiv 1803.10122 (27 Mar 2018), Zenodo DOI 10.5281/zenodo.1207631.
+- lecun2022path: OpenReview position paper, forum BZ5a1r-kVsf (2022).
+- li2025words: Substack essay by Fei-Fei Li, 10 November 2025; cited only for her description of world models and spatial intelligence.
+
+The companion-paper entry (mohapatra2026learn) now points to the paper's folder on GitHub, because both papers go to arXiv at the same time and neither has an identifier yet.

@@ -1,4 +1,4 @@
-# Paper 1: Learning Dynamics of Predictive World Models Under Developmental Input Constraints
+# Paper 1: Learning Like Infants: Input Constraints in Predictive World Models
 
 - `report/REPORT.template.md`: source with `{{...}}` placeholders filled from `results/` by `scripts/fill_report.py`
 - `report/report.pdf`: built paper (`report/build.sh`); `report/REFERENCES_VERIFIED.md`: citation audit; `report/PEER_REVIEW.md`: internal referee report

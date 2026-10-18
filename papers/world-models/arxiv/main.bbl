@@ -975,10 +975,12 @@
     \strng{fullhash}{MS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{Companion manuscript, in preparation; source in the same
-  repository (papers/baby-senses)}
-    \field{title}{What Infants Sense at Each Age: Age-Tuned Neural Networks and
-  an Interactive Simulator}
+    \field{note}{Companion paper; manuscript and source code on GitHub}
+    \field{title}{Simulating Infant Senses with Age-Tuned Networks}
+    \verb{url}
+    \verb https://github.com/pikulsomesh/developmental-world-models/tree/main/p
+    \verb apers/baby-senses
+    \endverb
     \field{year}{2026}
   \endentry
 

@@ -118,14 +118,14 @@ ax.set_ylim(0, 1.0); ax.set_xticks([0, 3, 6, 9, 12]); ax.set_title("c  Touch: id
 fig.tight_layout(); fig.savefig(OUT + "fig3_ceiling.png", dpi=300); plt.close(fig)
 
 # ================= Figure 3: the app (cropped screenshots)
-R = OUT + "raw/"  # full-page screenshots of the live site (docs/app), 1280x900 at scale 2; not stored in the repo
+R = OUT + "raw/"  # full-page screenshots of the live site (docs/app, family view, light theme), 1280x900 at scale 2; not stored in the repo
 if os.path.exists(R + "age3.png"):
     def crop(f, box): return Image.open(R + f).convert("RGB").crop(box)
-    age = crop("age3.png", (148, 1060, 2412, 2840))
-    see = crop("see2.png", (149, 1475, 2417, 2360))
-    strip = crop("see2.png", (149, 2997, 2417, 3316))
-    nums = crop("age3.png", (148, 2960, 2412, 3440))
-    W = 2264
+    age = crop("age3.png", (248, 196, 2312, 1871))   # heading, age picker and sense cards at 3 months
+    see = crop("see2.png", (248, 1030, 2312, 1847))   # adult view and 2-month view
+    strip = crop("see2.png", (248, 2713, 2312, 3001)) # the same picture across the first year
+    nums = crop("age3.png", (248, 2818, 2312, 3414))  # "The numbers behind this page", opened
+    W = 2064
     def stack(ims, gap=40):
         H = sum(i.height for i in ims) + gap * (len(ims) - 1); c = Image.new("RGB", (W, H), "white"); y = 0
         for i in ims: c.paste(i, (0, y)); y += i.height + gap

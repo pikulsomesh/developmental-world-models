@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code · Developmental World Models</title>
+<meta name="description" content="Where everything is in the repository and how to rerun the experiments on a CPU.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Code · Developmental World Models">
+<meta property="og:description" content="Where everything is in the repository and how to rerun the experiments on a CPU.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/research/code.html">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/research/code.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="research/code.html" data-for="research">
+<noscript><div class="nojs">This site needs JavaScript for its tools. The papers work without it: <a href="../paper/report.pdf">paper 1 (PDF)</a> and <a href="../paper/baby-senses.pdf">paper 2 (PDF)</a>.</div></noscript>
+<main id="main">
+<div class="kicker">Code</div>
+<h1>Code and data</h1>
+<p class="lede">Everything runs on a CPU. Code, results and trained checkpoints are in <a href="https://github.com/pikulsomesh/developmental-world-models">the GitHub repository</a>.</p>
+<h2>Run it</h2>
+<pre><code>git clone https://github.com/pikulsomesh/developmental-world-models
+cd developmental-world-models
+pip install -r requirements.txt
+python -m pytest -q                                    # growth leaves the function unchanged
+python scripts/run_experiments.py --quick --out /tmp/q  # short smoke test
+scripts/queue.sh                                       # full grid of regimes and seeds</code></pre>
+<h2>Where things are</h2>
+<div class="tablewrap"><table class="t"><tbody>
+<tr><th scope="row"><code>dwm/capability.py</code></th><td>Age tables for each sense, shared with this site</td></tr>
+<tr><th scope="row"><code>dwm/env.py</code></th><td>The simulated nursery</td></tr>
+<tr><th scope="row"><code>dwm/senses.py</code></th><td>The age filters</td></tr>
+<tr><th scope="row"><code>dwm/models.py</code></th><td>Sense and fusion world models, with function-preserving growth</td></tr>
+<tr><th scope="row"><code>scripts/</code></th><td>Experiments, analyses and figures</td></tr>
+<tr><th scope="row"><code>results/</code></th><td>Metrics for every regime and seed</td></tr>
+<tr><th scope="row"><code>models/</code></th><td>Trained checkpoints</td></tr>
+<tr><th scope="row"><code>papers/</code></th><td>Both papers, with companion experiments</td></tr>
+<tr><th scope="row"><code>docs/</code></th><td>This site</td></tr>
+</tbody></table></div>
+<p class="note">The code is open source; see the <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/LICENSE">licence</a>. Problems and questions: <a href="https://github.com/pikulsomesh/developmental-world-models/issues">GitHub issues</a>.</p>
+</main>
+</body>
+</html>

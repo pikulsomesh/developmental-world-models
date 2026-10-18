@@ -3,122 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baby Senses Lab · Do AI Models Learn Like Humans?</title>
-<meta name="description" content="See, hear and explore what a baby of any age from birth to two years can sense and do, try simple looking and listening activities with a baby, and read the research behind it.">
+<title>Baby Senses Lab · Developmental World Models</title>
+<meta name="description" content="See and hear the world the way a baby of any age might, or read the research on world models that learn from baby-like senses.">
 <meta name="author" content="Somesh Mohapatra">
-<meta property="og:title" content="Do AI Models Learn Like Humans?">
-<meta property="og:description" content="See, hear and explore what a baby of any age from birth to two years can sense and do, try simple looking and listening activities with a baby, and read the research behind it.">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Developmental World Models">
+<meta property="og:title" content="Baby Senses Lab · Developmental World Models">
+<meta property="og:description" content="See and hear the world the way a baby of any age might, or read the research on world models that learn from baby-like senses.">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/index.html">
-<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="app/lab.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
 <script src="assets/site.js"></script>
 </head>
-<body data-root="" data-path="index.html" data-page="home">
-<noscript><div class="nojs">Navigation and interactive tools need JavaScript. Pages:
-<a href="index.html">Home</a> · <a href="wiki/overview.html">Study design</a> · <a href="wiki/models.html">Models</a> · <a href="wiki/methods.html">Methods</a> · <a href="wiki/theory.html">Theory</a> · <a href="wiki/results.html">Results</a> · <a href="wiki/limitations.html">Scope and limitations</a> · <a href="wiki/reproduce.html">Code and data</a> · <a href="wiki/references.html">References</a> · <a href="explore/index.html">Simulations</a> · <a href="paper/report.pdf">Paper (PDF)</a></div></noscript>
+<body data-root="" data-path="index.html" data-for="both" data-page="home">
+<noscript><div class="nojs">This site needs JavaScript for its tools. The papers work without it: <a href="paper/report.pdf">paper 1 (PDF)</a> and <a href="paper/baby-senses.pdf">paper 2 (PDF)</a>.</div></noscript>
 <main id="main">
-
-<section class="hero">
-<div class="kicker">Baby Senses Lab</div>
-<h1>What can a baby see, hear and understand?</h1>
-<p class="lede">Babies' senses start out blurry, muffled and imprecise, and sharpen over the first two years, each on its own schedule. Pick an age to explore what babies typically sense and do, see a picture or hear a sound the way they might, and try simple looking and listening activities with a real baby.</p>
-<div id="picker"></div>
-<div class="btns"><a class="btn primary" id="goAge" href="app/age.html">See what this baby can do →</a><a class="btn" href="app/session.html">Try activities with a baby</a><a class="btn" href="app/guide.html">How to use the lab</a></div>
+<section class="choose" data-show="none">
+<div class="kicker">Welcome</div>
+<h1>How would you like to explore?</h1>
+<p class="lede">This site shows how babies see, hear and feel the world at each age, and the research on computer models that learn from baby-like senses. Pick the view that fits you. You can switch at any time from the top of the page.</p>
+<div class="choices">
+<button type="button" class="choice" data-choose="family"><span class="ic" aria-hidden="true">👶</span><b>I'm a curious parent or person</b><span class="d">I want to know how babies see and hear the world, and what to try with a baby.</span><span class="go">Start exploring →</span></button>
+<button type="button" class="choice" data-choose="research"><span class="ic" aria-hidden="true">🔬</span><b>I'm a researcher</b><span class="d">I want the findings, how the study works, the papers and the code.</span><span class="go">See the research →</span></button>
+</div>
 </section>
-<p class="notice warn"><b>A simulation and research tool, not a medical test.</b> Everything here is built from published averages for groups of babies. It cannot tell you whether a particular baby's seeing, hearing or development is on track. If you have a concern, talk to a paediatrician or health visitor.</p>
 
-<h2 id="papers" style="border-top:0;padding-top:0;margin-top:30px">Read the papers</h2>
-<div class="grid g2 paths">
-  <a class="card" href="paper/baby-senses.pdf"><h3>Paper 2 · What infants sense at each age</h3><p>Touch, taste and smell, hearing and vision from birth to 24 months, how age-tuned networks simulate them, and this lab.</p><span class="go">PDF →</span></a>
-  <a class="card" href="paper/report.pdf"><h3>Paper 1 · Learning dynamics of predictive world models</h3><p>How models learn when their input is degraded the way a baby's senses are: speed, growth, combining senses and hidden objects.</p><span class="go">PDF →</span></a>
+<section class="hero" data-show="family">
+<div class="kicker">Baby Senses Lab</div>
+<h1>See the world the way a baby does</h1>
+<p class="lede">A baby's senses start out blurry and muffled and sharpen month by month. Pick an age, then look and listen.</p>
+<div id="picker"></div>
+<div class="tiles">
+<a class="tile" href="app/see.html" data-age-link><span class="ic" aria-hidden="true">👁️</span><b>See like a baby</b><span>A photo or video, the way a baby this age might see it.</span></a>
+<a class="tile" href="app/hear.html" data-age-link><span class="ic" aria-hidden="true">👂</span><b>Hear like a baby</b><span>Your voice or a sound, the way a baby this age might hear it.</span></a>
+<a class="tile" href="app/age.html" data-age-link><span class="ic" aria-hidden="true">🧸</span><b>What this age can do</b><span>What babies typically sense at this age, and games that suit it.</span></a>
 </div>
-<p class="note"><a href="paper/index.html">Both papers, with overviews and LaTeX source →</a></p>
+<p class="quiet">Built from published research on groups of babies. It cannot tell you how a particular baby is doing, and it is not a medical test.</p>
+</section>
 
-<h2 id="phases">Three ways in</h2>
-<p class="sub">The project plan has three phases. Each one is a part of the lab you can use today.</p>
-<div class="grid g3">
-  <div class="card phase"><div class="pn">Phase 1 · Explore by age</div><h3>What babies sense and do</h3>
-    <ul><li><a href="app/age.html" data-age-link>Age profile</a>: seeing, hearing, touch, thinking, social and movement, birth to 24 months</li>
-    <li><a href="app/see.html" data-age-link>See like a baby</a>: your photo or a sample, at any age</li>
-    <li><a href="app/hear.html" data-age-link>Hear like a baby</a>: your voice or a sample sound</li>
-    <li><a href="app/play.html" data-age-link>Activities and words</a>: is this baby ready for peek-a-boo?</li></ul></div>
-  <div class="card phase"><div class="pn">Phase 2 · Learning models</div><h3>What computer models learn</h3>
-    <ul><li><a href="app/models.html">What the models learned</a>: the research in plain words</li>
-    <li>Small networks that learn by predicting, fed baby-like senses that sharpen with age</li>
-    <li><a href="explore/index.html">Research tools</a> for the full detail</li></ul></div>
-  <div class="card phase"><div class="pn">Phase 3 · Try it for real</div><h3>Activities with a baby</h3>
-    <ul><li><a href="app/session.html">Try with a baby</a>: faces, a moving toy, stripes, sounds and hide-and-seek</li>
-    <li>Record what you see, get a summary, download your notes</li>
-    <li><a href="app/see.html" data-age-link>Video</a>: play your own clip at a baby's eyesight</li></ul></div>
-</div>
-
-<h2>Who it is for</h2>
-<div class="grid g3">
-  <div class="card"><h3>Parents and carers</h3><p>Understand what your baby can make out at this age, and choose activities that suit them.</p></div>
-  <div class="card"><h3>Educators and students</h3><p>See and hear the textbook milestones instead of reading them, and compare ages side by side.</p></div>
-  <div class="card"><h3>Researchers</h3><p>Run quick pilot observations with downloadable notes, and inspect the models, data and code.</p></div>
-</div>
-
-<h2 id="research">The research behind it</h2>
-<p class="sub">The lab grew out of a study asking whether computer models learn like babies when given the same blurry start. Short answer: sometimes. Read <a href="paper/report.pdf">paper 1 (learning dynamics)</a> and <a href="paper/baby-senses.pdf">paper 2 (what infants sense)</a>.</p>
-<h3 id="findings">Four findings</h3>
-<p class="sub">Each card answers one question about infants and machine learning. Values are means over independent training seeds at the 12-month checkpoint unless stated, read from the repository's result files. Every card links to its evidence.</p>
-<div class="grid g4" id="verdicts">
-  <div class="card finding"><div class="n">Q1</div><h3>Do senses mature in the infant order?</h3><span class="verdict v-partly">Only by construction</span>
-    <p data-card="1">Vision develops last in the learned curves, but only because the input filters are set that way. A ceiling-based measure does not recover the infant order.</p>
-    <p><a href="wiki/results.html#order">Evidence: input schedule and learning</a></p></div>
-  <div class="card finding"><div class="n">Q2</div><h3>Does starting with immature input help?</h3><span class="verdict v-partly">Partly</span>
-    <p data-card="2">A borderline gain in hearing and no clear cost in vision. Network growth slowed learning and halved training compute.</p>
-    <p><a href="wiki/results.html#immaturity">Evidence: costs and benefits</a> · <a href="wiki/results.html#growth">growth</a></p></div>
-  <div class="card finding"><div class="n">Q3</div><h3>Do models expect hidden objects to persist?</h3><span class="verdict v-no">No</span>
-    <p data-card="3">No vision model was surprised when a hidden toy vanished. The fused model was, but only through the hearing channel.</p>
-    <p><a href="wiki/results.html#expectation">Evidence: decodable is not expected</a> · <a href="explore/expectation.html">demo</a></p></div>
-  <div class="card finding"><div class="n">Q4</div><h3>Do combined senses beat any one sense?</h3><span class="verdict v-yes">Yes</span>
-    <p data-card="4">A fully hidden object's position is best decoded from the fused model.</p>
-    <p><a href="wiki/results.html#fusion">Evidence: fusion</a> · <a href="explore/fusion.html">charts</a></p></div>
-</div>
-<p class="note">These are results for controlled synthetic models and a synthetic nursery; see <a href="wiki/limitations.html">Scope and limitations</a> for what they do and do not support.</p>
-
-<h2 id="start">For researchers</h2>
-<div class="grid g4 paths">
-  <a class="card" href="paper/index.html"><h3>Read the papers</h3><p>Paper 1 on learning dynamics and paper 2 on what infants sense, with methods and figures.</p><span class="go">Two PDFs →</span></a>
-  <a class="card" href="explore/index.html"><h3>Explore the simulations</h3><p>Age slider through infant senses, model viewer, development curves, hide-and-seek, fusion.</p><span class="go">Five tools →</span></a>
-  <a class="card" href="wiki/overview.html"><h3>Read the wiki</h3><p>Study design, models, methods, theory, results, scope and limitations.</p><span class="go">Eight pages →</span></a>
-  <a class="card" href="wiki/reproduce.html"><h3>Run the code</h3><p>Repository map, exact commands, data files and checkpoints.</p><span class="go">Reproduce →</span></a>
-</div>
-<p class="note">Also available: the <a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/world-models/arxiv">arXiv-format LaTeX source</a> of the paper.</p>
-
-<h2 id="glance">The study at a glance</h2>
-<div class="grid g4">
-  <div class="card"><div class="stat">4 + 1</div><p class="note">sense world models (vision, hearing, touch, proprioception) and a fusion world model</p></div>
-  <div class="card"><div class="stat">6</div><p class="note">training regimes crossing input schedule, network growth and two order controls</p></div>
-  <div class="card"><div class="stat">0 · 3 · 6 · 12</div><p class="note">read-out checkpoints (months), stages of one continuous training run</p></div>
-  <div class="card"><div class="stat"><span data-live="n|curriculum_only|vision">–</span> seeds</div><p class="note">independent training seeds per regime for the sense models</p></div>
-</div>
-<p>Models range from 8,340 to 586,499 parameters per sense and are trained on CPU in a synthetic multisensory nursery: 32×32 colour vision, binaural hearing, an 8×8 tactile patch and proprioception, with a moving object, a babbling hand and an occluding screen. The <a href="wiki/overview.html">Study design</a> page gives the full protocol.</p>
-
-<h2 id="cite">Cite</h2>
-<p>If you use the code, data or results, please cite:</p>
-<pre id="bibtex"><code>@misc{mohapatra2026developmental,
-  author       = {Mohapatra, Somesh},
-  title        = {Do {AI} Models Learn Like Humans? Sense-Specific Developmental World Models},
-  year         = {2026},
-  howpublished = {GitHub repository and project site},
-  url          = {https://github.com/pikulsomesh/developmental-world-models}
-}</code></pre>
-<p><button class="icon-btn" data-copy="#bibtex" aria-label="Copy BibTeX">Copy</button> The code is open source; see the <a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/LICENSE">licence</a>.</p>
-
+<section class="hero" data-show="research">
+<div class="kicker">Developmental World Models</div>
+<h1>What does a world model learn from a baby's senses?</h1>
+<p class="lede">Each sense (vision, hearing, touch and body position) gets its own small predictive world model, fed input filtered to match an infant's at each age, and a fusion model combines them. In a small synthetic world, the quality and order of the input change what is learned and how fast.</p>
+<div class="grid g2"><div class="card paper"><div class="n">Paper 1 · Machine learning</div><h3>Learning Like Infants: Input Constraints in Predictive World Models</h3><p class="note" style="margin:0">How degraded, staged input and network growth change what predictive world models learn, with four propositions and a controlled simulation.</p>
+<div class="links"><a href="paper/report.pdf">Read the PDF (24 pages)</a><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/world-models">Source on GitHub</a></div></div><div class="card paper"><div class="n">Paper 2 · Developmental science</div><h3>Simulating Infant Senses with Age-Tuned Networks</h3><p class="note" style="margin:0">What infants sense at each age from birth to 24 months, how age-tuned networks simulate it, and the Baby Senses Lab.</p>
+<div class="links"><a href="paper/baby-senses.pdf">Read the PDF (21 pages)</a><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/baby-senses">Source on GitHub</a></div></div></div>
+<div class="btns"><a class="btn primary" href="research/findings.html">Key findings</a><a class="btn" href="research/approach.html">How the study works</a><a class="btn" href="research/code.html">Code and data</a></div>
+<p class="quiet">Both papers are preprints in preparation; arXiv identifiers will be added when they are posted.</p>
+</section>
 </main>
-<script defer data-katex src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script src="assets/app.js"></script>
 <script src="app/lab-data.js"></script>
 <script src="app/lab.js"></script>
 </body>

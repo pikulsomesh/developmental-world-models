@@ -2,7 +2,7 @@
 
 Neural world models of sensory development in which **every sense has its own world model** (vision, hearing, touch, body position), each sense is fed through an **age-indexed filter** that makes its input as immature as a baby's at that age, and a **fusion model** combines them. The repository holds the code, trained checkpoints, two papers and the project site.
 
-**Site and wiki (GitHub Pages):** <https://pikulsomesh.github.io/developmental-world-models/>. The home page is the *Baby Senses Lab*, an in-browser application for exploring what babies of each age typically sense; each paper has its own page.
+**Site (GitHub Pages):** <https://pikulsomesh.github.io/developmental-world-models/>. The first visit asks whether you are a curious parent or a researcher, and the site then shows that view (switchable from the header): the *Baby Senses Lab* for families (see and hear like a baby of any age, activities, observation sessions), or findings, approach, papers and code for researchers.
 
 ## Two papers
 
@@ -31,7 +31,7 @@ Paper 1 sources: [`report/`](papers/world-models/report/) (Markdown template, fi
 | `scripts/make_figures.py` | Merges results and draws the figures |
 | `models/` | Trained checkpoints (curriculum_only, adult_scratch, grown; seed 0) |
 | `papers/` | The two papers: `world-models/` (theory and experiments) and `baby-senses/` (sensory perception) |
-| `docs/` | Project site and wiki (GitHub Pages) |
+| `docs/` | Project site (GitHub Pages) |
 | `tests/` | Unit test that growth leaves the model's function unchanged |
 
 ## Quick start (CPU only)

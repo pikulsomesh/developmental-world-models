@@ -1,10 +1,4 @@
 /* Baby Senses Lab: app styles, built on the site tokens in assets/style.css. */
-.appnav { border-bottom: 1px solid var(--border); background: var(--surface-2); }
-.appnav .wrap { display: flex; gap: 4px 2px; flex-wrap: wrap; padding-top: 6px; padding-bottom: 6px; }
-.appnav a { font-size: 14px; color: var(--text); padding: 6px 11px; border-radius: var(--radius); white-space: nowrap; }
-.appnav a:hover { background: var(--surface); text-decoration: none; color: var(--accent); }
-.appnav a[aria-current] { background: var(--cardinal); color: #fff; }
-.appnav .ph { font: 700 11px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); align-self: center; padding: 0 4px 0 10px; }
 
 .notice { border: 1px solid var(--border); border-left: 4px solid var(--silver); background: var(--surface-2); padding: 10px 14px; border-radius: var(--radius); font-size: 14.5px; margin: 14px 0; }
 .notice.warn { border-left-color: var(--cardinal); }
@@ -12,7 +6,7 @@
 
 /* age picker */
 .agepick { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 20px; align-items: center; margin: 14px 0 20px; padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
-.agepick .big { font-family: var(--serif); font-size: 30px; font-weight: 600; min-width: 190px; line-height: 1.15; }
+.agepick .big { font-size: 30px; font-weight: 700; letter-spacing: -.01em; min-width: 190px; line-height: 1.15; }
 .agepick .big small { display: block; font: 13px var(--sans); color: var(--muted); font-weight: 400; }
 .agepick input[type=range] { width: 100%; accent-color: var(--cardinal); }
 .agepick .quick { grid-column: 2; display: flex; flex-wrap: wrap; gap: 4px; }
@@ -66,12 +60,6 @@ ul.checks li::before { position: absolute; left: 0; font-weight: 700; }
 ul.checks li.ok::before { content: "✓"; color: #1b8a4b; } ul.checks li.warn::before { content: "!"; color: var(--accent); left: 6px; }
 canvas.spec { width: 100%; height: 140px; background: var(--surface-2); border-radius: var(--radius); border: 1px solid var(--border); display: block; }
 
-/* phases */
-.phase { border-top: 3px solid var(--cardinal); }
-.phase .pn { font: 700 11.5px/1 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
-.phase ul { padding-left: 18px; margin: 8px 0; font-size: 14.5px; }
-.phase .go a { font-weight: 650; }
-
 /* observation session */
 .stage { position: fixed; inset: 0; z-index: 200; background: #6f6f6f; display: none; }
 .stage.on { display: block; }
@@ -100,9 +88,7 @@ canvas.spec { width: 100%; height: 140px; background: var(--surface-2); border-r
   .act .bar { display: none; }
   .req { grid-template-columns: minmax(0, 1fr) 70px; }
   .req .bar { grid-column: 1 / -1; }
-  .appnav .ph { display: none; }
-}
+  }
 @media print {
-  .appnav, .agepick input, .agepick .quick, .noprint, .stage { display: none !important; }
-  .agepick { border: 0; padding: 0; }
+    .agepick { border: 0; padding: 0; }
 }

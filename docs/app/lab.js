@@ -225,7 +225,7 @@ function initSee() {
       const g1 = $("#orig").getContext("2d"), g2 = $("#baby").getContext("2d"), t0 = performance.now();
       const step = (t) => { const c = drawSample("moving", 800, 600, (t - t0) / 1000); g1.drawImage(c, 0, 0); g2.drawImage(c, 0, 0); anim = requestAnimationFrame(step); }; anim = requestAnimationFrame(step);
     }
-    $("#strip").parentElement.hidden = mode !== "image";
+    $("#stripBox").hidden = mode !== "image";
     $("#dl").hidden = mode !== "image";
     render();
   }

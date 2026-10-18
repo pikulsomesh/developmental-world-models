@@ -125,43 +125,25 @@ function drawSample(kind, W = 800, H = 600, t = 0) {
 function nearestRow(rows, a) { let r = rows[0]; for (const x of rows) if (x[0] <= a) r = x; return r; }
 function initAge() {
   const paint = agePicker($("#picker"));
-  const cmpSel = $("#compare");
-  cmpSel.innerHTML = `<option value="">No comparison</option>` + QUICK.map((q) => `<option value="${q}">${q === 0 ? "Newborn" : q + " months"}</option>`).join("");
-  cmpSel.value = store.get("cmp", "");
-  cmpSel.onchange = () => { store.set("cmp", cmpSel.value); render(); };
+  const card = (d) => `<div class="card domain"><h3><span class="dot" style="background:${d.color}"></span>${esc(d.name)}</h3><dl>${d.items.map(([name, rows]) =>
+    `<dt>${esc(name)}</dt><dd>${esc(nearestRow(rows, AGE)[1])}</dd>`).join("")}</dl></div>`;
+  const SENSES = ["vision", "hearing", "touch"];
   function render() {
-    const a = AGE, b = cmpSel.value === "" ? null : +cmpSel.value; paint(a);
+    const a = AGE; paint(a);
     $("#ageTitle").textContent = ageAdj(a);
-    $("#domains").innerHTML = L.DOMAINS.map((d) => `<div class="card domain"><h3><span class="dot" style="background:${d.color}"></span>${esc(d.name)}</h3><dl>${d.items.map(([name, rows]) => {
-      const now = nearestRow(rows, a), then = b == null ? null : nearestRow(rows, b);
-      const changed = then && then !== now;
-      return `<dt>${esc(name)}</dt><dd>${esc(now[1])}</dd>${changed ? `<dd class="then"><span class="new">At ${esc(ageWords(b))}</span>${esc(then[1])}</dd>` : ""}`;
-    }).join("")}</dl></div>`).join("");
+    $("#senses").innerHTML = L.DOMAINS.filter((d) => SENSES.includes(d.id)).map(card).join("");
+    $("#domains").innerHTML = L.DOMAINS.filter((d) => !SENSES.includes(d.id)).map(card).join("");
     const v = vision(a), vl = vision(a, "look");
     $("#numbers").innerHTML = `<tr><th scope="row">Sharpness (brain-response measures)</th><td>about 20/${v.snellen} · ${v.cpd.toFixed(1)} cycles per degree</td></tr>
       <tr><th scope="row">Sharpness (looking tests)</th><td>about 20/${vl.snellen} · ${vl.cpd.toFixed(1)} cycles per degree (normal range about half to double)</td></tr>
       <tr><th scope="row">Smallest detail at 30 cm</th><td>about ${detailMm(v.cpd, 30).toFixed(1)} to ${detailMm(vl.cpd, 30).toFixed(1)} mm</td></tr>
       <tr><th scope="row">Colour</th><td>${Math.round(v.sat * 100)}% of adult colour strength (simplified)</td></tr>
       <tr><th scope="row">Words understood</th><td>${(() => { const r = vocabRange(a); return r[1] === 0 ? "none yet" : `roughly ${r[0]}-${r[1]}`; })()}</td></tr>`;
-    // phase 2: model checkpoint
-    const ck = L.CHECKPOINTS.filter((c) => c <= a).pop();
-    $("#modelAge").textContent = ck === 0 ? "newborn" : `${ck}-month`;
-    $("#modelImg").src = `../data/models/grown_${ck}.png`;
-    $("#modelText").textContent = MODEL_TEXT[ck] + (a > 12 ? " The models stop at the 12-month stage; nothing past it has been trained." : "");
-    // activities
-    const acts = L.ACTIVITIES.map((x) => ({ x, r: readiness(x, a) })).filter((o) => o.x.typical <= a + 0.5 && a <= o.x.full + 6).sort((p, q) => q.x.typical - p.x.typical || q.r - p.r).slice(0, 6);
-    $("#acts").innerHTML = acts.length ? acts.map((o) => `<li><a href="play.html?age=${a}#${o.x.id}">${esc(o.x.name)}</a>: ${esc(o.x.description)}</li>`).join("") : "<li>See the full activity list.</li>";
-    $("#printDate").textContent = new Date().toLocaleDateString();
+    const acts = L.ACTIVITIES.map((x) => ({ x, r: readiness(x, a) })).filter((o) => o.x.typical <= a + 0.5 && a <= o.x.full + 6).sort((p, q) => q.x.typical - p.x.typical || q.r - p.r).slice(0, 3);
+    $("#acts").innerHTML = acts.length ? acts.map((o) => `<a class="tile" href="play.html?age=${a}#${o.x.id}"><b>${esc(o.x.name)}</b><span>${esc(o.x.description)}</span></a>`).join("") : "";
   }
   window.addEventListener("agechange", render); render();
-  $("#print").onclick = () => window.print();
 }
-const MODEL_TEXT = {
-  0: "At the newborn stage our vision model gets very blurry input and has learned almost nothing yet: it can barely tell where the toy is. Touch and body-position models already work, because their input is nearly mature. Vision coming last is built into the input settings, not something the models discovered.",
-  3: "By the 3-month stage the vision model's input is sharper and it starts to locate the toy, unevenly across training runs. The hearing model begins to use left-right differences.",
-  6: "By the 6-month stage the vision model locates a visible toy well. Combining senses now helps find a toy that is fully hidden.",
-  12: "At the 12-month stage every sense model is near its best. Combining senses finds a hidden toy better than any single sense. But no vision model is surprised when a hidden toy vanishes, unlike babies in lab studies.",
-};
 function vocabRange(a) { const ks = Object.keys(L.VOCAB).map(Number); let k = ks[0]; for (const x of ks) if (x <= a) k = x; return L.VOCAB[k]; }
 
 // ---------------------------------------------------------------- readiness (activities)
@@ -258,7 +240,7 @@ function initSee() {
     const { v, f } = filterFor(a, el); el.style.filter = f;
     $("#babyCap").textContent = a < 0.25 ? "As a newborn might see it" : `As a ${ageAdj(a)} might see it`;
     const dist = +$("#dist").value || 30, mm = detailMm(v.cpd, dist);
-    $("#explain").innerHTML = `<p>At <b>${esc(ageWords(a))}</b>, using ${settings.src === "brain" ? "the paper's brain-response numbers" : "looking-test (acuity card) numbers"}, sharpness is about <b>20/${v.snellen}</b>.</p><ul class="checks">
+    $("#explain").innerHTML = `<p>At <b>${esc(ageWords(a))}</b>, using ${settings.src === "brain" ? "brain-response measures" : "looking-test (acuity card) numbers"}, sharpness is about <b>20/${v.snellen}</b>.</p><ul class="checks">
       <li class="${mm < 3 ? "ok" : "warn"}">Details smaller than about <b>${mm < 10 ? mm.toFixed(1) + " mm" : (mm / 10).toFixed(1) + " cm"}</b> blur away at ${dist} cm${mm > 5 ? ", so small print and fine textures are lost" : ""}.</li>
       <li class="${v.contrast > 0.8 ? "ok" : "warn"}">${v.contrast > 0.8 ? "Most contrasts are visible." : v.contrast > 0.5 ? "Faint, low-contrast edges fade; bold edges remain." : "Only strong light-dark edges stand out, like black on white."}</li>
       <li class="${v.sat > 0.8 ? "ok" : "warn"}">${v.sat > 0.8 ? "Colours look close to how an adult sees them." : v.sat > 0.3 ? "Colours are muted; strong reds and greens come through best." : "Colour is faint; the scene is mostly light and dark."}</li>
@@ -390,16 +372,7 @@ function initHear() {
   $("#sources .chip").click();
 }
 
-// ---------------------------------------------------------------- page: models (phase 2)
-function initModels() {
-  const host = $("#ckpts"); let ck = 12;
-  host.innerHTML = L.CHECKPOINTS.map((c) => `<button type="button" class="chip" data-c="${c}">${c === 0 ? "Newborn" : c + " months"}</button>`).join("");
-  const paint = () => { $$("#ckpts .chip").forEach((b) => b.classList.toggle("on", +b.dataset.c === ck));
-    $("#ckImg").src = `../data/models/grown_${ck}.png`; $("#ckImg").alt = `Vision model outputs at the ${ck}-month stage`; $("#ckText").textContent = MODEL_TEXT[ck]; };
-  $$("#ckpts .chip").forEach((b) => (b.onclick = () => { ck = +b.dataset.c; paint(); })); paint();
-}
-
-// ---------------------------------------------------------------- page: observation session (phase 3)
+// ---------------------------------------------------------------- page: observation session 
 const TESTS = {
   faces: { name: "Face or scramble?", about: "A simple face pattern and the same parts scrambled appear side by side. Note which one the baby looks at first and longer.", from: 0,
     typical: "Newborns tend to look more at face-like patterns (Johnson & Morton 1991). The preference changes over the first months as babies learn real faces.", trials: 4 },
@@ -579,12 +552,12 @@ function initSession() {
 
 // ---------------------------------------------------------------- home
 function initHome() {
-  const paint = agePicker($("#picker"), { label: "Pick an age to start" });
-  const go = () => { paint(AGE); $("#goAge").href = `app/age.html?age=${AGE}`; $("#goAge").textContent = `See what a ${ageAdj(AGE)} can do →`; };
+  const paint = agePicker($("#picker"), { label: "Your baby's age" });
+  const go = () => paint(AGE);
   window.addEventListener("agechange", go); go();
 }
 
-const PAGES = { home: initHome, age: initAge, play: initPlay, see: initSee, hear: initHear, models: initModels, session: initSession };
+const PAGES = { home: initHome, age: initAge, play: initPlay, see: initSee, hear: initHear, session: initSession };
 function boot() { const p = document.body.dataset.page; if (PAGES[p]) PAGES[p](); setAge(AGE, false); }
 document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", boot) : boot();
 window.LABJS = { ageWords, vision, blurPx, pxPerDeg, detailMm, readiness, interp };

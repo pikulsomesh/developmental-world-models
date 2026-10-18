@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approach · Developmental World Models</title>
+<meta name="description" content="How the study works: a simulated nursery, an age filter per sense, a world model per sense, and fusion.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="Approach · Developmental World Models">
+<meta property="og:description" content="How the study works: a simulated nursery, an age filter per sense, a world model per sense, and fusion.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/research/approach.html">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/research/approach.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="research/approach.html" data-for="research">
+<noscript><div class="nojs">This site needs JavaScript for its tools. The papers work without it: <a href="../paper/report.pdf">paper 1 (PDF)</a> and <a href="../paper/baby-senses.pdf">paper 2 (PDF)</a>.</div></noscript>
+<main id="main">
+<div class="kicker">Approach</div>
+<h1>How the study works</h1>
+<p class="lede">Immaturity is put in the input, not in the network: each sense sees the world through a fixed filter set by age, and a learning network sits behind it.</p>
+<div class="steps">
+<div class="step"><div><h3>A simulated nursery</h3><p>A toy that can be seen, heard and felt moves about; the infant's own hand babbles; in half the scenes a screen hides the toy. Each sense receives its own stream.</p></div></div>
+<div class="step"><div><h3>An age filter for each sense</h3><p>Vision is blurred, faded and desaturated using published infant acuity and contrast data; hearing is quieter, muffled and less directional; touch is coarser; body position is noisier. The filters are fixed, not learned.</p></div></div>
+<div class="step"><div><h3>A world model for each sense</h3><p>Behind each filter a network learns by predicting its next input from the recent past and the hand's movement. Training runs through four stages named 0, 3, 6 and 12 months (names for stages, not real time). In some regimes the network is widened between stages without changing what it computes.</p></div></div>
+<div class="step"><div><h3>Fusion</h3><p>A fusion world model combines the senses' internal states and learns to predict across them, including filling in a sense that is switched off.</p></div></div>
+</div>
+<h2>What is compared</h2>
+<p>Six training regimes see the same data with the same training budget, so differences come from the schedule or from growth.</p>
+<div class="tablewrap"><table class="t"><tbody>
+<tr><th scope="row">Adult input</th><td>Adult-quality input throughout</td></tr>
+<tr><th scope="row">Immature input</th><td>Input quality improves with age</td></tr>
+<tr><th scope="row">Immature input with growth</th><td>As above, with the network widened between stages</td></tr>
+<tr><th scope="row">Growth only</th><td>Adult-quality input, network widened between stages</td></tr>
+<tr><th scope="row">Shuffled quality</th><td>Input quality drawn at random for each batch</td></tr>
+<tr><th scope="row">Reversed</th><td>Immature input in reverse order, ending at newborn quality</td></tr>
+</tbody></table></div>
+<p class="note">Follow-ups: front-end ablations (blur only, contrast only), an experience-matched schedule, a forecaster that predicts its own uncertainty, a latent-space forecaster, and training continued to 24 months.</p>
+<h2>What is measured</h2>
+<div class="grid g3">
+<div class="card"><h3>What is stored</h3><p class="note">A linear read-out fitted to the model's internal state, scored by R². It measures what is decodable, not what the model uses.</p></div>
+<div class="card"><h3>What the input allows</h3><p class="note">An information ceiling: a separate network trained directly on the task from the same filtered input.</p></div>
+<div class="card"><h3>What is expected</h3><p class="note">Surprise (forecast error) when a hidden toy vanishes compared with when it reappears, as in infant violation-of-expectation studies.</p></div>
+</div>
+<h2>The theory in brief</h2>
+<p>Paper 1 proves four statements for simplified settings: filtered input bounds what any representation can know; for a linear read-out under gradient flow, contrast sets the speed of learning and blur the ceiling; widening a network without changing its function delays learning; and a squared-error forecaster is more surprised by reappearance than by disappearance.</p>
+<h2>Limits</h2>
+<p>Everything is synthetic and small, with one toy and low-resolution scenes, and results rest on linear read-outs and 3 to 5 seeds per condition. The networks are not trained on real video, the model ages are not calibrated to hours of infant experience, and taste, smell and balance are not modelled. Next steps are head-camera recordings from children, an embodied infant simulator, and comparisons with infant behaviour on the same tasks.</p>
+</main>
+</body>
+</html>

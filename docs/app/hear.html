@@ -4,47 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hear like a baby · Baby Senses Lab</title>
-<meta name="description" content="Play a sound as an adult hears it and as a baby of a chosen age might, with quieter, duller and less directional hearing.">
+<meta name="description" content="Play a sound the way an adult hears it and the way a baby of a chosen age might.">
+<meta name="author" content="Somesh Mohapatra">
 <meta property="og:title" content="Hear like a baby · Baby Senses Lab">
-<meta property="og:description" content="Play a sound as an adult hears it and as a baby of a chosen age might, with quieter, duller and less directional hearing.">
+<meta property="og:description" content="Play a sound the way an adult hears it and the way a baby of a chosen age might.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/app/hear.html">
 <link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/hear.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
-<link rel="stylesheet" href="lab.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<link rel="stylesheet" href="../app/lab.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
 <script src="../assets/site.js"></script>
 </head>
-<body data-root="../" data-path="app/hear.html" data-page="hear">
-<noscript><div class="nojs">The Baby Senses Lab needs JavaScript. The <a href="../paper/report.pdf">paper (PDF)</a> and <a href="../wiki/overview.html">wiki</a> work without it.</div></noscript>
+<body data-root="../" data-path="app/hear.html" data-for="both" data-page="hear">
+<noscript><div class="nojs">This site needs JavaScript for its tools. The papers work without it: <a href="../paper/report.pdf">paper 1 (PDF)</a> and <a href="../paper/baby-senses.pdf">paper 2 (PDF)</a>.</div></noscript>
 <main id="main">
-
-<div class="kicker">Phase 1 · Hearing</div>
+<div class="kicker">Hear</div>
 <h1>Hear like a baby</h1>
-<p class="lede">Babies hear from birth, but quiet and high sounds are harder for them to catch and it is harder to tell where a sound comes from. Play a sound both ways and compare. Headphones help.</p>
+<p class="lede">Babies hear from birth, but quiet and high sounds are harder to catch and it is harder to tell where a sound comes from. Play a sound both ways. Headphones help.</p>
 <div id="picker"></div>
 <div class="card">
-  <div class="controls" style="margin-top:0"><span><b>Sound:</b></span><span class="samples" id="sources"></span>
+  <div class="controls" style="margin-top:0"><span class="samples" id="sources"></span>
   <button type="button" class="chip" id="rec">Record your voice (5 s)</button>
-  <span class="btn filebtn">Use a sound file<input type="file" id="afile" accept="audio/*" aria-label="Choose a sound file"></span></div>
+  <span class="btn small filebtn">Use a sound file<input type="file" id="afile" accept="audio/*" aria-label="Choose a sound file"></span></div>
   <p class="note" id="srcNote" role="status"></p>
   <div class="controls"><button type="button" class="btn playbtn" id="playAdult">▶ As an adult hears it</button>
   <button type="button" class="btn primary playbtn" id="playBaby">▶ As a <span id="babyLabel"></span> might hear it</button>
   <button type="button" class="btn" id="stop">Stop</button></div>
   <canvas class="spec" id="spec" aria-label="Live sound spectrum, low pitches on the left"></canvas>
-  <p class="note">Live spectrum: low pitches on the left, high on the right. Keep the volume moderate.</p>
+  <p class="note" style="margin:8px 0 0">Low pitches on the left, high on the right. Keep the volume moderate. Recordings stay in this tab.</p>
 </div>
 <h2>What changes at this age</h2>
 <ul id="hearOut"></ul>
 <h2>Listening to language</h2>
 <p id="langOut"></p>
-<h2>How honest is this?</h2>
-<p>Less than the vision view. Hearing research measures thresholds (the quietest sound heard) and how finely pitches and directions are told apart; it cannot record what sound is like for a baby. The settings here are coarse and follow the paper's hearing tables, which are documented placeholders (<a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/capability.py">code</a>). Recordings stay in this browser tab and are never uploaded.</p>
-<p class="notice warn"><b>Not a medical test.</b> This is a simulation and research tool built from published averages. Babies vary widely and develop at their own pace. If you are worried about a baby's seeing, hearing or development, talk to a paediatrician or health visitor.</p>
-
+<details><summary>How close to real hearing is this?</summary>
+<p>Less close than the picture view. Hearing research measures the quietest sound heard and how finely pitches and directions are told apart; it cannot record what sound is like for a baby. The settings follow coarse tables that match infant threshold data at 3 and 6 months and are milder than the data at 1 month and from 12 months (<a href="https://github.com/pikulsomesh/developmental-world-models/blob/main/dwm/capability.py">code</a>).</p></details>
+<p class="note">A simulation built from published averages for groups of babies, not a medical test. If you are worried about a baby's seeing, hearing or development, talk to a paediatrician or health visitor.</p>
 </main>
-<script src="lab-data.js"></script>
-<script src="lab.js"></script>
+<script src="../app/lab-data.js"></script>
+<script src="../app/lab.js"></script>
 </body>
 </html>

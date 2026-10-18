@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How we know · Baby Senses Lab</title>
+<meta name="description" content="Where the numbers on this site come from and what the research models showed, in plain words.">
+<meta name="author" content="Somesh Mohapatra">
+<meta property="og:title" content="How we know · Baby Senses Lab">
+<meta property="og:description" content="Where the numbers on this site come from and what the research models showed, in plain words.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pikulsomesh.github.io/developmental-world-models/app/science.html">
+<link rel="canonical" href="https://pikulsomesh.github.io/developmental-world-models/app/science.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23A31F34'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<script src="../assets/site.js"></script>
+</head>
+<body data-root="../" data-path="app/science.html" data-for="family">
+<noscript><div class="nojs">This site needs JavaScript for its tools. The papers work without it: <a href="../paper/report.pdf">paper 1 (PDF)</a> and <a href="../paper/baby-senses.pdf">paper 2 (PDF)</a>.</div></noscript>
+<main id="main">
+<div class="kicker">How we know</div>
+<h1>Where this comes from</h1>
+<p class="lede">Everything on this site is built from published studies of groups of babies, and the same numbers were used to train small computer models that learn from baby-like senses.</p>
+<h2>The numbers</h2>
+<p>Researchers measure a baby's sight by showing stripes and watching where the baby looks, or by recording brain responses. They measure hearing by finding the quietest sound a baby turns to. We collected these measurements for each sense from birth to two years and turned them into settings for blur, faded contrast, muted colour and muffled sound. Touch and body sense are known less precisely, so those settings are rougher.</p>
+<h2>What the computer models showed</h2>
+<p class="sub">We built tiny computer models, one per sense, that learn by guessing what they will sense next. Each was given input filtered like a baby's at each age, in a simple cartoon world with one toy. A few things stood out.</p>
+<div class="grid two">
+<div class="card"><h3>Blurry, faint input slows learning</h3><p>A model given newborn-like eyesight took much longer to learn where the toy was than the information in its input allowed. Faint contrast mattered more than blur.</p></div>
+<div class="card"><h3>Senses work better together</h3><p>When the toy was hidden, combining hearing, touch and sight kept track of it better than sight alone.</p></div>
+<div class="card"><h3>Sensing is not understanding</h3><p>The models could keep track of a hidden toy, but they were not "surprised" when it vanished, as babies in lab studies often are. Knowing where something is and expecting it to still be there are different.</p></div>
+<div class="card"><h3>Early experience leaves traces</h3><p>A stretch of very blurry input at the start had a lasting effect on the model's eye for fine detail. The same stretch later on did not.</p></div>
+</div>
+<p class="note" style="margin-top:14px">These are small computer models in a simple simulated world, not babies. The findings describe that setting and may not hold in larger models or for real infants.</p>
+<h2>What this site cannot do</h2>
+<p>It cannot test a baby. Screens are not calibrated, the age settings describe averages, and every baby develops at their own pace. The pictures show the limits of a baby's eyes and ears, not what the baby experiences, because their brains fill in a great deal.</p>
+<h2>Want the details?</h2>
+<div class="grid g2"><div class="card paper"><div class="n">Paper 2 · Developmental science</div><h3>Simulating Infant Senses with Age-Tuned Networks</h3><p class="note" style="margin:0">What infants sense at each age from birth to 24 months, how age-tuned networks simulate it, and the Baby Senses Lab.</p>
+<div class="links"><a href="../paper/baby-senses.pdf">Read the PDF (21 pages)</a><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/baby-senses">Source on GitHub</a></div></div><div class="card paper"><div class="n">Paper 1 · Machine learning</div><h3>Learning Like Infants: Input Constraints in Predictive World Models</h3><p class="note" style="margin:0">How degraded, staged input and network growth change what predictive world models learn, with four propositions and a controlled simulation.</p>
+<div class="links"><a href="../paper/report.pdf">Read the PDF (24 pages)</a><a href="https://github.com/pikulsomesh/developmental-world-models/tree/main/papers/world-models">Source on GitHub</a></div></div></div>
+<p style="margin-top:16px"><button type="button" class="btn" data-choose="research">Switch to the researcher view</button></p>
+</main>
+</body>
+</html>

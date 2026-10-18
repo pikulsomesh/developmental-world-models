@@ -884,6 +884,80 @@
     \field{year}{2023}
   \endentry
 
+  \entry{ha2018world}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=HD}{%
+         family={Ha},
+         familyi={H\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Schmidhuber},
+         familyi={S\bibinitperiod},
+         given={J{\"u}rgen},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HDSJ1}
+    \strng{fullhash}{HDSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.5281/zenodo.1207631
+    \endverb
+    \verb{eprint}
+    \verb 1803.10122
+    \endverb
+    \field{title}{World Models}
+    \field{eprinttype}{arXiv}
+    \field{year}{2018}
+  \endentry
+
+  \entry{lecun2022path}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LY1}
+    \strng{fullhash}{LY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{OpenReview position paper}
+    \field{title}{A Path Towards Autonomous Machine Intelligence}
+    \verb{url}
+    \verb https://openreview.net/forum?id=BZ5a1r-kVsf
+    \endverb
+    \field{year}{2022}
+  \endentry
+
+  \entry{li2025words}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=LFF}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Fei-Fei},
+         giveni={F\bibinithyphendelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LFF1}
+    \strng{fullhash}{LFF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{Substack essay, 10 November 2025}
+    \field{title}{From Words to Worlds: Spatial Intelligence is {AI}'s Next
+  Frontier}
+    \verb{url}
+    \verb https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intellig
+    \verb ence
+    \endverb
+    \field{year}{2025}
+  \endentry
+
   \entry{mohapatra2026learn}{misc}{}
     \name{author}{1}{}{%
       {{hash=MS}{%
@@ -897,10 +971,13 @@
     \strng{fullhash}{MS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-  \field{howpublished}{\url{https://github.com/pikulsomesh/developmental-world-models}}
-    \field{note}{Companion manuscript}
+    \field{note}{Companion paper; manuscript and source code on GitHub}
     \field{title}{Learning Like Infants: Input Constraints in Predictive World
   Models}
+    \verb{url}
+    \verb https://github.com/pikulsomesh/developmental-world-models/tree/main/p
+    \verb apers/world-models
+    \endverb
     \field{year}{2026}
   \endentry
 

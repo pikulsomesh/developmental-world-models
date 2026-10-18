@@ -1,0 +1,102 @@
+{
+ "job": "voe_gauss",
+ "seed": 4,
+ "stages": [
+  {
+   "age": 0,
+   "probe_own": {
+    "pos_r2": 0.011874300336518151,
+    "pos_mae_px": 6.5100749008750896,
+    "type_acc": 0.2785
+   },
+   "loss_last": {
+    "step": 2000,
+    "recon": 3.5401149943936616e-05,
+    "pred": 3.5792647395282984e-05,
+    "nll": -3.480374336242676
+   },
+   "voe_nll": {
+    "surprise_possible": -3.4258737802505492,
+    "surprise_impossible": -3.4464870566129684,
+    "voe_index": -0.002999446165842461
+   },
+   "voe_mse": {
+    "surprise_possible": 0.00013518872308850404,
+    "surprise_impossible": 9.75949473286164e-05,
+    "voe_index": -0.16149661843129923
+   }
+  },
+  {
+   "age": 3,
+   "probe_own": {
+    "pos_r2": 0.39161510080646456,
+    "pos_mae_px": 4.764741043248337,
+    "type_acc": 0.271625
+   },
+   "loss_last": {
+    "step": 2000,
+    "recon": 0.0011733288411051035,
+    "pred": 0.0014991966309025884,
+    "nll": -2.6779656410217285
+   },
+   "voe_nll": {
+    "surprise_possible": -2.2653939536213876,
+    "surprise_impossible": -2.453116745054722,
+    "voe_index": -0.03978433099366813
+   },
+   "voe_mse": {
+    "surprise_possible": 0.0022516300025745297,
+    "surprise_impossible": 0.0019092679442837834,
+    "voe_index": -0.08228081115687202
+   }
+  },
+  {
+   "age": 6,
+   "probe_own": {
+    "pos_r2": 0.6692445846997803,
+    "pos_mae_px": 3.2102484548196415,
+    "type_acc": 0.552
+   },
+   "loss_last": {
+    "step": 2000,
+    "recon": 0.009772444143891335,
+    "pred": 0.012920727021992207,
+    "nll": -2.6479547023773193
+   },
+   "voe_nll": {
+    "surprise_possible": -1.3379701050999575,
+    "surprise_impossible": -1.8751191259920597,
+    "voe_index": -0.1671752579088433
+   },
+   "voe_mse": {
+    "surprise_possible": 0.009299081898061558,
+    "surprise_impossible": 0.0078097214794252065,
+    "voe_index": -0.08705228446947541
+   }
+  },
+  {
+   "age": 12,
+   "probe_own": {
+    "pos_r2": 0.8041380395243773,
+    "pos_mae_px": 2.318756881114698,
+    "type_acc": 0.597125
+   },
+   "loss_last": {
+    "step": 2000,
+    "recon": 0.010702320374548435,
+    "pred": 0.017560776323080063,
+    "nll": -2.6384048461914062
+   },
+   "voe_nll": {
+    "surprise_possible": -0.749121152277221,
+    "surprise_impossible": -2.1143127554655075,
+    "voe_index": -0.4767672826309453
+   },
+   "voe_mse": {
+    "surprise_possible": 0.012580992612056434,
+    "surprise_impossible": 0.010712785210926086,
+    "voe_index": -0.08020199279169316
+   }
+  }
+ ]
+}

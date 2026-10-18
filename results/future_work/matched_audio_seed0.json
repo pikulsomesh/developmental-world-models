@@ -1,0 +1,43 @@
+{
+ "job": "matched_audio",
+ "seed": 0,
+ "total_updates": 6000,
+ "checkpoints": [
+  {
+   "age": 1,
+   "updates": 500,
+   "probe_own": {
+    "pos_r2": 0.003125456329185372,
+    "pos_mae_px": 6.599691963097373,
+    "type_acc": 0.9675
+   }
+  },
+  {
+   "age": 3,
+   "updates": 1500,
+   "probe_own": {
+    "pos_r2": 0.07648571771416168,
+    "pos_mae_px": 6.263465080861824,
+    "type_acc": 0.998375
+   }
+  },
+  {
+   "age": 6,
+   "updates": 3000,
+   "probe_own": {
+    "pos_r2": 0.2968861887554669,
+    "pos_mae_px": 5.255384949210874,
+    "type_acc": 1.0
+   }
+  },
+  {
+   "age": 12,
+   "updates": 6000,
+   "probe_own": {
+    "pos_r2": 0.4316428535513954,
+    "pos_mae_px": 4.375892368993764,
+    "type_acc": 1.0
+   }
+  }
+ ]
+}

@@ -59,3 +59,9 @@ Access note: during this run PubMed and PMC served bot-check pages, Europe PMC's
 
 - olsho1988pure: verified against the AIP/ASA record (JASA 84(4):1316-1324, doi:10.1121/1.396630); full text read.
 - werner1990puretone: verified via the DOI record (Infant Behav Dev 13(3):355-375, doi:10.1016/0163-6383(90)90040-F) and the Werner 2007 reference list. Its numbers are used only as reported in Werner 2007.
+
+## Added October 2026 (JEPA-style comparison)
+
+- grill2020bootstrap: verified against the NeurIPS 2020 proceedings page (papers.nips.cc, hash f3ada80d5c4ee70142b17b8192b2958e) and arXiv 2006.07733 (14 authors, Grill first, Valko last). Supports the claim cited: the online network predicts the target network's representation, and the target is a slow-moving average of the online network. Page range not seen, so it is left out.
+- bardes2022vicreg: verified against the ICLR 2022 poster listing (iclr.cc/virtual/2022/poster/6481) and arXiv 2105.04906v3 ("Accepted at ICLR 2022"). Supports the claim cited: a variance term keeps each embedding dimension's spread above a threshold and a covariance term decorrelates dimensions, to prevent collapse.
+- worldlabs2025rtfm: company blog post, verified through a search restricted to worldlabs.ai (title "RTFM: A Real-Time Frame Model", dated 16 October 2025); the site itself could not be fetched from this environment. It describes a real-time generative model that learns end-to-end from large-scale video, without explicit 3D representations, and uses spatially grounded frames as memory. It gives no architecture specification, paper or code, which is the only claim it supports in the text.

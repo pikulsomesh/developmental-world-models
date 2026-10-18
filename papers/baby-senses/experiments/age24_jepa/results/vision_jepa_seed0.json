@@ -1,0 +1,82 @@
+{
+ "job": "vision_jepa",
+ "seed": 0,
+ "sense": "vision",
+ "acuity_table": "vep",
+ "objective": "jepa",
+ "steps_per_stage": 2000,
+ "stages": [
+  {
+   "age": 0,
+   "probe_own": {
+    "pos_r2": -0.0012709273063482573,
+    "pos_mae_px": 6.621828919292759,
+    "type_acc": 0.345125
+   },
+   "spread": {
+    "z_std": 0.0054940152913331985,
+    "eff_dim": 1.0001702839252158,
+    "z_dims": 32
+   },
+   "loss_last": {
+    "step": 2000,
+    "pred": 5.1030738745794224e-08
+   },
+   "acuity_cpd": 1.0
+  },
+  {
+   "age": 3,
+   "probe_own": {
+    "pos_r2": -0.0012051343855576935,
+    "pos_mae_px": 6.611071213698732,
+    "type_acc": 0.2295
+   },
+   "spread": {
+    "z_std": 0.00579771539196372,
+    "eff_dim": 1.0075145012958235,
+    "z_dims": 32
+   },
+   "loss_last": {
+    "step": 2000,
+    "pred": 6.474485303442634e-08
+   },
+   "acuity_cpd": 4.0
+  },
+  {
+   "age": 6,
+   "probe_own": {
+    "pos_r2": -0.0059397556183733435,
+    "pos_mae_px": 6.632803777966721,
+    "type_acc": 0.22325
+   },
+   "spread": {
+    "z_std": 0.005738407373428345,
+    "eff_dim": 1.0204924201221954,
+    "z_dims": 32
+   },
+   "loss_last": {
+    "step": 2000,
+    "pred": 1.3748520544254461e-08
+   },
+   "acuity_cpd": 15.0
+  },
+  {
+   "age": 12,
+   "probe_own": {
+    "pos_r2": -0.0053302425438321865,
+    "pos_mae_px": 6.6308227666118675,
+    "type_acc": 0.23075
+   },
+   "spread": {
+    "z_std": 0.005713839083909988,
+    "eff_dim": 1.027211158512097,
+    "z_dims": 32
+   },
+   "loss_last": {
+    "step": 2000,
+    "pred": 1.4271692716505413e-09
+   },
+   "acuity_cpd": 30.0
+  }
+ ]
+}

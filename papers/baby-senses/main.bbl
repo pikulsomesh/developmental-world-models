@@ -1755,6 +1755,302 @@
     \field{year}{1988}
   \endentry
 
+  \entry{assran2023self}{inproceedings}{}
+    \name{author}{8}{}{%
+      {{hash=AM}{%
+         family={Assran},
+         familyi={A\bibinitperiod},
+         given={Mahmoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DQ}{%
+         family={Duval},
+         familyi={D\bibinitperiod},
+         given={Quentin},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={Misra},
+         familyi={M\bibinitperiod},
+         given={Ishan},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Bojanowski},
+         familyi={B\bibinitperiod},
+         given={Piotr},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vincent},
+         familyi={V\bibinitperiod},
+         given={Pascal},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rabbat},
+         familyi={R\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Ballas},
+         familyi={B\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AMDQMI+1}
+    \strng{fullhash}{AMDQMIBPVPRMLYBN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Proceedings of the {IEEE/CVF} Conference on Computer
+  Vision and Pattern Recognition ({CVPR})}
+    \verb{doi}
+    \verb 10.1109/CVPR52729.2023.01499
+    \endverb
+    \verb{eprint}
+    \verb 2301.08243
+    \endverb
+    \field{pages}{15619\bibrangedash 15629}
+    \field{title}{Self-supervised learning from images with a joint-embedding
+  predictive architecture}
+    \field{eprinttype}{arXiv}
+    \field{year}{2023}
+  \endentry
+
+  \entry{garrido2025intuitive}{article}{}
+    \name{author}{8}{}{%
+      {{hash=GQ}{%
+         family={Garrido},
+         familyi={G\bibinitperiod},
+         given={Quentin},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Ballas},
+         familyi={B\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Assran},
+         familyi={A\bibinitperiod},
+         given={Mahmoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Bardes},
+         familyi={B\bibinitperiod},
+         given={Adrien},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=NL}{%
+         family={Najman},
+         familyi={N\bibinitperiod},
+         given={Laurent},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rabbat},
+         familyi={R\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DE}{%
+         family={Dupoux},
+         familyi={D\bibinitperiod},
+         given={Emmanuel},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GQBNAM+1}
+    \strng{fullhash}{GQBNAMBANLRMDELY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 2502.11831
+    \endverb
+    \field{title}{Intuitive physics understanding emerges from self-supervised
+  pretraining on natural videos}
+    \field{journaltitle}{arXiv preprint arXiv:2502.11831}
+    \field{eprinttype}{arXiv}
+    \field{year}{2025}
+  \endentry
+
+  \entry{grill2020bootstrap}{inproceedings}{}
+    \name{author}{14}{}{%
+      {{hash=GJB}{%
+         family={Grill},
+         familyi={G\bibinitperiod},
+         given={Jean-Bastien},
+         giveni={J\bibinithyphendelim B\bibinitperiod},
+      }}%
+      {{hash=SF}{%
+         family={Strub},
+         familyi={S\bibinitperiod},
+         given={Florian},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=AF}{%
+         family={Altch{\'e}},
+         familyi={A\bibinitperiod},
+         given={Florent},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=TC}{%
+         family={Tallec},
+         familyi={T\bibinitperiod},
+         given={Corentin},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=RPH}{%
+         family={Richemond},
+         familyi={R\bibinitperiod},
+         given={Pierre\bibnamedelima H.},
+         giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=BE}{%
+         family={Buchatskaya},
+         familyi={B\bibinitperiod},
+         given={Elena},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=DC}{%
+         family={Doersch},
+         familyi={D\bibinitperiod},
+         given={Carl},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=APB}{%
+         family={Avila\bibnamedelima Pires},
+         familyi={A\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Bernardo},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=GZD}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Zhaohan\bibnamedelima Daniel},
+         giveni={Z\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=GAM}{%
+         family={Gheshlaghi\bibnamedelima Azar},
+         familyi={G\bibinitperiod\bibinitdelim A\bibinitperiod},
+         given={Mohammad},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Piot},
+         familyi={P\bibinitperiod},
+         given={Bilal},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=KK}{%
+         family={Kavukcuoglu},
+         familyi={K\bibinitperiod},
+         given={Koray},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Munos},
+         familyi={M\bibinitperiod},
+         given={R{\'e}mi},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=VM}{%
+         family={Valko},
+         familyi={V\bibinitperiod},
+         given={Michal},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GJBSFAF+1}
+    \strng{fullhash}{GJBSFAFTCRPHBEDCAPBGZDGAMPBKKMRVM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Advances in Neural Information Processing Systems}
+    \verb{eprint}
+    \verb 2006.07733
+    \endverb
+    \field{title}{Bootstrap your own latent: A new approach to self-supervised
+  learning}
+    \field{volume}{33}
+    \field{eprinttype}{arXiv}
+    \field{year}{2020}
+  \endentry
+
+  \entry{bardes2022vicreg}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BA}{%
+         family={Bardes},
+         familyi={B\bibinitperiod},
+         given={Adrien},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Ponce},
+         familyi={P\bibinitperiod},
+         given={Jean},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BAPJLY1}
+    \strng{fullhash}{BAPJLY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{International Conference on Learning Representations
+  ({ICLR})}
+    \verb{eprint}
+    \verb 2105.04906
+    \endverb
+    \field{title}{{VICReg}: Variance-invariance-covariance regularization for
+  self-supervised learning}
+    \field{eprinttype}{arXiv}
+    \field{year}{2022}
+  \endentry
+
+  \entry{worldlabs2025rtfm}{online}{}
+    \name{author}{1}{}{%
+      {{hash=W}{%
+         family={{World Labs}},
+         familyi={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{W1}
+    \strng{fullhash}{W1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{{RTFM}: A real-time frame model}
+    \verb{url}
+    \verb https://www.worldlabs.ai/blog/rtfm
+    \endverb
+    \field{day}{16}
+    \field{month}{10}
+    \field{year}{2025}
+    \field{urlday}{17}
+    \field{urlmonth}{10}
+    \field{urlyear}{2026}
+  \endentry
+
   \entry{sullivan2021saycam}{article}{}
     \name{author}{5}{}{%
       {{hash=SJ}{%
@@ -1954,141 +2250,6 @@
     \field{journaltitle}{IEEE Transactions on Cognitive and Developmental
   Systems}
     \field{year}{2024}
-  \endentry
-
-  \entry{assran2023self}{inproceedings}{}
-    \name{author}{8}{}{%
-      {{hash=AM}{%
-         family={Assran},
-         familyi={A\bibinitperiod},
-         given={Mahmoud},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=DQ}{%
-         family={Duval},
-         familyi={D\bibinitperiod},
-         given={Quentin},
-         giveni={Q\bibinitperiod},
-      }}%
-      {{hash=MI}{%
-         family={Misra},
-         familyi={M\bibinitperiod},
-         given={Ishan},
-         giveni={I\bibinitperiod},
-      }}%
-      {{hash=BP}{%
-         family={Bojanowski},
-         familyi={B\bibinitperiod},
-         given={Piotr},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=VP}{%
-         family={Vincent},
-         familyi={V\bibinitperiod},
-         given={Pascal},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=RM}{%
-         family={Rabbat},
-         familyi={R\bibinitperiod},
-         given={Michael},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=LY}{%
-         family={LeCun},
-         familyi={L\bibinitperiod},
-         given={Yann},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=BN}{%
-         family={Ballas},
-         familyi={B\bibinitperiod},
-         given={Nicolas},
-         giveni={N\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{AMDQMI+1}
-    \strng{fullhash}{AMDQMIBPVPRMLYBN1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{booktitle}{Proceedings of the {IEEE/CVF} Conference on Computer
-  Vision and Pattern Recognition ({CVPR})}
-    \verb{doi}
-    \verb 10.1109/CVPR52729.2023.01499
-    \endverb
-    \verb{eprint}
-    \verb 2301.08243
-    \endverb
-    \field{pages}{15619\bibrangedash 15629}
-    \field{title}{Self-supervised learning from images with a joint-embedding
-  predictive architecture}
-    \field{eprinttype}{arXiv}
-    \field{year}{2023}
-  \endentry
-
-  \entry{garrido2025intuitive}{article}{}
-    \name{author}{8}{}{%
-      {{hash=GQ}{%
-         family={Garrido},
-         familyi={G\bibinitperiod},
-         given={Quentin},
-         giveni={Q\bibinitperiod},
-      }}%
-      {{hash=BN}{%
-         family={Ballas},
-         familyi={B\bibinitperiod},
-         given={Nicolas},
-         giveni={N\bibinitperiod},
-      }}%
-      {{hash=AM}{%
-         family={Assran},
-         familyi={A\bibinitperiod},
-         given={Mahmoud},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=BA}{%
-         family={Bardes},
-         familyi={B\bibinitperiod},
-         given={Adrien},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=NL}{%
-         family={Najman},
-         familyi={N\bibinitperiod},
-         given={Laurent},
-         giveni={L\bibinitperiod},
-      }}%
-      {{hash=RM}{%
-         family={Rabbat},
-         familyi={R\bibinitperiod},
-         given={Michael},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=DE}{%
-         family={Dupoux},
-         familyi={D\bibinitperiod},
-         given={Emmanuel},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=LY}{%
-         family={LeCun},
-         familyi={L\bibinitperiod},
-         given={Yann},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{GQBNAM+1}
-    \strng{fullhash}{GQBNAMBANLRMDELY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \verb{eprint}
-    \verb 2502.11831
-    \endverb
-    \field{title}{Intuitive physics understanding emerges from self-supervised
-  pretraining on natural videos}
-    \field{journaltitle}{arXiv preprint arXiv:2502.11831}
-    \field{eprinttype}{arXiv}
-    \field{year}{2025}
   \endentry
 
   \entry{lotter2017deep}{inproceedings}{}

@@ -22,8 +22,8 @@ const NAV = {
     ["research/code.html", "Code"], ["app/see.html", "Simulator"]],
 };
 const PAPERS = {
-  p1: { title: "Learning Like Infants: Input Constraints in Predictive World Models", pdf: "paper/report.pdf", src: GH + "/tree/main/papers/world-models" },
-  p2: { title: "Simulating Infant Senses with Age-Tuned Networks", pdf: "paper/baby-senses.pdf", src: GH + "/tree/main/papers/baby-senses" },
+  p1: { title: "Learning Like Infants: Input Constraints in Predictive World Models", pdf: "paper/report.pdf?v=60ee92cf", src: GH + "/tree/main/papers/world-models" },
+  p2: { title: "Simulating Infant Senses with Age-Tuned Networks", pdf: "paper/baby-senses.pdf?v=a303842b", src: GH + "/tree/main/papers/baby-senses" },
 };
 window.DWM = { GH, NAV, PAPERS };
 

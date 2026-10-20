@@ -8,8 +8,8 @@ Neural world models of sensory development in which **every sense has its own wo
 
 | Paper | Focus | Folder |
 |---|---|---|
-| 1. *Learning Dynamics of Predictive World Models Under Developmental Input Constraints* | Computer science and theory: how staged, degraded input and network growth change what predictive networks learn, with four propositions and a controlled simulation | [`papers/world-models/`](papers/world-models/) |
-| 2. Sensory perception across infant ages and the Baby Senses Lab | Developmental neuroscience: what infants of each age perceive through each sense, and how age-tuned models simulate it | [`papers/baby-senses/`](papers/baby-senses/) |
+| 1. *Learning Like Infants: Input Constraints in Predictive World Models* | Computer science and theory: how staged, degraded input and network growth change what predictive networks learn, with four propositions and a controlled simulation | [`papers/world-models/`](papers/world-models/) |
+| 2. *Simulating Infant Senses with Age-Tuned Networks* | Developmental neuroscience: what infants of each age perceive through each sense, and how age-tuned models simulate it | [`papers/baby-senses/`](papers/baby-senses/) |
 
 Paper 1 sources: [`report/`](papers/world-models/report/) (Markdown template, figures, built PDF, internal referee report, citation audit) and [`arxiv/`](papers/world-models/arxiv/) (arXiv-format LaTeX, bibliography). Companion experiments are in [`companion/`](papers/world-models/companion/).
 

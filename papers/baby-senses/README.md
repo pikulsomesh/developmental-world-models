@@ -6,7 +6,7 @@ A developmental-neuroscience paper on **sensory perception, not cognition**: wha
 
 - `REFERENCES_VERIFIED.md`: how each reference was checked.
 - `main.tex`, `references.bib`, `main.bbl`: LaTeX source (Research Future template layout, biblatex NEJM style). Compile with `pdflatex main && bibtex main && pdflatex main && pdflatex main`. Include `main.bbl` for arXiv.
-- `baby-senses.pdf`: built PDF (also served at `docs/paper/baby-senses.pdf`).
+- `baby-senses.pdf`: built PDF (also served at `docs/paper/baby-senses.pdf`; after copying a new build there, run `python3 scripts/stamp_site_pdfs.py` so the site links fetch the new file).
 - `figures/`: Figs. 1-5. `code/make_figures.py` draws them from the app's age tables (`docs/app/lab-data.js`), `results/extra.json` and the companion studies' raw results (`papers/world-models/companion/`); Fig. 5 is cropped from screenshots of the live site.
 
 **Relation to paper 1** (`papers/world-models/`): the two papers share the vision front-end values and equations and the main-study training runs and information ceilings behind Fig. 3; each paper states this where it occurs. No figure is reproduced between the papers.
